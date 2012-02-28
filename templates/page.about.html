@@ -1,0 +1,157 @@
+<?php
+    $resource_uri = $this->desc->get_primary_resource_uri();
+    $title = $this->get_title($resource_uri);
+
+    $sC = $this->sC;
+    $c  = $sC->getConfig();
+
+    $entitySetId = $sC->getEntitySetId();
+
+    echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xsd ="http://www.w3.org/2001/XMLSchema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"  
+  xmlns:doap="http://usefulinc.com/ns/doap#"
+  xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+    <head>
+        <title>About <?php echo $c['site']['name'];?></title>
+<?php
+    $fileVersion = 'version=0.0.2';
+
+    $favicon_theme = SITE_DIR.'theme/'.$c['site']['theme'].'/images/icons/favicon.ico';
+
+    if (file_exists($favicon_theme)) {
+        $favicon = $c['site']['base'].'/theme/'.$c['site']['theme'].'/images/icons/favicon.ico';
+    }
+    else {
+        $favicon = $c['site']['base'].'/favicon.ico';
+    }
+?>
+
+        <link rel="shortcut icon" href="<?php echo $favicon; ?>"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo $c['site']['base'].'/theme/'.$c['site']['theme'].'/css/display.css?'.$fileVersion; ?>" media="screen, projection, tv, print"/>
+
+        <meta name="description" content="<?php e($this->get_description($resource_uri));?>"/>
+
+<?php
+    $formats = $this->desc->get_resource_triple_values($this->desc->get_uri(), 'http://purl.org/dc/terms/hasFormat');
+    foreach ($formats as $format_uri) {
+        $media_type = $this->desc->get_first_literal($format_uri, 'http://purl.org/dc/elements/1.1/format');  
+        $label = $this->desc->get_first_literal($format_uri, RDFS_LABEL, $media_type);  
+        echo '        <link rel="alternate" type="' . htmlspecialchars($media_type) . '" href="' . htmlspecialchars($format_uri) . '" title="' . htmlspecialchars($label) . ' version of this document"/>' . "\n";
+    }
+?>
+    </head>
+
+    <body id="<?php echo $entitySetId; ?>" about="" typeof="foaf:Document" class="hfeed">
+
+        <div id="wrap">
+<?php require_once SITE_DIR . 'templates/header.html'; ?>
+            <div id="core">
+
+                <div id="content">
+                    <h1 property="dcterms:title" class="entry-title">About World Bank Linked Data</h1>
+
+                    <div id="content_inner" property="dcterms:description" class="hentry">
+                        <div id="who-is-behind-this" class="entry-content">
+                            <h2 id="what-is-this">What is this?</h2>
+                            <p>This site contains data from <a href="http://worldbank.org/">The World Bank</a>. Currently it has World Development Indicators, World Bank Finances, and World Bank Projects and Operations data.</p>
+
+                            <h2 id="technical">Technical Info</h2>
+                            <h3 id="technical_process">Process</h3>
+                            <p>I've used the World Bank's APIs to collect their data in XML, and used XSLT 2.0 to transform the format into RDF/XML. I've havily made use of the standalone <a href="http://librdf.org/raptor/rapper.html">rapper</a> RDF parser utility program. And your common Linux command-line tools.</p>
+
+                            <p>The data is imported into <a href="http://incubator.apache.org/jena/documentation/tdb/">TDB Triple Store</a>. <a href="http://incubator.apache.org/jena/documentation/serving_data/index.html">Fuseki</a> is used for SPARQL server. The HTML pages are served by the <a href="https://github.com/csarven/linked-data-pages">Linked Data Pages</a> PHP framework.</p>
+
+                            <h3 id="technical_query">Query</h3>
+                            <p>The data can be queried using the <a href="http://worldbank.270a.info/sparql">SPARQL Endpoint</a>.</p>
+
+                            <h3>To do</h3>
+                            <p>I'll give out more details soon.</p>
+                        </div>
+
+                        <div id="conditions">
+                            <h2 id="terms">Terms of use</h2>
+                            <p>The material on this site is not endorsed by The World Bank. The data on this site comes with no warranty. Hence, I am not responsible if chaos ensues on any level at any point in time, in any universe, in any dimension, in any anything. My responsibility is to make sure that the data here is represented using the <a href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Data design principles</a>. Unless stated otherwise (<strong>TODO</strong>), the data is not altered during the transformation from The World Bank data source. You shall assume that this data does contain errors, and you shall resort to the data provided by the original content provider if you have doubts about its validity. Make sure to check with The World Bank's <a href="http://go.worldbank.org/OJC02YMLA0">Terms</a> and <a href="http://go.worldbank.org/R6942GMMH0">Restrictions</a> as well, and everything else that they say. If you spot errors in the data here, let's fix them. If I've done something else wrong, please inform me so I can make it right. If you agree with this paragraph, you may use this data.</p>
+
+                            <h2 id="license">License</h2>
+                            <p>If you need further clarification, <a href="/contact">contact</a> me.</p>
+
+                            <h3 id="license_code">Code</h3>
+                            <p>The code which retrieves this data, transforms it to RDF, and imports to TDB Triple Store can be found at <a href="http://github.com/csarven/worldbank-linkeddata">GitHub</a>. It is using the Apache License 2.0.</p>
+
+                            <h3 id="license_data">Data</h3>
+                            <p>If you are going to use this data, you're going to have to make a choice. In the one hand you'll have to attribute The World Bank, and in the other hand you don't have to care. One of these may lead to trouble. Which one will be up to you. You have to attribute The World Bank ("The World Bank: Dataset name: Data source (if known)") says just as I did:<p>
+
+                            <table id="datasets-from-source">
+                                <caption>Datasets from The World Bank</caption>
+                                <thead>
+                                    <tr><th>Name</th><th>Source</th></tr>
+                                </thead>
+                                <tfoot>
+                                    <tr><td colspan="2">This table data is from <a href="http://worldbank.270a.info/sparql?query=PREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0D%0APREFIX+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0D%0APREFIX+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0D%0APREFIX+dcterms%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0APREFIX+foaf%3A+%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0D%0APREFIX+skos%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2004%2F02%2Fskos%2Fcore%23%3E%0D%0APREFIX+wgs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E%0D%0APREFIX+dcat%3A+%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fdcat%23%3E%0D%0APREFIX+dbo%3A+%3Chttp%3A%2F%2Fdbpedia.org%2Fontology%2F%3E%0D%0APREFIX+dbp%3A+%3Chttp%3A%2F%2Fdbpedia.org%2Fproperty%2F%3E%0D%0APREFIX+dbr%3A+%3Chttp%3A%2F%2Fdbpedia.org%2Fresource%2F%3E%0D%0APREFIX+sdmx%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%23%3E%0D%0APREFIX+sdmx-attribute%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fattribute%23%3E%0D%0APREFIX+sdmx-code%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fcode%23%3E%0D%0APREFIX+sdmx-concept%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fconcept%23%3E%0D%0APREFIX+sdmx-dimension%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fdimension%23%3E%0D%0APREFIX+sdmx-measure%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fmeasure%23%3E%0D%0APREFIX+sdmx-metadata%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fmetadata%23%3E%0D%0APREFIX+sdmx-subject%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fsdmx%2F2009%2Fsubject%23%3E%0D%0APREFIX+qb%3A+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23%3E%0D%0APREFIX+year%3A+%3Chttp%3A%2F%2Freference.data.gov.uk%2Fid%2Fyear%2F%3E%0D%0APREFIX+statsDataGov%3A+%3Chttp%3A%2F%2Fstats.data-gov.ie%2F%3E%0D%0APREFIX+concept%3A+%3Chttp%3A%2F%2Fstats.data-gov.ie%2Fconcept%2F%3E%0D%0APREFIX+codelist%3A+%3Chttp%3A%2F%2Fstats.data-gov.ie%2Fcodelist%2F%3E%0D%0APREFIX+dsd%3A+%3Chttp%3A%2F%2Fstats.data-gov.ie%2Fdsd%2F%3E%0D%0APREFIX+property%3A+%3Chttp%3A%2F%2Fstats.data-gov.ie%2Fproperty%2F%3E%0D%0APREFIX+geoDataGov%3A+%3Chttp%3A%2F%2Fgeo.data-gov.ie%2F%3E%0D%0APREFIX+sch-ont%3A+%3Chttp%3A%2F%2Feducation.data.gov.uk%2Fontology%2Fschool%23%3E%0D%0APREFIX+void%3A+%3Chttp%3A%2F%2Frdfs.org%2Fns%2Fvoid%23%3E%0D%0APREFIX+wbld%3A+%3Chttp%3A%2F%2Fworldbank.270a.info%2F%3E%0D%0APREFIX+property%3A+%3Chttp%3A%2F%2Fworldbank.270a.info%2Fproperty%23%3E%0D%0APREFIX+classification%3A+%3Chttp%3A%2F%2Fworldbank.270a.info%2Fclassification%2F%3E%0D%0A%0D%0A%09++%0D%0ASELECT+%3Flabel+%3Fsource%0D%0AWHERE+%7B%0D%0A++++GRAPH+%3Fg+%7B%0D%0A++++++++%3Fs+%3Fo+%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23DataSet%3E+.%0D%0A++++++++%3Fs+dcterms%3Asource+%3Fsource+.%0D%0A++++++++%3Fs+rdfs%3Alabel+%3Flabel+.%0D%0A++++%7D%0D%0A%7D&default-graph-uri=&output=text&stylesheet=%2Fpages-update%2Fxml-to-html.xsl">SPARQL query</a>.</td></tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr><td>World Development Indicators dataset</td><td><a href="http://api.worldbank.org/indicators?format=xml">http://api.worldbank.org/indicators?format=xml</a></td></tr>
+                                    <tr><td>World Bank Projects and Operations dataset</td><td><a href="http://search.worldbank.org/api/projects/all.xml">http://search.worldbank.org/api/projects/all.xml</a></td></tr>
+                                    <tr><td>IBRD Balance Sheet</td><td><a href="https://finances.worldbank.org/api/views/4i57-byta/rows.xml">https://finances.worldbank.org/api/views/4i57-byta/rows.xml</a></td></tr>
+                                    <tr><td>Contributions to Financial Intermediary Funds</td><td><a href="https://finances.worldbank.org/api/views/536v-dxib/rows.xml">https://finances.worldbank.org/api/views/536v-dxib/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Cash Flows</td><td><a href="https://finances.worldbank.org/api/views/9pv4-rtrm/rows.xml">https://finances.worldbank.org/api/views/9pv4-rtrm/rows.xml</a></td></tr>
+                                    <tr><td>Financial intermediary Funds Funding Decisions</td><td><a href="https://finances.worldbank.org/api/views/ax5s-vav5/rows.xml">https://finances.worldbank.org/api/views/ax5s-vav5/rows.xml</a></td></tr>
+                                    <tr><td>The World Bank Components Of VPU Budget</td><td><a href="https://finances.worldbank.org/api/views/csrh-vv7b/rows.xml">https://finances.worldbank.org/api/views/csrh-vv7b/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Balance Sheet</td><td><a href="https://finances.worldbank.org/api/views/e8yz-96c6/rows.xml">https://finances.worldbank.org/api/views/e8yz-96c6/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Credits and Grants</td><td><a href="https://finances.worldbank.org/api/views/ebmi-69yj/rows.xml">https://finances.worldbank.org/api/views/ebmi-69yj/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Income</td><td><a href="https://finances.worldbank.org/api/views/eycy-ub35/rows.xml">https://finances.worldbank.org/api/views/eycy-ub35/rows.xml</a></td></tr>
+                                    <tr><td>Financial Intermediary Funds Commitments</td><td><a href="https://finances.worldbank.org/api/views/fie8-6fxn/rows.xml">https://finances.worldbank.org/api/views/fie8-6fxn/rows.xml</a></td></tr>
+                                    <tr><td>Global Open Data Calendar</td><td><a href="https://finances.worldbank.org/api/views/g4sx-dwxc/rows.xml">https://finances.worldbank.org/api/views/g4sx-dwxc/rows.xml</a></td></tr>
+                                    <tr><td>World Bank Program Budget</td><td><a href="https://finances.worldbank.org/api/views/gprm-cvxz/rows.xml">https://finances.worldbank.org/api/views/gprm-cvxz/rows.xml</a></td></tr>
+                                    <tr><td>Financial Intermediary Funds Cash Transfers</td><td><a href="https://finances.worldbank.org/api/views/h4s8-nwev/rows.xml">https://finances.worldbank.org/api/views/h4s8-nwev/rows.xml</a></td></tr>
+                                    <tr><td>World Bank Expenditures By Program</td><td><a href="https://finances.worldbank.org/api/views/hcqu-nmwb/rows.xml">https://finances.worldbank.org/api/views/hcqu-nmwb/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Cash Flows</td><td><a href="https://finances.worldbank.org/api/views/i7za-uwi5/rows.xml">https://finances.worldbank.org/api/views/i7za-uwi5/rows.xml</a></td></tr>
+                                    <tr><td>IBRD/IDA/IFC Trust Funds - Annual Cash Contributions and Disbursements</td><td><a href="https://finances.worldbank.org/api/views/iww5-3sst/rows.xml">https://finances.worldbank.org/api/views/iww5-3sst/rows.xml</a></td></tr>
+                                    <tr><td>IBRD and IDA Operational Summary</td><td><a href="https://finances.worldbank.org/api/views/jeqz-f7mn/rows.xml">https://finances.worldbank.org/api/views/jeqz-f7mn/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Income</td><td><a href="https://finances.worldbank.org/api/views/kmwd-f4rk/rows.xml">https://finances.worldbank.org/api/views/kmwd-f4rk/rows.xml</a></td></tr>
+                                    <tr><td>Commercial Credit Exposure by Counterparty Rating</td><td><a href="https://finances.worldbank.org/api/views/p65j-3upu/rows.xml">https://finances.worldbank.org/api/views/p65j-3upu/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Income</td><td><a href="https://finances.worldbank.org/api/views/pyda-ktbg/rows.xml">https://finances.worldbank.org/api/views/pyda-ktbg/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Subscriptions to Capital Stock and Voting Power as of June 30, 2010</td><td><a href="https://finances.worldbank.org/api/views/rcx4-r7xj/rows.xml">https://finances.worldbank.org/api/views/rcx4-r7xj/rows.xml</a></td></tr>
+                                    <tr><td>IDA Balance Sheet</td><td><a href="https://finances.worldbank.org/api/views/ri54-wt6e/rows.xml">https://finances.worldbank.org/api/views/ri54-wt6e/rows.xml</a></td></tr>
+                                    <tr><td>IDA Balance Sheet</td><td><a href="https://finances.worldbank.org/api/views/s3ey-mkx3/rows.xml">https://finances.worldbank.org/api/views/s3ey-mkx3/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Loans</td><td><a href="https://finances.worldbank.org/api/views/sfv5-tf7p/rows.xml">https://finances.worldbank.org/api/views/sfv5-tf7p/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Credits and Grants</td><td><a href="https://finances.worldbank.org/api/views/tdwh-3krx/rows.xml">https://finances.worldbank.org/api/views/tdwh-3krx/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Voting Power and Subscriptions and Contributions as of June 30, 2010</td><td><a href="https://finances.worldbank.org/api/views/v84d-dq44/rows.xml">https://finances.worldbank.org/api/views/v84d-dq44/rows.xml</a></td></tr>
+                                    <tr><td>IDA Statement of Income</td><td><a href="https://finances.worldbank.org/api/views/wphw-pasx/rows.xml">https://finances.worldbank.org/api/views/wphw-pasx/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Cash Flows</td><td><a href="https://finances.worldbank.org/api/views/xs8h-cwh5/rows.xml">https://finances.worldbank.org/api/views/xs8h-cwh5/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Loans</td><td><a href="https://finances.worldbank.org/api/views/zucq-nrc3/rows.xml">https://finances.worldbank.org/api/views/zucq-nrc3/rows.xml</a></td></tr>
+                                    <tr><td>IBRD Statement of Cash Flows</td><td><a href="https://finances.worldbank.org/api/views/zyqx-8e4a/rows.xml">https://finances.worldbank.org/api/views/zyqx-8e4a/rows.xm</a></td></tr>
+                                </tbody>
+                            </table>
+                            <p>Other than that, <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+
+                            <h2>Who is behind this?</h2>
+                            <p><a href="http://csarven.ca/#i">Sarven Capadisli</a></p>
+                        </div>
+                    </div>
+
+                    <dl id="page_notice">
+                        <dt>Page notice</dt>
+                        <dd>
+                            <ul>
+                                <li class="notice_updated">Last updated on <abbr property="dcterms:date" datatype="xsd:date" class="updated" title="2012-02-28T00:00:00-00:00">2012-02-28</abbr>.</li>
+                                <li class="notice_badge_lod-stars"><a href="http://www.w3.org/DesignIssues/LinkedData.html"><abbr class="badge_lod lod-stars-5" title="Five star Open Web data">&#9733;&#9733;&#9733;&#9733;&#9733;</abbr></a></li>
+                            </ul>
+                        </dd>
+                    </dl>
+            </div>
+
+            <div id="footer">
+            </div>
+
+        </div>
+<?php require_once SITE_DIR . 'templates/foot.html'; ?>

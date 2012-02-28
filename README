@@ -1,0 +1,239 @@
+== Package overview ==
+Majority of what's discussed here is written as a how-to article at http://csarven.ca/how-to-create-a-linked-data-site . If you want to dive into this project using steps, I suggest reading that first. Naturally there is a lot of overlap with what's mentioned here.
+
+=== Requirements ===
+* Paget framework
+* Moriarty library
+* ARC2 library
+
+== Installation ==
+This is an ongoing process to make installation and configuration of this framework. At the moment, you can use the initial install.php file to setup the directories for your setup. All you have to do is copy the install.php file to the directory that you want to setup your site at. For example, if you want to run your site from /var/www/site/, then make sure you to chmod a+w that directory (or at least the script that's running PHP has write access). Then go to http://example.org/install.php (replace example.org with whatever host you have /var/www/site/ pointing to. This only copies the necessary files and configures the index.php file for you. You'd still have to setup your SPARQL endpoint and all that... but, yea, stay tuned.
+
+
+=== Directory/file structure for templating and themes ===
+Templates go under the templates/ directory. Templates are used to render different requests made by the client. For example, if the client requests the resource http://site/geo/Montreal, we might want to serve the page.geo.html. Templates generally include layout sections like; html, head, header, nav, footer, foot. It is aimed to modularize common components. There is still a lot of flexibility for any template, hence one can include or exclude any component.
+$nano /var/www/site/index.php
+Themes go under the theme/<themename> directory. A theme is assigned by $config['site']['theme']. See Site configuration below. The ones that are included in this package are base, default and cso. Base contains all layout and typographical rules, and common images like icons. Default imports base and extends it by including background images and colour rules. By default this package sets the theme to 'default', but you can set your own, in site configuration.
+
+Custom data processing for templates can be created in classes/SITE_Template.php
+
+For now, jQuery minimal library comes with this package.
+
+<pre><nowiki>
+favicon.ico
+.htaccess                      #contains rules for paget's URL dispatching
+index.php                      #main file that dispatches everything
+js/
+js/index.js                    #main script for the site
+js/jquery.min.js               #jQuery JavaScript library
+templates/
+templates/page.about.html      #about template
+templates/page.default.html    #default template that is used to output a resource. includes layout sections
+templates/html.html            #starts the document
+templates/head.html            #head element
+templates/header.html          #header section (e.g., site address, global navigation)
+templates/page.home.html       #home template
+templates/footer.html          #footer section (e.g., global navigation)
+templates/foot.html            #closes the document
+templates/page.geo.html        #geo template that is used to output demographic stats about a particular location. Geared towards the CSO dataset
+templates/nav.html             #local navigation (i.e., in context of the viewed page)
+templates/page.property.html   #default template that is used for properties
+
+theme/
+theme/base/
+theme/base/css/display.css              #layout, typography rules
+theme/base/images/                      #common icons, illustrations
+theme/base/icons/
+theme/base/images/icons/icons-01.png    #main icons file (combined into a single file)
+theme/base/illustrations/
+theme/default/
+theme/default/css/display.css           #imports base stylesheet, and contains background images and colour rules
+theme/cso/
+theme/cso/css/display.css               #imports default stylesheet and adds CSO specific styles
+</nowiki></pre>
+
+
+=== Configuration ===
+==== Server setup ====
+<nowiki><pre>
+/**
+ * XXX: Review each line before executing!
+ * The following is tested under Debian/Linux kernel in an Apache and PHP5 environment.
+ */
+
+/* Essential requirements for Fuseki */
+$sudo apt-get install maven2
+$sudo apt-get install ruby
+$sudo apt-get install subversion
+
+/* Required to pull Moriarty, Paget, ARC2, and Linked Data Pages */
+$sudo apt-get install git
+
+/* Setting up Fuseki triple store */
+$sudo svn co http://jena.svn.sourceforge.net/svnroot/jena/Fuseki/trunk /usr/lib/fuseki
+$cd /usr/lib/fuseki
+$sudo mvn clean package
+
+/* Fuseki configuration for a DESCRIBE query for resources as subject and object. Optinal. */
+$sudo cp src-dev/dev/BackwardForwardDescribeFactory.java src/main/java/org/openjena/fuseki/
+$sudo nano src/main/java/org/openjena/fuseki/BackwardForwardDescribeFactory.java   #Use org.openjena.fuseki instead of dev for package
+$sudo nano tdb2.ttl   #Use the same path for BackwardForwardDescribeFactory. Uncomment tdb:unionDefaultGraph true ;. Use <#site> instead of <#dataset>
+$sudo mvn install
+
+/* Starts the Fuseki server */
+Default is read only, use --update to enable write
+$sudo ./fuseki-server --desc tdb2.ttl /cso
+
+/* Some tests to make sure the Fuseki server is up and running okay */
+$sudo ./s-put http://localhost:3030/site/data default books.ttl
+$sudo ./s-get http://localhost:3030/site/data default
+$sudo ./s-query --service http://localhost:3030/site/query 'SELECT * WHERE {?s ?p ?o .}'
+$sudo ./s-update --service http://localhost:3030/site/update 'CLEAR default'
+
+
+
+/* If you already have Linked Data Pages, you can skip this. */
+$cd /var/www
+$sudo mkdir site
+$chown -R csarven site
+$git clone git://github.com/csarven/Linked Data Pages.git site
+
+/* Required libraries for Linked Data Pages */
+$svn checkout http://moriarty.googlecode.com/svn/trunk/ lib/moriarty
+$svn checkout http://paget.googlecode.com/svn/branches/2.0/ lib/paget
+$git clone git://github.com/semsol/arc2.git lib/arc2
+
+/* Until some of the issues are fixed in Moriarty and Paget, we include the fixes in this package */
+$cp -R patches/moriarty/* lib/moriarty/
+$cp -R patches/paget/* lib/paget/
+
+/* Configure paths to libraries and SPARQL endpoint URI */
+Either load install.php from your browser and submit the form or manually edit the directory configuration:
+$cp /var/www/site/index.php.sample /var/www/site/index.php
+$nano /var/www/site/index.php
+
+
+/* Site configuration (see below for details) */
+$nano /var/www/site/config.php
+
+/* Take note of the details. Change as you see fit. */
+$nano /var/www/site/.htaccess
+</pre></nowiki>
+
+
+
+==== Site configuration ====
+* index.php contains general site settings
+* config.php contains URI mappings, entity URIs, query types and templates
+
+===== Site settings =====
+The settings extend the base LDP config site settings. These values are used throughout the site, therefore make sure to configure them for your own needs.
+
+<nowiki><pre>
+$config['site']['name']   = 'My LDP site'; /*Name of your site. Appears in page title, address etc. */
+$config['site']['server'] = 'site';         /* 'site' in http://site */
+$config['site']['path']   = '';             /* 'foo' in http://site/foo */
+$config['site']['theme']  = 'default';      /* 'default' in /var/www/site/theme/default */
+$config['site']['logo']   = 'logo.png';  /* logo.png in /var/www/site/theme/default/images/logo.jpg */
+</pre></nowiki>
+
+===== Server URI mapping =====
+This setting is used to map server names that are found in the dataset to the ones that are requested by the client. For example, if the user requests http://site/resource/Montreal, you would look for http://dbpedia.org/resource/Montreal in your dataset.
+
+<nowiki><pre>
+$config['server']['dbpedia.org'] = 'site';  /* URI maps e.g., http://dbpedia.org/resource/Montreal to http://site/resource/Montreal */
+</pre></nowiki>
+
+There is a default mapping of:
+<pre>
+$config['server']['site'] = 'site';
+</pre>
+
+so, you don't have to repeat that. But you can add other ones as mentioned earlier.
+
+===== Entity URIs, query types and templates =====
+We use entity ids to determine how to respond back to the request. The entity set id is determined from the requested URI. The example below uses 'site_foo' as the entity set id. The entity set id is also reused in HTML templates < body = "site_foo" >. The path is assigned to '/foo', if there is a request for http://site/foo. The query is also assigned here. For the time being, we only set a query name here. We can set a custom SPARQL query to $config['sparql_query']['site_foo'] and use the index name 'site_foo' at $config['entity']['site_foo']['query'] = 'site_foo';
+
+<nowiki><pre>
+/* SPARQL query to use for this entity e.g., $config['sparql_query']['cso_home'] */
+$config['sparql_query']['site_foo'] = "
+DESCRIBE <URI>
+"
+
+/* URI path for this entity */
+$config['entity']['site_foo']['path']     = "/foo";
+/* SPARQL query to use for this entity e.g., $config['sparql_query']['site_foo'] */
+$config['entity']['site_foo']['query']    = 'site_foo';
+/* HTML template to use for this entity */
+$config['entity']['site_foo']['template'] = 'page.foo.html';
+</pre></nowiki>
+
+
+===== PHP Classes =====
+Classes are located in '/var/www/site/classes/':
+
+class LDP_Config
+* Main configuration
+* Contains base methods for working with the configuration values
+* Allows entity set configuration; entities are identified by id, and contain sub properties for URI path, querying, and the templating to be triggered.
+
+getCurrentRequest()
+* Figures out the URI pattern.
+
+getEntityId()
+* Returns the entity id from the current request.
+
+getEntityQuery()
+* Returns the query type based on the current request.
+
+getEntityPaths()
+* Returns all of the entity paths that was set in site (index.php) and LDP configuration (LDP_config.php).
+
+getRemoteURIFromCurrentRequest()
+* Transforms the current request URI to the URI found in the RDF store.
+
+getConfig()
+* Returns all of the configuration values that was set in site (index.php) and LDP configuration (LDP_config.php).
+
+getPrefix()
+* Returns a namespace of prefix or the whole LDP and SITE prefix set
+
+getURI()
+* Given QName, returns an URI from configured prefix list
+
+object()
+* Returns the object value for a property object pair based on property QName input
+
+
+
+
+
+class LDP_UriSpace extends PAGET_StoreBackedUriSpace
+* Primary class that figures out the request and prepares a response
+
+
+class LDP_ResourceDescription extends PAGET_ResourceDescription
+* Figures out how to respond; prepares a SPARQL query to be used, reads the triples from the response, maps the URIs, assigns a template to be used for the HTML response
+
+
+class LDP_StoreDescribeGenerator extends PAGET_StoreDescribeGenerator
+* Figures out how to add the RDF triples to the index from the SPARQL query result.
+
+
+class LDP_Template extends PAGET_Template
+* LDP specific templates
+** function getTriples($subjects = null, $properties = null, $objects = null, $index = null)
+** function renderProperty()
+
+class LDP_TableDataWidget extends PAGET_TableDataWidget
+* Outputs a layout for tables
+
+
+class LDP_Store extends Store
+* Overrides Moriarty's default store URI
+
+
+class LDP_SparqlServiceBase extends SparqlServiceBase
+* Controls which SPARQL query to use
+
+
