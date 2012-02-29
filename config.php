@@ -84,4 +84,79 @@ $config['entity']['classification_indicator']['query']    = 'classification_coun
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
 
+
+$config['sparql_query']['classification_regions'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/regions> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+$config['entity']['classification_indicator']['path']     = '/classification/region';
+$config['entity']['classification_indicator']['query']    = 'classification_region';
+$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+
+
+$config['sparql_query']['classification_topics'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/topics> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+$config['entity']['classification_indicator']['path']     = '/classification/topic';
+$config['entity']['classification_indicator']['query']    = 'classification_topics';
+$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+
+
+$config['sparql_query']['classification_sources'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/sources> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+$config['entity']['classification_indicator']['path']     = '/classification/source';
+$config['entity']['classification_indicator']['query']    = 'classification_sources';
+$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+
+
+$config['sparql_query']['classification_incomeLevels'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/incomeLevels> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+$config['entity']['classification_indicator']['path']     = '/classification/incomelevel';
+$config['entity']['classification_indicator']['query']    = 'classification_incomeLevels';
+$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+
+
+$config['sparql_query']['classification_lendingTypes'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/lendingTypes> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+$config['entity']['classification_indicator']['path']     = '/classification/lendingtype';
+$config['entity']['classification_indicator']['query']    = 'classification_lendingTypes';
+$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+
 ?>
