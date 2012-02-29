@@ -62,19 +62,25 @@
                     <div id="content_inner" property="dcterms:description" class="hentry">
                         <div id="who-is-behind-this" class="entry-content">
                             <h2 id="what-is-this">What is this?</h2>
-                            <p>This site contains data from <a href="http://worldbank.org/">The World Bank</a>. Currently it has World Development Indicators, World Bank Finances, and World Bank Projects and Operations data.</p>
+                            <p>This site contains data from <a href="http://worldbank.org/">The World Bank</a>. Currently it has <a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators</a>, <a href="https://finances.worldbank.org/">World Bank Finances</a>, and <a href="http://www.worldbank.org/projects">World Bank Projects and Operations</a> data.</p>
 
-                            <h2 id="technical">Technical Info</h2>
+                            <h2 id="technical">Technical mumbo jumbo</h2>
                             <h3 id="technical_process">Process</h3>
-                            <p>I've used the World Bank's APIs to collect their data in XML, and used XSLT 2.0 to transform the format into RDF/XML. I've havily made use of the standalone <a href="http://librdf.org/raptor/rapper.html">rapper</a> RDF parser utility program. And your common Linux command-line tools.</p>
+                            <p>I've collected the World Bank's data in XML from their APIs, and applied XSLT 2.0 transformations to get RDF/XML. I've heavily made use of the standalone <a href="http://librdf.org/raptor/rapper.html">rapper</a> RDF parser utility program, and your common Linux command-line scripting and tools along the way.</p>
 
-                            <p>The data is imported into <a href="http://incubator.apache.org/jena/documentation/tdb/">TDB Triple Store</a>. <a href="http://incubator.apache.org/jena/documentation/serving_data/index.html">Fuseki</a> is used for SPARQL server. The HTML pages are served by the <a href="https://github.com/csarven/linked-data-pages">Linked Data Pages</a> PHP framework.</p>
+                            <p>The data is imported into <a href="http://incubator.apache.org/jena/documentation/tdb/">TDB Triple Store</a>. <a href="http://incubator.apache.org/jena/documentation/serving_data/index.html">Fuseki</a> is used for SPARQL server. The HTML pages are served by the <a href="https://github.com/csarven/linked-data-pages">Linked Data Pages</a> framework.</p>
 
                             <h3 id="technical_query">Query</h3>
                             <p>The data can be queried using the <a href="http://worldbank.270a.info/sparql">SPARQL Endpoint</a>.</p>
 
-                            <h3>To do</h3>
-                            <p>I'll give out more details soon.</p>
+                            <h3 id="notes">Brief notes..</h3>
+                            <ul>
+                                <li>I apologize for the unavoidable bnodes that's created from the Projects and Operations dataset. I didn't want to create and maintain arbitrary URIs.</li>
+                                <li>Data dumps are coming soon.</li>
+                                <li>VoID and some DCAT coming soon.</li>
+                                <li>I'll provide an in depth explanation to the whole process... once I get some sleep.</li>
+                                <li>Don't worry about the logo for now. It'll be redesigned... in cornflower-blue.</li>
+                            </ul>
                         </div>
 
                         <div id="conditions">
@@ -88,7 +94,7 @@
                             <p>The code which retrieves this data, transforms it to RDF, and imports to TDB Triple Store can be found at <a href="http://github.com/csarven/worldbank-linkeddata">GitHub</a>. It is using the Apache License 2.0.</p>
 
                             <h3 id="license_data">Data</h3>
-                            <p>If you are going to use this data, you're going to have to make a choice. In the one hand you'll have to attribute The World Bank, and in the other hand you don't have to care. One of these may lead to trouble. Which one will be up to you. You have to attribute The World Bank ("The World Bank: Dataset name: Data source (if known)") says just as I did:<p>
+                            <p>If you are going to use this data, you're going to have to make a choice. In the one hand you'll have to attribute The World Bank, and in the other hand you don't have to care. One of these may lead to trouble. Which one will be up to you. You should attribute ("The World Bank: Dataset name: Data source (if known)") says just as I did:<p>
 
                             <table id="datasets-from-source">
                                 <caption>Datasets from The World Bank</caption>
@@ -132,7 +138,7 @@
                                     <tr><td>IBRD Statement of Cash Flows</td><td><a href="https://finances.worldbank.org/api/views/zyqx-8e4a/rows.xml">https://finances.worldbank.org/api/views/zyqx-8e4a/rows.xm</a></td></tr>
                                 </tbody>
                             </table>
-                            <p>Other than that, <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+                            <p>Other than that, everything is <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a> from this end of things.</p>
 
                             <h2>Who is behind this?</h2>
                             <p><a href="http://csarven.ca/#i">Sarven Capadisli</a></p>
@@ -143,7 +149,7 @@
                         <dt>Page notice</dt>
                         <dd>
                             <ul>
-                                <li class="notice_updated">Last updated on <abbr property="dcterms:date" datatype="xsd:date" class="updated" title="2012-02-28T00:00:00-00:00">2012-02-28</abbr>.</li>
+                                <li class="notice_updated">Last updated on <abbr property="dcterms:date" datatype="xsd:dateTime" class="updated" title="2012-02-29T00:00:00-00:00">2012-02-29</abbr>.</li>
                                 <li class="notice_badge_lod-stars"><a href="http://www.w3.org/DesignIssues/LinkedData.html"><abbr class="badge_lod lod-stars-5" title="Five star Open Web data">&#9733;&#9733;&#9733;&#9733;&#9733;</abbr></a></li>
                             </ul>
                         </dd>
