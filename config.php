@@ -79,9 +79,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/country';
-$config['entity']['classification_indicator']['query']    = 'classification_country';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+$config['entity']['classification_country']['path']     = '/classification/country';
+$config['entity']['classification_country']['query']    = 'classification_country';
+$config['entity']['classification_country']['template'] = 'page.classification.html';
 
 
 
@@ -95,9 +95,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/region';
-$config['entity']['classification_indicator']['query']    = 'classification_region';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+$config['entity']['classification_region']['path']     = '/classification/region';
+$config['entity']['classification_region']['query']    = 'classification_region';
+$config['entity']['classification_region']['template'] = 'page.classification.html';
 
 
 $config['sparql_query']['classification_topic'] = "
@@ -110,9 +110,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/topic';
-$config['entity']['classification_indicator']['query']    = 'classification_topic';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+$config['entity']['classification_topic']['path']     = '/classification/topic';
+$config['entity']['classification_topic']['query']    = 'classification_topic';
+$config['entity']['classification_topic']['template'] = 'page.classification.html';
 
 
 $config['sparql_query']['classification_source'] = "
@@ -125,9 +125,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/source';
-$config['entity']['classification_indicator']['query']    = 'classification_source';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+$config['entity']['classification_source']['path']     = '/classification/source';
+$config['entity']['classification_source']['query']    = 'classification_source';
+$config['entity']['classification_source']['template'] = 'page.classification.html';
 
 
 $config['sparql_query']['classification_incomelevel'] = "
@@ -140,9 +140,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/incomelevel';
-$config['entity']['classification_indicator']['query']    = 'classification_incomelevel';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+$config['entity']['classification_incomelevel']['path']     = '/classification/incomelevel';
+$config['entity']['classification_incomelevel']['query']    = 'classification_incomelevel';
+$config['entity']['classification_incomelevel']['template'] = 'page.classification.html';
 
 
 $config['sparql_query']['classification_lendingtype'] = "
@@ -155,8 +155,24 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/lendingtype';
-$config['entity']['classification_indicator']['query']    = 'classification_lendingtype';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+$config['entity']['classification_lendingtype']['path']     = '/classification/lendingtype';
+$config['entity']['classification_lendingtype']['query']    = 'classification_lendingtype';
+$config['entity']['classification_lendingtype']['template'] = 'page.classification.html';
+
+
+$config['sparql_query']['classification_currency'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/currencies> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+$config['entity']['classification_lendingtype']['path']     = '/classification/currency';
+$config['entity']['classification_lendingtype']['query']    = 'classification_currency';
+$config['entity']['classification_lendingtype']['template'] = 'page.classification.html';
+
 
 ?>
