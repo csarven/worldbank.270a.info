@@ -85,7 +85,7 @@ $config['entity']['classification_indicator']['template'] = 'page.classification
 
 
 
-$config['sparql_query']['classification_regions'] = "
+$config['sparql_query']['classification_region'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
@@ -100,7 +100,7 @@ $config['entity']['classification_indicator']['query']    = 'classification_regi
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
 
-$config['sparql_query']['classification_topics'] = "
+$config['sparql_query']['classification_topic'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
@@ -111,11 +111,11 @@ WHERE {
 }
 ";
 $config['entity']['classification_indicator']['path']     = '/classification/topic';
-$config['entity']['classification_indicator']['query']    = 'classification_topics';
+$config['entity']['classification_indicator']['query']    = 'classification_topic';
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
 
-$config['sparql_query']['classification_sources'] = "
+$config['sparql_query']['classification_source'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
@@ -126,11 +126,11 @@ WHERE {
 }
 ";
 $config['entity']['classification_indicator']['path']     = '/classification/source';
-$config['entity']['classification_indicator']['query']    = 'classification_sources';
+$config['entity']['classification_indicator']['query']    = 'classification_source';
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
 
-$config['sparql_query']['classification_incomeLevels'] = "
+$config['sparql_query']['classification_incomelevel'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
@@ -141,11 +141,11 @@ WHERE {
 }
 ";
 $config['entity']['classification_indicator']['path']     = '/classification/incomelevel';
-$config['entity']['classification_indicator']['query']    = 'classification_incomeLevels';
+$config['entity']['classification_indicator']['query']    = 'classification_incomelevel';
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
 
-$config['sparql_query']['classification_lendingTypes'] = "
+$config['sparql_query']['classification_lendingtype'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
@@ -156,7 +156,7 @@ WHERE {
 }
 ";
 $config['entity']['classification_indicator']['path']     = '/classification/lendingtype';
-$config['entity']['classification_indicator']['query']    = 'classification_lendingTypes';
+$config['entity']['classification_indicator']['query']    = 'classification_lendingtype';
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
 ?>
