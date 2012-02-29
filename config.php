@@ -58,7 +58,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/world-development-indicators> {
+    GRAPH <http://worldbank.270a.info/graph/indicators> {
         <URI> ?p1 ?o1 .
     }
 }
