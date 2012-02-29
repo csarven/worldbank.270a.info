@@ -50,30 +50,26 @@ $config['entity']['site_home']['template'] = 'page.home.html';
 $config['entity']['site_about']['path']     = "/about";
 $config['entity']['site_about']['query']    = 'empty';
 $config['entity']['site_about']['template'] = 'page.about.html';
-/*
-$config['sparql_query']['classification'] = "
+
+
+
+$config['sparql_query']['classification_indicator'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
-
-    ?s2 a <URI> .
-    ?s2 skos:prefLabel ?o3 .
 }
 WHERE {
-    {
-     <URI> ?p1 ?o1 .
-    }
-    UNION
-    {
-        ?s2 a <URI> .
-        OPTIONAL {
-           ?s2 skos:prefLabel ?o3 .
-        }
+    GRAPH <http://worldbank.270a.info/graph/world-bank-indicators> {
+        <URI> ?p1 ?o1 .
     }
 }
 ";
-$config['entity']['classification']['path']     = '/classification';
-$config['entity']['classification']['query']    = 'classification';
-$config['entity']['classification']['template'] = 'page.class.html';
-*/
+$config['entity']['classification_indicator']['path']     = '/classification/indicator/';
+$config['entity']['classification_indicator']['query']    = 'classification_indicator';
+$config['entity']['classification_indicator']['template'] = 'page.classification.html';
+
+$config['entity']['classification_country']['path']     = '/classification/country/';
+$config['entity']['classification_country']['query']    = 'classification_indicator';
+$config['entity']['classification_country']['template'] = 'page.classification.html';
+
 
 ?>
