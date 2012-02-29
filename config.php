@@ -170,9 +170,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_lendingtype']['path']     = '/classification/currency';
-$config['entity']['classification_lendingtype']['query']    = 'classification_currency';
-$config['entity']['classification_lendingtype']['template'] = 'page.classification.html';
+$config['entity']['classification_currency']['path']     = '/classification/currency';
+$config['entity']['classification_currency']['query']    = 'classification_currency';
+$config['entity']['classification_currreny']['template'] = 'page.classification.html';
 
 
 ?>
