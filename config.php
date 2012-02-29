@@ -63,13 +63,14 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/indicator/';
+$config['entity']['classification_indicator']['path']     = '/classification/indicator';
 $config['entity']['classification_indicator']['query']    = 'classification_indicator';
 $config['entity']['classification_indicator']['template'] = 'page.classification.html';
 
-$config['entity']['classification_country']['path']     = '/classification/country/';
+/*
+$config['entity']['classification_country']['path']     = '/classification/country';
 $config['entity']['classification_country']['query']    = 'classification_indicator';
 $config['entity']['classification_country']['template'] = 'page.classification.html';
-
+*/
 
 ?>
