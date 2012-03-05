@@ -6,6 +6,7 @@
   <head><title>SPARQLer</title>
     <link rel="stylesheet" type="text/css" href="/fuseki.css" />
     <script src="/js/jquery.min.js"></script>
+<!--
     <script>
         $(document).ready(function () {
             var textareaPrefixes = $('#sparql_query_textarea').val();
@@ -17,6 +18,7 @@
             });
         });
     </script>
+-->
   </head>
 
   <body>
@@ -50,23 +52,24 @@ PREFIX sdmx-metadata: <http://purl.org/linked-data/sdmx/2009/metadata#>
 PREFIX sdmx-subject: <http://purl.org/linked-data/sdmx/2009/subject#>
 PREFIX qb: <http://purl.org/linked-data/cube#>
 PREFIX year: <http://reference.data.gov.uk/id/year/>
-PREFIX statsDataGov: <http://stats.data-gov.ie/>
-PREFIX concept: <http://stats.data-gov.ie/concept/>
-PREFIX codelist: <http://stats.data-gov.ie/codelist/>
-PREFIX dsd: <http://stats.data-gov.ie/dsd/>
-PREFIX property: <http://stats.data-gov.ie/property/>
-PREFIX geoDataGov: <http://geo.data-gov.ie/>
-PREFIX sch-ont: <http://education.data.gov.uk/ontology/school#>
 PREFIX void: <http://rdfs.org/ns/void#>
 PREFIX wbld: <http://worldbank.270a.info/>
 PREFIX property: <http://worldbank.270a.info/property/>
 PREFIX classification: <http://worldbank.270a.info/classification/>
 PREFIX country: <http://worldbank.270a.info/classification/country/>
 PREFIX incomelevel: <http://worldbank.270a.info/classification/incomelevel/>
+PREFIX lendingtype: <http://worldbank.270a.info/classification/lendingtype/>
+PREFIX region: <http://worldbank.270a.info/classification/region/>
+PREFIX source: <http://worldbank.270a.info/classification/source/>
+PREFIX topic: <http://worldbank.270a.info/classification/topic/>
+PREFIX currency: <http://worldbank.270a.info/classification/currency/>
+PREFIX world-development-indicators: <http://worldbank.270a.info/graph/world-development-indicators>
+PREFIX world-bank-finances: <http://worldbank.270a.info/graph/world-bank-finances>
+PREFIX world-bank-projects-and-operations: <http://worldbank.270a.info/graph/world-bank-finances>
 
 </textarea>
       <br/>
-      <button id="sparql_show_graphs">Graphs</button>
+<!--      <button id="sparql_show_graphs">Graphs</button> -->
       <br/>
 	  <br/>
 	  Target graph URI (or use <code>FROM</code> in the query)
