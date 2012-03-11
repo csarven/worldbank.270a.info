@@ -59,7 +59,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/indicators> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -74,7 +74,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/countries> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -90,7 +90,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/regions> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -105,7 +105,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/topics> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -120,7 +120,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/sources> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -135,7 +135,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/incomeLevels> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -150,7 +150,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/lendingTypes> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
@@ -165,7 +165,7 @@ CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/currencies> {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
     }
 }
