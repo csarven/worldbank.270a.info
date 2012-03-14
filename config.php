@@ -54,7 +54,32 @@ $config['entity']['site_about']['template'] = 'page.about.html';
 
 
 
-$config['sparql_query']['classification_indicator'] = "
+$config['sparql_query']['classification'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+    ?o1 skos:prefLabel ?conceptLabel .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/meta> {
+        <URI> ?p1 ?o1 .
+        OPTIONAL {
+            {
+                ?o1 skos:prefLabel ?conceptLabel .
+            }
+            UNION
+            {
+                ?o1 rdfs:label ?conceptLabel .
+            }
+        }
+    }
+}
+";
+$config['entity']['classification']['path']     = '/classification/';
+$config['entity']['classification']['query']    = 'classification';
+$config['entity']['classification']['template'] = 'page.classification.html';
+
+
+$config['sparql_query']['dataset'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
 }
@@ -64,114 +89,8 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_indicator']['path']     = '/classification/indicator';
-$config['entity']['classification_indicator']['query']    = 'classification_indicator';
-$config['entity']['classification_indicator']['template'] = 'page.classification.html';
-
-
-$config['sparql_query']['classification_country'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_country']['path']     = '/classification/country';
-$config['entity']['classification_country']['query']    = 'classification_country';
-$config['entity']['classification_country']['template'] = 'page.classification.html';
-
-
-
-$config['sparql_query']['classification_region'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_region']['path']     = '/classification/region';
-$config['entity']['classification_region']['query']    = 'classification_region';
-$config['entity']['classification_region']['template'] = 'page.classification.html';
-
-
-$config['sparql_query']['classification_topic'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_topic']['path']     = '/classification/topic';
-$config['entity']['classification_topic']['query']    = 'classification_topic';
-$config['entity']['classification_topic']['template'] = 'page.classification.html';
-
-
-$config['sparql_query']['classification_source'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_source']['path']     = '/classification/source';
-$config['entity']['classification_source']['query']    = 'classification_source';
-$config['entity']['classification_source']['template'] = 'page.classification.html';
-
-
-$config['sparql_query']['classification_incomelevel'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_incomelevel']['path']     = '/classification/incomelevel';
-$config['entity']['classification_incomelevel']['query']    = 'classification_incomelevel';
-$config['entity']['classification_incomelevel']['template'] = 'page.classification.html';
-
-
-$config['sparql_query']['classification_lendingtype'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_lendingtype']['path']     = '/classification/lendingtype';
-$config['entity']['classification_lendingtype']['query']    = 'classification_lendingtype';
-$config['entity']['classification_lendingtype']['template'] = 'page.classification.html';
-
-
-$config['sparql_query']['classification_currency'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
-        <URI> ?p1 ?o1 .
-    }
-}
-";
-$config['entity']['classification_currency']['path']     = '/classification/currency';
-$config['entity']['classification_currency']['query']    = 'classification_currency';
+$config['entity']['classification_currency']['path']     = '/dataset';
+$config['entity']['classification_currency']['query']    = 'dataset';
 $config['entity']['classification_currency']['template'] = 'page.classification.html';
 
 
