@@ -57,11 +57,21 @@ $config['entity']['site_about']['template'] = 'page.about.html';
 $config['sparql_query']['classification'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
+    ?p1 skos:prefLabel ?propertyLabel .
     ?o1 skos:prefLabel ?conceptLabel .
 }
 WHERE {
     GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
+        OPTIONAL {
+            {
+                ?p1 skos:prefLabel ?propertyLabel .
+            }
+            UNION
+            {
+                ?p1 rdfs:label ?propertyLabel .
+            }
+        }
         OPTIONAL {
             {
                 ?o1 skos:prefLabel ?conceptLabel .
@@ -73,6 +83,7 @@ WHERE {
         }
     }
 }
+
 ";
 $config['entity']['classification']['path']     = '/classification/';
 $config['entity']['classification']['query']    = 'classification';
