@@ -83,9 +83,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_currency']['path']     = '/classification/project/';
-$config['entity']['classification_currency']['query']    = 'project';
-$config['entity']['classification_currency']['template'] = 'page.default.html';
+$config['entity']['classification_project']['path']     = '/classification/project/';
+$config['entity']['classification_project']['query']    = 'project';
+$config['entity']['classification_project']['template'] = 'page.default.html';
 
 
 $config['sparql_query']['classification'] = "
@@ -155,9 +155,9 @@ WHERE {
     }
 }
 ";
-$config['entity']['classification_currency']['path']     = '/dataset';
-$config['entity']['classification_currency']['query']    = 'dataset';
-$config['entity']['classification_currency']['template'] = 'page.classification.html';
+$config['entity']['dataset']['path']     = '/dataset';
+$config['entity']['dataset']['query']    = 'dataset';
+$config['entity']['dataset']['template'] = 'page.classification.html';
 
 
 ?>
