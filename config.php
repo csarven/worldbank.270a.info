@@ -53,6 +53,40 @@ $config['entity']['site_about']['query']    = 'empty';
 $config['entity']['site_about']['template'] = 'page.about.html';
 
 
+$config['sparql_query']['project'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+    ?p1 skos:prefLabel ?propertyLabel .
+    ?o1 skos:prefLabel ?conceptLabel .
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/world-bank-projects-and-operations> {
+        <URI> ?p1 ?o1 .
+        OPTIONAL {
+            {
+                ?p1 skos:prefLabel ?propertyLabel .
+            }
+            UNION
+            {
+                ?p1 rdfs:label ?propertyLabel .
+            }
+        }
+        OPTIONAL {
+            {
+                ?o1 skos:prefLabel ?conceptLabel .
+            }
+            UNION
+            {
+                ?o1 rdfs:label ?conceptLabel .
+            }
+        }
+    }
+}
+";
+$config['entity']['classification_currency']['path']     = '/classification/project/';
+$config['entity']['classification_currency']['query']    = 'project';
+$config['entity']['classification_currency']['template'] = 'page.default.html';
+
 
 $config['sparql_query']['classification'] = "
 CONSTRUCT {
@@ -88,42 +122,6 @@ WHERE {
 $config['entity']['classification']['path']     = '/classification/';
 $config['entity']['classification']['query']    = 'classification';
 $config['entity']['classification']['template'] = 'page.classification.html';
-
-
-
-$config['sparql_query']['project'] = "
-CONSTRUCT {
-    <URI> ?p1 ?o1 .
-    ?p1 skos:prefLabel ?propertyLabel .
-    ?o1 skos:prefLabel ?conceptLabel .
-}
-WHERE {
-    GRAPH <http://worldbank.270a.info/graph/world-bank-projects-and-operations> {
-        <URI> ?p1 ?o1 .
-        OPTIONAL {
-            {
-                ?p1 skos:prefLabel ?propertyLabel .
-            }
-            UNION
-            {
-                ?p1 rdfs:label ?propertyLabel .
-            }
-        }
-        OPTIONAL {
-            {
-                ?o1 skos:prefLabel ?conceptLabel .
-            }
-            UNION
-            {
-                ?o1 rdfs:label ?conceptLabel .
-            }
-        }
-    }
-}
-";
-$config['entity']['classification_currency']['path']     = '/classification/project/';
-$config['entity']['classification_currency']['query']    = 'project';
-$config['entity']['classification_currency']['template'] = 'page.default.html';
 
 
 
