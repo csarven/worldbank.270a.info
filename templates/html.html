@@ -7,7 +7,42 @@
 
     $entitySetId = $sC->getEntitySetId();
 
-    echo '<?xml version="1.0" encoding="utf-8"?>'."\n";
+    $charset = "utf-8";
+    $lang = "en";
+
+    $xmlProlog = '';
+
+    if ( stristr($_SERVER["HTTP_ACCEPT"],"application/xhtml+xml") || stristr($_SERVER["HTTP_ACCEPT"],"application/xml") || stristr($_SERVER["HTTP_ACCEPT"],"text/xml") || !isset($_SERVER["HTTP_ACCEPT"])) {
+
+        if (stristr($_SERVER["HTTP_ACCEPT"],"application/xhtml+xml")) {
+            $contentType="application/xhtml+xml";
+        }
+        else if (stristr($_SERVER["HTTP_ACCEPT"],"application/xml")) {
+            $contentType="application/xml";
+        }
+        else if (stristr($_SERVER["HTTP_ACCEPT"],"text/xml")) {
+            $contentType="text/xml";
+        }
+        else {
+            $contentType="application/xhtml+xml";
+        }
+
+        $xmlProlog = '<?xml version="1.0" encoding="'.$charset.'"?>'."\n";
+
+    //    $Doctype = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
+    //    $htmlElement = '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$lang.'" lang="'.$lang.'">'."\n";
+
+    }
+    else {
+        $contentType = "text/html";
+    }
+
+    if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
+
+    header ("Content-Type: $contentType; charset=$charset");
+    header ("Content-Language: $lang");
+
+    echo $xmlProlog;
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
