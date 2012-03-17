@@ -129,7 +129,7 @@ $config['sparql_query']['dataset'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
     ?p1 skos:prefLabel ?propertyLabel .
-    ?o1 skos:prefLabel ?conceptLabel .
+    ?o1 dcterms:title ?title .
 }
 WHERE {
     GRAPH <http://worldbank.270a.info/graph/meta> {
@@ -145,11 +145,15 @@ WHERE {
         }
         OPTIONAL {
             {
-                ?o1 skos:prefLabel ?conceptLabel .
+                ?o1 skos:prefLabel ?title .
             }
             UNION
             {
-                ?o1 rdfs:label ?conceptLabel .
+                ?o1 rdfs:label ?title .
+            }
+            UNION
+            {
+                ?o1 dcterms:title ?title .
             }
         }
     }
