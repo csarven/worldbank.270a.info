@@ -42,7 +42,6 @@
         <http://dbpedia.org/resource/Statistical_survey> ,
         <http://en.wikipedia.org/wiki/Finance> ;
     void:sparqlEndpoint <http://worldbank.270a.info/sparql> ;
-
     void:feature <http://www.w3.org/ns/formats/RDF_XML> ,
                  <http://www.w3.org/ns/formats/Turtle> ;
     .
@@ -51,7 +50,7 @@
 :VoID
     a sd:Graph, void:Dataset ;
     dcterms:title "SD+VoID triples"@en ;
-    void:triples 1113 ;
+    void:triples 1389 ;
     void:dataDump <http://worldbank.270a.info/void.ttl> ;
     .
 
@@ -59,7 +58,7 @@
 :meta
     a sd:Graph, void:Dataset ;
     dcterms:title "Metadata and complimentary data used for all the data in the :WorldBank dataset"@en ;
-    void:triples 62431 ;
+    void:triples 62376 ;
     void:dataDump <http://worldbank.270a.info/data/meta.tar.gz> ;
     void:exampleResource
         <http://worldbank.270a.info/classification/country/CA> ,
@@ -67,6 +66,305 @@
         <http://worldbank.270a.info/classification/income-level/OEC> ,
         <http://worldbank.270a.info/classification/indicator/AG.AGR.TRAC.NO> ,
         <http://worldbank.270a.info/dataset/world-bank-finances/sfv5-tf7p> ;
+    void:classPartition [
+        void:class qb:ComponentSpecification ;
+        void:entities 4
+    ], [
+        void:class qb:MeasureProperty ;
+        void:entities 66
+    ], [
+        void:class <http://www.w3.org/2004/02/skos/core#CodeList> ;
+        void:entities 2
+    ], [
+        void:class <http://purl.org/linked-data/sdmx/2009/code#Currency> ;
+        void:entities 182
+    ], [
+        void:class qb:DataStructureDefinition ;
+        void:entities 1
+    ], [
+        void:class qb:DataSet ;
+        void:entities 33
+    ], [
+        void:class <http://purl.org/linked-data/sdmx#CodeList> ;
+        void:entities 9
+    ], [
+        void:class <http://dbpedia.org/ontology/Country> ;
+        void:entities 244
+    ], [
+        void:class qb:Concept ;
+        void:entities 129
+    ], [
+        void:class qb:DimensionProperty ;
+        void:entities 81
+    ], [
+        void:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+        void:entities 5508
+    ] ;
+    void:classes 11 ;
+    void:entities 6262 ;
+    void:properties 50 ;
+    void:propertyPartition [
+        void:distinctObjects 31 ;
+        void:distinctSubjects 31 ;
+        void:property <http://www.w3.org/2000/01/rdf-schema#seeAlso> ;
+        void:triples 31
+    ], [
+        void:distinctObjects 3 ;
+        void:distinctSubjects 10 ;
+        void:property <http://purl.org/dc/terms/modified> ;
+        void:triples 10
+    ], [
+        void:distinctObjects 19 ;
+        void:distinctSubjects 2762 ;
+        void:property <http://worldbank.270a.info/property/topic> ;
+        void:triples 3075
+    ], [
+        void:distinctObjects 1 ;
+        void:distinctSubjects 33 ;
+        void:property <http://purl.org/dc/terms/license> ;
+        void:triples 33
+    ], [
+        void:distinctObjects 132 ;
+        void:distinctSubjects 147 ;
+        void:property qb:codeList ;
+        void:triples 147
+    ], [
+        void:distinctObjects 3 ;
+        void:distinctSubjects 3 ;
+        void:property <http://www.w3.org/2004/02/skos/core#closeMatch> ;
+        void:triples 3
+    ], [
+        void:distinctObjects 5805 ;
+        void:distinctSubjects 5824 ;
+        void:property <http://www.w3.org/2004/02/skos/core#prefLabel> ;
+        void:triples 5843
+    ], [
+        void:distinctObjects 32 ;
+        void:distinctSubjects 32 ;
+        void:property qb:structure ;
+        void:triples 32
+    ], [
+        void:distinctObjects 11 ;
+        void:distinctSubjects 5819 ;
+        void:property <http://www.w3.org/2004/02/skos/core#topConceptOf> ;
+        void:triples 5819
+    ], [
+        void:distinctObjects 3 ;
+        void:distinctSubjects 3 ;
+        void:property qb:dimension ;
+        void:triples 3
+    ], [
+        void:distinctObjects 40 ;
+        void:distinctSubjects 308 ;
+        void:property <http://purl.org/dc/terms/source> ;
+        void:triples 311
+    ], [
+        void:distinctObjects 267 ;
+        void:distinctSubjects 3400 ;
+        void:property <http://worldbank.270a.info/property/source-organization> ;
+        void:triples 3400
+    ], [
+        void:distinctObjects 5 ;
+        void:distinctSubjects 11 ;
+        void:property <http://www.w3.org/2004/02/skos/core#scopeNote> ;
+        void:triples 11
+    ], [
+        void:distinctObjects 10 ;
+        void:distinctSubjects 309 ;
+        void:property <http://purl.org/dc/terms/issued> ;
+        void:triples 312
+    ], [
+        void:distinctObjects 4 ;
+        void:distinctSubjects 182 ;
+        void:property <http://worldbank.270a.info/property#minor-unit> ;
+        void:triples 182
+    ], [
+        void:distinctObjects 11 ;
+        void:distinctSubjects 6010 ;
+        void:property rdf:type ;
+        void:triples 3562
+    ], [
+        void:distinctObjects 4 ;
+        void:distinctSubjects 4 ;
+        void:property qb:order ;
+        void:triples 4
+    ], [
+        void:distinctObjects 32 ;
+        void:distinctSubjects 32 ;
+        void:property <http://purl.org/dc/terms/title> ;
+        void:triples 32
+    ], [
+        void:distinctObjects 1 ;
+        void:distinctSubjects 41 ;
+        void:property <http://purl.org/dc/terms/creator> ;
+        void:triples 41
+    ], [
+        void:distinctObjects 210 ;
+        void:distinctSubjects 210 ;
+        void:property <http://dbpedia.org/property/capital> ;
+        void:triples 210
+    ], [
+        void:distinctObjects 5874 ;
+        void:distinctSubjects 5917 ;
+        void:property <http://www.w3.org/2004/02/skos/core#notation> ;
+        void:triples 5917
+    ], [
+        void:distinctObjects 8 ;
+        void:distinctSubjects 8 ;
+        void:property <http://www.w3.org/2004/02/skos/core#altLabel> ;
+        void:triples 8
+    ], [
+        void:distinctObjects 210 ;
+        void:distinctSubjects 210 ;
+        void:property <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+        void:triples 210
+    ], [
+        void:distinctObjects 6 ;
+        void:distinctSubjects 146 ;
+        void:property <http://worldbank.270a.info/property/admin-region> ;
+        void:triples 146
+    ], [
+        void:distinctObjects 12 ;
+        void:distinctSubjects 12 ;
+        void:property <http://purl.org/dc/terms/created> ;
+        void:triples 12
+    ], [
+        void:distinctObjects 210 ;
+        void:distinctSubjects 210 ;
+        void:property <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+        void:triples 210
+    ], [
+        void:distinctObjects 11 ;
+        void:distinctSubjects 5819 ;
+        void:property <http://www.w3.org/2004/02/skos/core#inScheme> ;
+        void:triples 5819
+    ], [
+        void:distinctObjects 31 ;
+        void:distinctSubjects 31 ;
+        void:property <http://purl.org/dc/terms/description> ;
+        void:triples 31
+    ], [
+        void:distinctObjects 7 ;
+        void:distinctSubjects 244 ;
+        void:property <http://worldbank.270a.info/property/income-level> ;
+        void:triples 244
+    ], [
+        void:distinctObjects 132 ;
+        void:distinctSubjects 147 ;
+        void:property qb:concept ;
+        void:triples 147
+    ], [
+        void:distinctObjects 17 ;
+        void:distinctSubjects 2 ;
+        void:property <http://purl.org/dc/terms/subject> ;
+        void:triples 20
+    ], [
+        void:distinctObjects 31 ;
+        void:distinctSubjects 1 ;
+        void:property <http://purl.org/dc/terms/hasPart> ;
+        void:triples 31
+    ], [
+        void:distinctObjects 1 ;
+        void:distinctSubjects 1 ;
+        void:property qb:measure ;
+        void:triples 1
+    ], [
+        void:distinctObjects 5 ;
+        void:distinctSubjects 5 ;
+        void:property <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ;
+        void:triples 5
+    ], [
+        void:distinctObjects 1 ;
+        void:distinctSubjects 31 ;
+        void:property <http://purl.org/dc/terms/isPartOf> ;
+        void:triples 31
+    ], [
+        void:distinctObjects 3046 ;
+        void:distinctSubjects 3428 ;
+        void:property <http://www.w3.org/2004/02/skos/core#definition> ;
+        void:triples 3462
+    ], [
+        void:distinctObjects 8 ;
+        void:distinctSubjects 244 ;
+        void:property <http://worldbank.270a.info/property/region> ;
+        void:triples 244
+    ], [
+        void:distinctObjects 4 ;
+        void:distinctSubjects 216 ;
+        void:property <http://worldbank.270a.info/property/lending-type> ;
+        void:triples 216
+    ], [
+        void:distinctObjects 174 ;
+        void:distinctSubjects 182 ;
+        void:property <http://www.w3.org/2000/01/rdf-schema#label> ;
+        void:triples 190
+    ], [
+        void:distinctObjects 1 ;
+        void:distinctSubjects 1 ;
+        void:property <http://www.w3.org/2004/02/skos/core#note> ;
+        void:triples 1
+    ], [
+        void:distinctObjects 5445 ;
+        void:distinctSubjects 5445 ;
+        void:property <http://xmlns.com/foaf/0.1/page> ;
+        void:triples 5445
+    ], [
+        void:distinctObjects 182 ;
+        void:distinctSubjects 182 ;
+        void:property <http://worldbank.270a.info/property#numeric-code> ;
+        void:triples 182
+    ], [
+        void:distinctObjects 5819 ;
+        void:distinctSubjects 11 ;
+        void:property <http://www.w3.org/2004/02/skos/core#hasTopConcept> ;
+        void:triples 5819
+    ], [
+        void:distinctObjects 246 ;
+        void:distinctSubjects 246 ;
+        void:property <http://www.w3.org/2004/02/skos/core#exactMatch> ;
+        void:triples 246
+    ], [
+        void:distinctObjects 346 ;
+        void:distinctSubjects 339 ;
+        void:property <http://www.w3.org/2002/07/owl#sameAs> ;
+        void:triples 346
+    ], [
+        void:distinctObjects 19 ;
+        void:distinctSubjects 5177 ;
+        void:property <http://worldbank.270a.info/property/source> ;
+        void:triples 5177
+    ], [
+        void:distinctObjects 262 ;
+        void:distinctSubjects 182 ;
+        void:property <http://worldbank.270a.info/property#using-country> ;
+        void:triples 278
+    ], [
+        void:distinctObjects 4 ;
+        void:distinctSubjects 1 ;
+        void:property qb:component ;
+        void:triples 4
+    ], [
+        void:distinctObjects 39 ;
+        void:distinctSubjects 39 ;
+        void:property <http://purl.org/dc/terms/identifier> ;
+        void:triples 39
+    ], [
+        void:distinctObjects 12 ;
+        void:distinctSubjects 12 ;
+        void:property <http://purl.org/dc/terms/available> ;
+        void:triples 12
+    ] ;
+    void:vocabulary
+        <http://dbpedia.org/property/> ,
+        <http://purl.org/dc/terms/> ,
+        <http://purl.org/linked-data/cube> ,
+        <http://worldbank.270a.info/property/> ,
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns> ,
+        <http://www.w3.org/2000/01/rdf-schema> ,
+        <http://www.w3.org/2003/01/geo/wgs84_pos> ,
+        <http://www.w3.org/2002/07/owl> ,
+        <http://www.w3.org/2004/02/skos/core> ,
+        <http://xmlns.com/foaf/0.1/> ;
     .
 
 
@@ -77,12 +375,6 @@
     dcterms:source [ foaf:homepage <http://data.worldbank.org/data-catalog/world-development-indicators> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-03-15"^^xsd:date ;
-    void:triples 368048372 ;
-    void:vocabulary
-        <http://purl.org/linked-data/sdmx> ,
-        <http://purl.org/linked-data/sdmx/2009/dimension> ,
-        <http://reference.data.gov.uk/id/year/> ,
-        <http://www.w3.org/2004/02/skos/core> ;
     dcterms:subject
         <http://purl.org/linked-data/sdmx/2009/subject#1.2> ,
         <http://purl.org/linked-data/sdmx/2009/subject#1.3> ,
@@ -101,10 +393,10 @@
         <http://purl.org/linked-data/sdmx/2009/subject#3.3.2> ,
         <http://purl.org/linked-data/sdmx/2009/subject#3.3.3> ;
     void:dataDump <http://worldbank.270a.info/data/world-development-indicators.en.tar.gz> ;
-    void:triples 360393432 ;
+    void:triples 360527811 ;
     void:rootResource <http://worldbank.270a.info/dataset/world-development-indicators> ;
     void:vocabulary
-        <http://www.w3.org/1999/02/22-rdf-syntax-ns>,
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns> ,
         <http://purl.org/linked-data/cube> ,
         <http://purl.org/linked-data/sdmx/2009/dimension> ,
         <http://purl.org/linked-data/sdmx/2009/measure> ,
@@ -736,7 +1028,7 @@
         void:distinctObjects 20 ;
         void:distinctSubjects 254589 ;
         void:property rdf:type ;
-        void:triples 122317
+        void:triples 122637
     ], [
         void:distinctObjects 690 ;
         void:distinctSubjects 7359 ;
@@ -885,7 +1177,7 @@
         <http://purl.org/linked-data/sdmx/2009/subject#2.6>,
         <http://purl.org/linked-data/sdmx/2009/subject#2.7> ;
     void:dataDump <http://worldbank.270a.info/data/world-bank-projects-and-operations.tar.gz> ;
-    void:triples 969980 ;
+    void:triples 969445 ;
     void:exampleResource <http://worldbank.270a.info/classification/project/P115592> ;
     void:classPartition [
         void:class <http://purl.org/linked-data/sdmx#CodeList> ;
@@ -905,7 +1197,7 @@
     ] ;
     void:classes 5 ;
     void:entities 105454 ;
-    void:properties 40 ;
+    void:properties 37 ;
     void:propertyPartition [
         void:distinctObjects 652 ;
         void:distinctSubjects 14580 ;
@@ -942,7 +1234,7 @@
         void:property <http://worldbank.270a.info/property/country> ;
         void:triples 14580
     ], [
-        void:distinctObjects 1258 ;
+        void:distinctObjects 1257 ;
         void:distinctSubjects 14580 ;
         void:property <http://worldbank.270a.info/property/ibrd-commitment-amount> ;
         void:triples 14580
@@ -952,7 +1244,7 @@
         void:property <http://worldbank.270a.info/property/references> ;
         void:triples 83228
     ], [
-        void:distinctObjects 8792 ;
+        void:distinctObjects 8797 ;
         void:distinctSubjects 75615 ;
         void:property <http://purl.org/dc/terms/date> ;
         void:triples 75615
@@ -970,7 +1262,7 @@
         void:distinctObjects 7 ;
         void:distinctSubjects 22226 ;
         void:property rdf:type ;
-        void:triples 19074
+        void:triples 19278
     ], [
         void:distinctObjects 1794 ;
         void:distinctSubjects 83228 ;
@@ -982,7 +1274,7 @@
         void:property <http://worldbank.270a.info/property/product-line-type> ;
         void:triples 14580
     ], [
-        void:distinctObjects 1966 ;
+        void:distinctObjects 1965 ;
         void:distinctSubjects 9493 ;
         void:property <http://worldbank.270a.info/property/total-commitment-amount> ;
         void:triples 9493
@@ -1007,12 +1299,12 @@
         void:property <http://worldbank.270a.info/property/environmental-assessment-category-code> ;
         void:triples 9563
     ], [
-        void:distinctObjects 3785 ;
+        void:distinctObjects 3784 ;
         void:distinctSubjects 14564 ;
         void:property <http://worldbank.270a.info/property/lend-project-cost> ;
         void:triples 14564
     ], [
-        void:distinctObjects 33 ;
+        void:distinctObjects 32 ;
         void:distinctSubjects 14573 ;
         void:property <http://worldbank.270a.info/property/major-sector> ;
         void:triples 26302
@@ -1027,7 +1319,7 @@
         void:property <http://worldbank.270a.info/property/lending-instrument> ;
         void:triples 14346
     ], [
-        void:distinctObjects 6156 ;
+        void:distinctObjects 6154 ;
         void:distinctSubjects 9720 ;
         void:property <http://worldbank.270a.info/property/implementing-agency> ;
         void:triples 9720
@@ -1057,20 +1349,10 @@
         void:property <http://xmlns.com/foaf/0.1/page> ;
         void:triples 112096
     ], [
-        void:distinctObjects 453 ;
-        void:distinctSubjects 453 ;
-        void:property <http://worldbank.270a.info/property/projectinfo> ;
-        void:triples 453
-    ], [
         void:distinctObjects 1210 ;
         void:distinctSubjects 12221 ;
         void:property <http://worldbank.270a.info/property/closing-date> ;
         void:triples 12221
-    ], [
-        void:distinctObjects 79 ;
-        void:distinctSubjects 79 ;
-        void:property <http://worldbank.270a.info/property/agencyinfo> ;
-        void:triples 79
     ], [
         void:distinctObjects 14580 ;
         void:distinctSubjects 2 ;
@@ -1087,7 +1369,7 @@
         void:property <http://worldbank.270a.info/property/index-type> ;
         void:triples 14580
     ], [
-        void:distinctObjects 1564 ;
+        void:distinctObjects 1563 ;
         void:distinctSubjects 9493 ;
         void:property <http://worldbank.270a.info/property/total-amounts> ;
         void:triples 9493
@@ -1096,11 +1378,6 @@
         void:distinctSubjects 14573 ;
         void:property <http://worldbank.270a.info/property/sector> ;
         void:triples 31936
-    ], [
-        void:distinctObjects 3 ;
-        void:distinctSubjects 3 ;
-        void:property <http://worldbank.270a.info/property/linkinfo> ;
-        void:triples 3
     ], [
         void:distinctObjects 81457 ;
         void:distinctSubjects 83228 ;
@@ -1140,13 +1417,13 @@
         a sd:Dataset;
         dcterms:title "World Bank Linked Data"@en ;
         dcterms:description "World Bank Linked Data"@en ;
-        void:triples 375675895 ;
+        void:triples 368155020 ;
 
         sd:defaultGraph [
             a sd:Graph, void:Dataset ;
             dcterms:title "World Bank Linked Data SPARQL Endpoint Description"@en ;
             dcterms:description "Contains a copy of this SD+VoID file!"@en ;
-            void:triples 375675895 ;
+            void:triples 368155020 ;
         ] ;
         sd:namedGraph [
             sd:name wbld-graph:void ;
