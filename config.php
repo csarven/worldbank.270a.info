@@ -92,7 +92,12 @@ $config['sparql_query']['classification'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
     ?p1 skos:prefLabel ?propertyLabel .
+    ?p1 rdfs:label ?propertyLabel .
+
     ?o1 skos:prefLabel ?conceptLabel .
+    ?o1 rdfs:label ?resourceLabel .
+    ?o1 dcterms:title ?resourceTitle .
+    ?o1 skos:notation ?conceptNotation .
 }
 WHERE {
     GRAPH <http://worldbank.270a.info/graph/meta> {
@@ -112,7 +117,15 @@ WHERE {
             }
             UNION
             {
-                ?o1 rdfs:label ?conceptLabel .
+                ?o1 rdfs:label ?resourceLabel .
+            }
+            UNION
+            {
+                ?o1 dcterms:title ?resourceTitle .
+            }
+            UNION
+            {
+                ?o1 skos:notation ?conceptNotation .
             }
         }
     }
@@ -129,6 +142,7 @@ $config['sparql_query']['dataset'] = "
 CONSTRUCT {
     <URI> ?p1 ?o1 .
     ?p1 skos:prefLabel ?propertyLabel .
+
     ?o1 dcterms:title ?title .
 }
 WHERE {
@@ -140,18 +154,10 @@ WHERE {
             }
             UNION
             {
-                ?p1 rdfs:label ?propertyLabel .
+                ?p1 rdfs:label ?resourceLabel .
             }
         }
         OPTIONAL {
-            {
-                ?o1 skos:prefLabel ?title .
-            }
-            UNION
-            {
-                ?o1 rdfs:label ?title .
-            }
-            UNION
             {
                 ?o1 dcterms:title ?title .
             }
