@@ -1,6 +1,8 @@
 <?php
     $resource_uri = $this->desc->get_primary_resource_uri();
     $title = $this->get_title($resource_uri);
+    $description = $this->get_description($resource_uri);
+    $description = ($description == '') ? $this->get_title($resource_uri) : $description;
 
     $sC = $this->sC;
     $c  = $sC->getConfig();
