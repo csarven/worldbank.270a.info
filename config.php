@@ -165,6 +165,7 @@ CONSTRUCT {
     ?p1 skos:prefLabel ?propertyLabel .
 
     ?o1 dcterms:title ?title .
+    ?o1 skos:prefLabel ?conceptLabel .
 }
 WHERE {
     GRAPH <http://worldbank.270a.info/graph/meta> {
@@ -179,6 +180,10 @@ WHERE {
             }
         }
         OPTIONAL {
+            {
+                ?o1 skos:prefLabel ?conceptLabel .
+            }
+            UNION
             {
                 ?o1 dcterms:title ?title .
             }
