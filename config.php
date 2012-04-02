@@ -136,6 +136,27 @@ $config['entity']['classification']['path']     = '/classification/';
 $config['entity']['classification']['query']    = 'classification';
 $config['entity']['classification']['template'] = 'page.classification.html';
 
+/*
+$config['sparql_query']['dataset_world-bank-climates'] = "
+CONSTRUCT {
+    <URI> ?p1 ?o1 .
+    ?p1 skos:prefLabel ?propertyLabel .
+
+    ?o1 skos:prefLabel ?label .
+    ?o1 rdfs:label ?label .
+    ?o1 dcterms:title ?label .
+
+}
+WHERE {
+    GRAPH <http://worldbank.270a.info/graph/world-bank-climates> {
+        <URI> ?p1 ?o1 .
+    }
+}
+";
+*/
+$config['entity']['dataset_world-bank-climates']['path']     = '/dataset/world-bank-climates/';
+$config['entity']['dataset_world-bank-climates']['query']    = 'default';
+$config['entity']['dataset_world-bank-climates']['template'] = 'page.classification.html';
 
 
 $config['sparql_query']['dataset'] = "
