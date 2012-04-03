@@ -444,6 +444,13 @@ margin-right:18px;
 }
 
 
+#chart_about-dataset tbody th {
+width:40%;
+}
+
+#chart_about-dataset tbody td {
+width:25%;
+}
 
 
 } /*end of screen, projection, tv*/
