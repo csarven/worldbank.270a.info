@@ -5,8 +5,17 @@
 <html>
 
 <?php require_once 'head.world-development-indicators.html'; ?>
+<?php
+    $titleDimensions = '';
 
-        <title>View for '<?php echo $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']]; ?>' &#8212; World Bank Linked Data</title>
+    if (isset($this->config['requestQuery']['country'])) {
+        $titleDimensions .= " in " . $this->config['data']['countries'][$this->config['requestQuery']['country']];
+    } else if (isset($this->config['requestQuery']['year'])) {
+        $titleDimensions .= " in " . $this->config['requestQuery']['year'];
+    }
+
+?>
+        <title>View for '<?php echo $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']] . $titleDimensions; ?>' &#8212; World Bank Linked Data</title>
         <meta name="description" content="Tool to display World Development Indicators: <?php echo $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']]; ?>"/>
     </head>
 
