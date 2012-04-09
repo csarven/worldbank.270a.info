@@ -1,0 +1,18 @@
+    <head>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="/theme/default/css/display.css" media="all"/>
+        <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script src="/js/index.js"></script>
+        <script type="text/javascript">
+<?php
+            if (isset($this->config['requestQuery']['country']) && $this->config['requestQuery']['country'] != '') {
+                echo "google.load('visualization', '1', {packages: ['corechart']})";
+            }
+            else {
+                echo "google.load('visualization', '1', {packages: ['geochart']})";
+            }
+?>
+        </script>
+
