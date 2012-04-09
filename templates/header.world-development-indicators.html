@@ -26,7 +26,7 @@
                              <li id="form_indicator">
                                 <label for="indicator">Indicators</label>
                                 <select id="indicator" name="indicator">
-                                    <option value="">-</option>
+                                    <option value="">Select a World Development Indicator</option>
 <option value="SH.HIV.KNOW.FE.ZS">% of females ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)</option>
 <option value="SH.HIV.KNOW.MA.ZS">% of males ages 15-49 having comprehensive correct knowledge about HIV (2 prevent ways and reject 3 misconceptions)</option>
 <option value="DP.DOD.DECT.CR.GG.CD">001.General Govt. Public Sector Debt (PSDGG) US$</option>
@@ -5205,12 +5205,12 @@
 <option value="MYS.PROP.80UP.SEC.MF">proportion, 80+, total, secondary</option>
 <option value="MYS.PROP.80UP.TER.MF">proportion, 80+, total, tertiary</option>
                                 </select>
-                                <p class="form_guide">Select an World Development Indicator</p>
+                                <p class="form_guide"></p>
                             </li>
                              <li id="form_country">
                                 <label for="country">Country</label>
                                 <select id="country" name="country">
-<option value="">-</option>
+<option value="">Select a country to observe</option>
 <option value="AF">Afghanistan</option>
 <option value="AL">Albania</option>
 <option value="DZ">Algeria</option>
@@ -5428,16 +5428,19 @@
 <option value="ZM">Zambia</option>
 <option value="ZW">Zimbabwe</option>
 </select>
-                                <p class="form_guide">Select a country for the indicator observation</p>
+                                <p class="form_guide"></p>
                             </li>
                             <li id="form_year">
                                 <label for="year">Year</label>
                                 <select id="year" name="year">
-<option value="">-</option>
-<option value="2000">2000</option>
-<option value="2006">2006</option>
+<option value="">Select an observation year</option>
+<?php
+for ($i=1961; $i <= 2012; $i++) {
+echo '<option value="'.$i.'">'.$i.'</option>';
+}
+?>
                                 </select>
-                                <p class="form_guide">Select an observation year</p>
+                                <p class="form_guide"></p>
                             </li>
                             <li id="form_submit">
                                 <input type="button" id="submit" class="submit" value="View" />

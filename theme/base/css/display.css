@@ -457,9 +457,36 @@ width:25%;
 
 
 
+#observation #form_search {
+clear:both;
+float:left;
+width:100%;
+}
 
+#observation #form_search li {
+list-style-type:none;
+}
 
+#observation #form_indicator,
+#observation #form_country,
+#observation #form_year {
+float:left;
+margin-right:1em;
+}
 
+#observation #form_search legend,
+#observation #form_search label  {
+display:none;
+}
+#observation #form_indicator select {
+width:20em;
+}
+#observation #form_country select {
+width:15em;
+}
+#observation #form_country {
+
+}
 
 
 

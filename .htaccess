@@ -16,5 +16,6 @@ RewriteRule  ^.*$  -  [L]
 
 RewriteRule view.* tool.world-development-indicators.php [L]
 RewriteRule observations.* tool.world-development-indicators.php [L]
+RewriteRule info.* tool.world-development-indicators.php [L]
 
 RewriteRule ^.*$  index.php [L]

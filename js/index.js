@@ -11,6 +11,7 @@ var T = { // Tool
         DEBUG : false,
         BASE_URI : "/view",
 
+        API_BASE_INFO : "/info?",
         API_BASE_OBSERVATIONS : "/observations?",
 
         ID_SUBMIT : "submit",
@@ -92,33 +93,72 @@ var T = { // Tool
 //console.log("showObservations");
             T.U.getSearchValues();
 
-            if (T.I.COUNTRY == '') {
-                var params = "indicator=" + T.I.INDICATOR + "&year=" + T.I.YEAR;
-                google.load('visualization', '1', {packages: ['geochart']});
-            }
-            else {
-                var params = "indicator=" + T.I.INDICATOR + "&country=" + T.I.COUNTRY;
+            if (T.I.COUNTRY != '') {
+                var params = T.I.COUNTRY;
                 google.load('visualization', '1', {packages: ['corechart']});
             }
+            else {
+                var params = T.I.YEAR;
+                google.load('visualization', '1', {packages: ['geochart']});
+            }
 
-            google.setOnLoadCallback(T.U.renderChart.indicators(params));
+            google.setOnLoadCallback(T.U.renderChart.indicators(T.I.INDICATOR, params));
         },
 
 
         renderChart : {
-            indicators : function (params) {
+            indicators : function (indicatorNotation, dimensions) {
 //                console.log("renderChart.indicators");
 
-                var uri = T.C.API_BASE_OBSERVATIONS + params;
-//console.log(uri);
+//                if (countries.length != 0) {
+//                    var uri;
+//                    $.each(countries, function(i, country) {
+//                        var paramsCountries = 
+//                    });
+//                }
 
+                var uriIndicator = T.C.API_BASE_INFO + "indicator=" + indicatorNotation;
+
+                if (T.I.COUNTRY != '') {
+                    var uriObservations = T.C.API_BASE_OBSERVATIONS + "indicator=" + indicatorNotation + "&country=" + dimensions;
+                } else {
+                    var uriObservations = T.C.API_BASE_OBSERVATIONS + "indicator=" + indicatorNotation + "&year=" + dimensions;
+                }
+
+//console.log(uriIndicator);
+
+                var indicatorURI, indicatorPrefLabel, indicatorDefinition;
                 $('#' + 'results').addClass('processing');
-                $.getJSON(uri, function (data, textStatus) {
+                $.getJSON(uriIndicator, function (data, textStatus) {
+//console.log(data);
+                    if (data.data[0] != undefined && data.data[0].length != 0) {
+                        $.each(data.data, function (i, indicator) {
+                            if (indicator.indicatorURI != undefined) {
+                                indicatorURI = indicator.indicatorURI.value;
+                            }
+                            if (indicator.indicatorPrefLabel != undefined) {
+                                indicatorPrefLabel = indicator.indicatorPrefLabel.value;
+                            }
+                            if (indicator.indicatorDefinition != undefined) {
+                                indicatorDefinition = indicator.indicatorDefinition.value;
+                            } else {
+                                indicatorDefinition = indicator.indicatorPrefLabel.value;
+                            }
+                        });
+                    }
+                    $('#' + 'results').removeClass('processing');
+                });
+
+
+                var countryPrefLabel;
+//console.log(uriObservations);
+                $('#' + 'results').addClass('processing');
+                $.getJSON(uriObservations, function (data, textStatus) {
 //console.log(data);
 
-                    var observations = '';
+                    var observations;
 
-                    if (data != null && data.data[0].length != 0) {
+                    if (data.data[0] != undefined && data.data[0].length != 0) {
                         dataTable = new google.visualization.DataTable();
 
                         if (T.I.COUNTRY == "") {
@@ -129,14 +169,15 @@ var T = { // Tool
                         }
 
                         dataTable.addColumn('string', dimensionColumnName);
-                        dataTable.addColumn('number', data.data[0].indicatorPrefLabel.value + " in " + data.data[0].countryPrefLabel.value + " at " + data.data[0].refPeriod.value);
+                        dataTable.addColumn('number', indicatorPrefLabel);
 
                         $.each(data.data, function (i, observation) {
-                            if (T.I.COUNTRY == "") {
-                                var dimension = observation.countryNotation.value;
+                            if (T.I.COUNTRY != '') {
+                                countryPrefLabel = observation.countryPrefLabel.value;
+                                var dimension = observation.refPeriod.value;
                             }
                             else {
-                                var dimension = observation.refPeriod.value;
+                                var dimension = observation.countryPrefLabel.value;
                             }
 
                             var measure = parseInt(observation.obsValue.value);
@@ -147,19 +188,21 @@ var T = { // Tool
                         });
 
                         var options = {
-                            title: data.data[0].indicatorDefinition.value,
+                            title: indicatorDefinition,
                             width: 960,
-                            height: 320,
+                            height: 420,
                             hAxis: {
                                 title: '',
                             },
                             legend: {
                                 position: 'top'
-                            }
+                            },
+                            datalessRegionColor : 'FFFFFF'
                         };
 
                         if (T.I.COUNTRY != '') {
                             options.hAxis.title = 'Years';
+                            options.title = options.title + " [" + countryPrefLabel + "]";
                             var chart = new google.visualization.LineChart(document.getElementById('results'));
                         }
                         else if (T.I.YEAR != '') {
@@ -171,7 +214,7 @@ var T = { // Tool
                         $('#' + 'results').removeClass('processing');
                     }
                     else {
-//                       observations += '<p class="no_stats">No observation values found, sorry ...</p>';
+                       $('#results').html('<p class="warning notfound">No observations are found for indicator <em>' + indicatorNotation + '</em></p>');
                     }
                 });
             }

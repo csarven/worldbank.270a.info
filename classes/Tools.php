@@ -25,7 +25,7 @@ class Tools
                 require_once 'templates/tool.world-development-indicators.html';
                 break;
 
-            case 'observations':
+            case 'observations': case 'info':
                 $this->sendAPIResponse();
                 break;
 
@@ -135,6 +135,7 @@ class Tools
     {
         //Using arrays for query paramaters for extensibility
         $this->config['apiElements'] = array(
+            'info' => array('indicator'),
             'observations' => array('indicator', 'country', 'year')
         );
     }
@@ -250,7 +251,7 @@ class Tools
         $bindIndicator = '';
         if (!empty($indicator)) {
             $indicatorURI = "<http://worldbank.270a.info/classification/indicator/$indicator>";
-            $bindIndicator = "BIND ($indicatorURI as ?indicatorURI)";
+            $bindIndicator .= "BIND ($indicatorURI as ?indicatorURI)";
         } else {
             $indicatorURI = '?indicatorURI';
         }
@@ -259,13 +260,18 @@ class Tools
 GRAPH <http://worldbank.270a.info/graph/meta> {
     $indicatorURI
         skos:inScheme classification:indicator ;
-        skos:notation ?indicatorNotation ;
         skos:prefLabel ?indicatorPrefLabel ;
-        skos:definition ?indicatorDefinition ;
     .
+
+    OPTIONAL {
+        $indicatorURI
+            skos:definition ?indicatorDefinition ;
+        .
+    }
 
     $bindIndicator
 }
+
 
 EOD;
 
@@ -280,9 +286,8 @@ EOD;
         $countryGraph = <<<EOD
 GRAPH <http://worldbank.270a.info/graph/meta> {
     $countryURI
-        a dbo:Country ;
-        skos:notation ?countryNotation ;
         skos:prefLabel ?countryPrefLabel ;
+        skos:notation ?countryNotation ;
         .
     OPTIONAL {
         $countryURI
@@ -312,11 +317,23 @@ EOD;
 
 
         switch($this->config['apiRequest']['path']) {
-            //Get indicator
+            case 'info':
+                $query = <<<EOD
+                    SELECT ?indicatorURI ?indicatorPrefLabel ?indicatorDefinition
+                    WHERE {
+                        $indicatorGraph
+                    }
+EOD;
+
+                $uri = $this->buildQueryURI($query);
+
+                return $this->curlRequest($uri);
+            break;
+
             case 'observations':
 //                if (count($location) == 2) {
                     $query = <<<EOD
-                        SELECT ?indicatorURI ?indicatorPrefLabel ?indicatorDefinition ?countryNotation ?countryPrefLabel ?countryLat ?countryLong ?refPeriod ?obsValue
+                        SELECT ?countryNotation ?countryPrefLabel ?countryLat ?countryLong ?refPeriod ?obsValue
                         WHERE {
                             GRAPH <http://worldbank.270a.info/graph/world-development-indicators> {
                                 ?s property:indicator $indicatorURI .
@@ -325,7 +342,6 @@ EOD;
                                 ?s sdmx-measure:obsValue ?obsValue .
                             }
 
-                            $indicatorGraph
                             $countryGraph
                         }
                         ORDER BY ?refPeriod ?countryNotation
