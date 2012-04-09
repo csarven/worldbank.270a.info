@@ -26,13 +26,10 @@ var T = { // Tool
     U: {
         init : function () {
             T.U.initSearchPanel();
-//            T.handleInteraction();
         },
 
         initSearchPanel : function () {
-//            $("#form_search #address").focus();
 //console.log("initSearchPanel");
-            // the search button has been hit, show nearby schools
             $('#' + T.C.ID_SUBMIT).click(function () {
                 T.U.searchAction();
             });
@@ -62,31 +59,56 @@ var T = { // Tool
         },
 
         getSearchValues : function () {
+//console.log('getSearchValue');
             T.I.INDICATOR = $('#' + T.C.ID_INDICATOR).val();
             T.I.COUNTRY = $('#' + T.C.ID_COUNTRY).val();
             T.I.YEAR = $('#' + T.C.ID_YEAR).val();
+//console.log(T.I.INDICATOR);
+//console.log(T.I.COUNTRY);
+//console.log(T.I.YEAR);
         },
 
         setSearchValues : function (urlParams) {
+//console.log('setSearchValues');
+//console.log(urlParams);
             $('#' + T.C.ID_INDICATOR).val(urlParams.indicator);
-            $('#' + T.C.ID_COUNTRY).val(urlParams.country);
-            $('#' + T.C.ID_YEAR).val(urlParams.year);
+            if (urlParams.country != '') {
+                $('#' + T.C.ID_COUNTRY).val(urlParams.country);
+            }
+            if (urlParams.year != '') {
+                $('#' + T.C.ID_YEAR).val(urlParams.year);
+            }
         },
 
         searchAction : function () {
-            if (window.location.pathname != '/'+T.C.BASE_URI) {
+//console.log('searchAction');
+//console.log('window.location.pathname: ' + window.location.pathname);
+//console.log('T.C.BASE_URI: ' + T.C.BASE_URI);
+//            if (window.location.pathname == T.C.BASE_URI) {
+//console.log("IF");
                 T.U.getSearchValues();
 
-                var urlParams = $.param({
-                    'indicator' : T.I.INDICATOR,
-                    'country' : T.I.COUNTRY,
-                    'year' : T.I.YEAR
-                });
-//console.log("searchAction");
-                window.location = T.C.BASE_URI + '?' + urlParams;
-            }
+                if (T.I.COUNTRY != '') {
+                    var urlParams = $.param({
+                        'indicator' : T.I.INDICATOR,
+                        'country' : T.I.COUNTRY,
+                    });
+                }
 
-            T.U.showObservations();
+                if (T.I.YEAR != '') {
+                    var urlParams = $.param({
+                        'indicator' : T.I.INDICATOR,
+                        'year' : T.I.YEAR
+                    });
+                }
+
+//console.log(urlParams);
+                window.location = T.C.BASE_URI + '?' + urlParams;
+//            } else {
+//console.log("ELSE");
+//            }
+
+//            T.U.showObservations();
         },
 
         showObservations : function() {
@@ -108,7 +130,7 @@ var T = { // Tool
 
         renderChart : {
             indicators : function (indicatorNotation, dimensions) {
-//                console.log("renderChart.indicators");
+//console.log("renderChart.indicators");
 
 //                if (countries.length != 0) {
 //                    var uri;
@@ -126,6 +148,7 @@ var T = { // Tool
                 }
 
 //console.log(uriIndicator);
+//console.log(uriObservations);
 
                 var indicatorURI, indicatorPrefLabel, indicatorDefinition;
                 $('#' + 'results').addClass('processing');
@@ -151,7 +174,7 @@ var T = { // Tool
 
 
                 var countryPrefLabel;
-//console.log(uriObservations);
+
                 $('#' + 'results').addClass('processing');
                 $.getJSON(uriObservations, function (data, textStatus) {
 //console.log(data);

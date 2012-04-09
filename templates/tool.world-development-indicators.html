@@ -1,11 +1,13 @@
-<?php require_once 'head.world-development-indicators.html'; ?>
 <?php
-//    $school = $this->getSchool();
-//    $schoolData = $this->getSchoolValues($school);
-//    print_r($schoolData);
+    header("Content-type: text/html; charset=utf-8");
 ?>
-        <title>World Development Indicators observations tool &#8212; World Bank Linked Data</title>
-        <meta name="description" content="Tool to display World Development Indicators observations"/>
+<!DOCTYPE HTML>
+<html>
+
+<?php require_once 'head.world-development-indicators.html'; ?>
+
+        <title>View for '<?php echo $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']]; ?>' &#8212; World Bank Linked Data</title>
+        <meta name="description" content="Tool to display World Development Indicators: <?php echo $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']]; ?>"/>
     </head>
 
     <body id="observation">
@@ -17,7 +19,8 @@
 
                     <div id="content_inner">
                         <div id="results">
-                           <div id="details"></div>
+                           <div id="results_linechart"></div>
+                           <div id="results_geochart"></div>
                         </div>
                     </div>
                 </div>

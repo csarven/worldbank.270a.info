@@ -11,10 +11,11 @@ class Tools
 {
     var $config;
 
-    function __construct()
+    function __construct($data)
     {
         $this->config = array();
         $this->setPrefixes();
+        $this->setConfig($data);
 //        $this->setObjectMapping();
         $this->setAPIElements();
         $this->getHTTPRequest();
@@ -117,6 +118,12 @@ class Tools
         );
     }
 
+
+    function setConfig($data)
+    {
+        $this->config['data'] = $data;
+//        print_r($this->config);
+    }
 
     function buildQueryURI($query = null)
     {
