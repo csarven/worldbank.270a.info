@@ -34,6 +34,38 @@ var T = { // Tool
                 T.U.searchAction();
             });
 
+            $('#form_country').click(function() {
+                console.log('country click');
+                $('#form_country').fadeTo('fast', '1');
+                $('#form_year').val('').fadeTo('slow', '0.45');
+                $('#year').val('');
+                T.I.YEAR = '';
+            });
+
+            $('#form_year').click(function() {
+                console.log('year click');
+                $('#form_year').fadeTo('fast', '1');
+                $('#form_country').val('').fadeTo('slow', '0.45');
+                $('#country').val('');
+                T.I.COUNTRY = '';
+            });
+
+            $("#country").change(function () {
+                $('#country option:selected').each(function() {
+                    if ($(this).val() != '') {
+                        $('#form_year').fadeTo('slow', '0.45');
+                    }
+                });
+            });
+
+            $("#year").change(function () {
+                $('#year option:selected').each(function() {
+                    if ($(this).val() != '') {
+                        $('#form_country').fadeTo('slow', '0.45');
+                    }
+                });
+            });
+
             urlParams = T.U.getURLParams();
 
             if (urlParams.indicator != undefined) {
@@ -59,7 +91,7 @@ var T = { // Tool
         },
 
         getSearchValues : function () {
-//console.log('getSearchValue');
+//console.log('getSearchValues');
             T.I.INDICATOR = $('#' + T.C.ID_INDICATOR).val();
             T.I.COUNTRY = $('#' + T.C.ID_COUNTRY).val();
             T.I.YEAR = $('#' + T.C.ID_YEAR).val();
@@ -72,20 +104,16 @@ var T = { // Tool
 //console.log('setSearchValues');
 //console.log(urlParams);
             $('#' + T.C.ID_INDICATOR).val(urlParams.indicator);
-            if (urlParams.country != '') {
+            if (urlParams.country != undefined && urlParams.country != '') {
                 $('#' + T.C.ID_COUNTRY).val(urlParams.country);
-            }
-            if (urlParams.year != '') {
+            } else if (urlParams.year != undefined && urlParams.year != '') {
                 $('#' + T.C.ID_YEAR).val(urlParams.year);
             }
         },
 
         searchAction : function () {
 //console.log('searchAction');
-//console.log('window.location.pathname: ' + window.location.pathname);
-//console.log('T.C.BASE_URI: ' + T.C.BASE_URI);
 //            if (window.location.pathname == T.C.BASE_URI) {
-//console.log("IF");
                 T.U.getSearchValues();
 
                 if (T.I.COUNTRY != '') {
@@ -93,9 +121,7 @@ var T = { // Tool
                         'indicator' : T.I.INDICATOR,
                         'country' : T.I.COUNTRY,
                     });
-                }
-
-                if (T.I.YEAR != '') {
+                } else if (T.I.YEAR != '') {
                     var urlParams = $.param({
                         'indicator' : T.I.INDICATOR,
                         'year' : T.I.YEAR
@@ -105,7 +131,7 @@ var T = { // Tool
 //console.log(urlParams);
                 window.location = T.C.BASE_URI + '?' + urlParams;
 //            } else {
-//console.log("ELSE");
+
 //            }
 
 //            T.U.showObservations();
@@ -118,8 +144,7 @@ var T = { // Tool
             if (T.I.COUNTRY != '') {
                 var params = T.I.COUNTRY;
                 google.load('visualization', '1', {packages: ['corechart']});
-            }
-            else {
+            } else if (T.I.YEAR != '') {
                 var params = T.I.YEAR;
                 google.load('visualization', '1', {packages: ['geochart']});
             }
@@ -143,10 +168,9 @@ var T = { // Tool
 
                 if (T.I.COUNTRY != '') {
                     var uriObservations = T.C.API_BASE_OBSERVATIONS + "indicator=" + indicatorNotation + "&country=" + dimensions;
-                } else {
+                } else if (T.I.YEAR != '') {
                     var uriObservations = T.C.API_BASE_OBSERVATIONS + "indicator=" + indicatorNotation + "&year=" + dimensions;
                 }
-
 //console.log(uriIndicator);
 //console.log(uriObservations);
 
@@ -184,11 +208,10 @@ var T = { // Tool
                     if (data.data[0] != undefined && data.data[0].length != 0) {
                         dataTable = new google.visualization.DataTable();
 
-                        if (T.I.COUNTRY == "") {
-                            var dimensionColumnName = "Years";
-                        }
-                        else {
+                        if (T.I.COUNTRY != '') {
                             var dimensionColumnName = "Countries";
+                        } else if (T.I.YEAR != '') {
+                            var dimensionColumnName = "Years";
                         }
 
                         dataTable.addColumn('string', dimensionColumnName);
@@ -198,8 +221,7 @@ var T = { // Tool
                             if (T.I.COUNTRY != '') {
                                 countryPrefLabel = observation.countryPrefLabel.value;
                                 var dimension = observation.refPeriod.value;
-                            }
-                            else {
+                            } else if (T.I.YEAR != '') {
                                 var dimension = observation.countryPrefLabel.value;
                             }
 
@@ -227,8 +249,7 @@ var T = { // Tool
                             options.hAxis.title = 'Years';
                             options.title = options.title + " [" + countryPrefLabel + "]";
                             var chart = new google.visualization.LineChart(document.getElementById('results'));
-                        }
-                        else if (T.I.YEAR != '') {
+                        } else if (T.I.YEAR != '') {
                             options.hAxis.title = 'Countries';
                             var chart = new google.visualization.GeoChart(document.getElementById('results'));
                         }

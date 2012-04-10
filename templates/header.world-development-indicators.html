@@ -24,9 +24,9 @@
                         <legend>Search</legend>
                         <ul class="form_data">
                              <li id="form_indicator">
-                                <label for="indicator">Indicators</label>
+                                <label for="indicator">Indicator</label>
                                 <select id="indicator" name="indicator">
-                                    <option value="">Select a World Development Indicator</option>
+                                    <option value="">World Development Indicator</option>
 <?php
 foreach ($this->config['data']['worldDevelopmentIndicators'] as $key => $value) {
 echo '<option value="'.$key.'">'.$value.'</option>'."\n";
@@ -38,7 +38,7 @@ echo '<option value="'.$key.'">'.$value.'</option>'."\n";
                              <li id="form_country">
                                 <label for="country">Country</label>
                                 <select id="country" name="country">
-<option value="">Select a country to observe</option>
+<option value="">Country</option>
 <?php
 foreach ($this->config['data']['countries'] as $key => $value) {
 echo '<option value="'.$key.'">'.$value.'</option>'."\n";
@@ -50,7 +50,7 @@ echo '<option value="'.$key.'">'.$value.'</option>'."\n";
                             <li id="form_year">
                                 <label for="year">Year</label>
                                 <select id="year" name="year">
-<option value="">Select an observation year</option>
+<option value="">Year</option>
 <?php
 for ($i=1961; $i <= 2011; $i++) {
 echo '<option value="'.$i.'">'.$i.'</option>'."\n";
