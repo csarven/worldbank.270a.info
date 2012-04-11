@@ -370,7 +370,7 @@ EOD;
             case 'observations':
 //                if (count($location) == 2) {
                     $query = <<<EOD
-                        SELECT ?countryNotation ?countryPrefLabel ?countryLat ?countryLong ?refPeriod ?obsValue
+                        SELECT ?countryPrefLabel ?refPeriod ?obsValue
                         WHERE {
                             GRAPH <http://worldbank.270a.info/graph/world-development-indicators> {
                                 ?s property:indicator $indicatorURI .
