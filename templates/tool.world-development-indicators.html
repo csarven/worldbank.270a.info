@@ -21,7 +21,7 @@
     }
 
     if (isset($this->config['requestQuery']['country']) || isset($this->config['requestQuery']['year'])) {
-        $title = "View for '" . $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']] . $titleDimensions . "' &#8212; World Bank Linked Data";
+        $title = "View for '" . $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']] . "' " .$titleDimensions . " &#8212; World Bank Linked Data";
         $description = 'Tool to display World Development Indicators: ' . $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']];
     } else {
         $title = 'Tools &#8212; World Bank Linked Data';
