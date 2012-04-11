@@ -281,6 +281,12 @@ var T = { // Tool
                         $('#' + 'results').removeClass('processing');
                         chart.draw(dataTable, options);
                         if (!missingMeasure) {
+                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                                wbCountries = T.I.COUNTRY.join("-");
+
+                                $('#results').append('<p>See also The World Bank\'s graph for this observation: <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a></p>');
+                            }
+
                             $('#results').append('<p class="warning">This chart is missing points. In order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points. This option is currently being tested.</p>');
                         }
                     }
