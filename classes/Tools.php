@@ -299,9 +299,12 @@ EOD;
 OPTIONAL {
     ?refArea
         skos:prefLabel ?countryPrefLabel ;
-        skos:notation ?countryNotation ;
     .
 }
+";
+/*
+
+        skos:notation ?countryNotation ;
 
 OPTIONAL {
     ?refArea
@@ -310,7 +313,7 @@ OPTIONAL {
     .
 }
 ";
-
+*/
             $refAreaTriplePatterns .= "
 ?s sdmx-dimension:refArea ?refArea .
 FILTER (".implode("||", $refAreaFilters).")

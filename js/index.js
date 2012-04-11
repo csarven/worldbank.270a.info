@@ -281,7 +281,7 @@ var T = { // Tool
                         $('#' + 'results').removeClass('processing');
                         chart.draw(dataTable, options);
                         if (!missingMeasure) {
-                            $('#results').append('<p class="warning">This chart contains missing points, hence, in order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points.</p>');
+                            $('#results').append('<p class="warning">This chart is missing points. In order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points. This option is currently being tested.</p>');
                         }
                     }
                     else {
