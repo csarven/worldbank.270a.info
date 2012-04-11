@@ -9,7 +9,14 @@
     $titleDimensions = '';
 
     if (isset($this->config['requestQuery']['country'])) {
-        $titleDimensions .= " in " . $this->config['data']['countries'][$this->config['requestQuery']['country']];
+        $countries = array();
+        $countryNotations = explode(",", $this->config['requestQuery']['country']);
+        foreach ($countryNotations as $countryNotation) {
+            $countries[] = $this->config['data']['countries'][$countryNotation];
+        }
+        $countries = implode($countries, ", ");
+
+        $titleDimensions .= " in " . $countries;
     } else if (isset($this->config['requestQuery']['year'])) {
         $titleDimensions .= " in " . $this->config['requestQuery']['year'];
     }
@@ -24,13 +31,22 @@
 <?php require_once 'header.world-development-indicators.html'; ?>
             <div id="core">
                 <div id="content">
-                    <h1>Observations</h1>
+                    <h1>Observations in World Bank</h1>
+<?php
+    if (count($this->config['requestQuery']) < 1) {
+?>
+                    <p>This tool can display charts based on the observations in the <a href="http://worldbank.270a.info/dataset/world-development-indicators">World Development Indicators</a> dataset.</p>
 
+                    <p>How-to use this tool: select an indicator, then select one or more countries, or an observation year. Line chart is used to view observation values in countries, over a time period for an indicator. Geo chart is used to view observation values for a time period for all the countries in the world.</p>
+
+                    <p>Charts are currently created using the <a href="https://google-developers.appspot.com/chart/">Google Chart Tools</a>. That might change in the future given how I take this tool forward, as I have to consider performance, and complexity of chart creation given observations from multiple datasets. At this time, I consider this tool as an experiement.</p>
+
+
+<?php
+    }
+?>
                     <div id="content_inner">
-                        <div id="results">
-                           <div id="results_linechart"></div>
-                           <div id="results_geochart"></div>
-                        </div>
+                        <div id="results"></div>
                     </div>
                 </div>
             </div>

@@ -282,30 +282,57 @@ GRAPH <http://worldbank.270a.info/graph/meta> {
 
 EOD;
 
-        $bindCountry = '';
+        $bindCountry = $countryURI = $countryTriplePatterns = $refAreaTriplePatterns = '';
+        $countries = array();
         if (!empty($country)) {
-            $countryURI = "<http://worldbank.270a.info/classification/country/$country>";
-            $bindCountry = "BIND ($countryURI AS ?countryURI)";
+            $countries = explode(",", $country);
+
+            foreach($countries as $c) {
+                $countryURI = "<http://worldbank.270a.info/classification/country/$c>";
+
+                $refAreaFilters[] = "?refArea = $countryURI";
+
+//                $bindCountry .= "BIND ($countryURI AS ?countryURI)";
+            }
+
+                $countryTriplePatterns .= "
+OPTIONAL {
+    ?refArea
+        skos:prefLabel ?countryPrefLabel ;
+        skos:notation ?countryNotation ;
+    .
+}
+
+OPTIONAL {
+    ?refArea
+        wgs:lat ?countryLat ;
+        wgs:long ?countryLong ;
+    .
+}
+";
+
+            $refAreaTriplePatterns .= "
+?s sdmx-dimension:refArea ?refArea .
+FILTER (".implode("||", $refAreaFilters).")
+";
+
         } else {
-            $countryURI = '?countryURI';
+            $countryTriplePatterns = "
+?countryURI
+    skos:prefLabel ?countryPrefLabel ;
+    skos:notation ?countryNotation ;
+.
+";
+
+            $refAreaTriplePatterns .= "?s sdmx-dimension:refArea ?countryURI .";
         }
 
         $countryGraph = <<<EOD
 GRAPH <http://worldbank.270a.info/graph/meta> {
-    $countryURI
-        skos:prefLabel ?countryPrefLabel ;
-        skos:notation ?countryNotation ;
-        .
-    OPTIONAL {
-        $countryURI
-            wgs:lat ?countryLat ;
-            wgs:long ?countryLong ;
-        .
-    }
+    $countryTriplePatterns
 
     $bindCountry
 }
-
 EOD;
 
         if (!empty($year)) {
@@ -345,7 +372,7 @@ EOD;
                             GRAPH <http://worldbank.270a.info/graph/world-development-indicators> {
                                 ?s property:indicator $indicatorURI .
                                 $refPeriodTriplePatterns
-                                ?s sdmx-dimension:refArea $countryURI .
+                                $refAreaTriplePatterns
                                 ?s sdmx-measure:obsValue ?obsValue .
                             }
 

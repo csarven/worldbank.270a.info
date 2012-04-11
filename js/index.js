@@ -35,7 +35,7 @@ var T = { // Tool
             });
 
             $('#form_country').click(function() {
-                console.log('country click');
+//console.log('country click');
                 $('#form_country').fadeTo('fast', '1');
                 $('#form_year').val('').fadeTo('slow', '0.45');
                 $('#year').val('');
@@ -43,7 +43,7 @@ var T = { // Tool
             });
 
             $('#form_year').click(function() {
-                console.log('year click');
+//console.log('year click');
                 $('#form_year').fadeTo('fast', '1');
                 $('#form_country').val('').fadeTo('slow', '0.45');
                 $('#country').val('');
@@ -76,6 +76,7 @@ var T = { // Tool
 
         //From http://stackoverflow.com/a/2880929
         getURLParams : function () {
+//console.log("getURLParams");
             var urlParams = {};
             var e,
                 a = /\+/g,  // Regex for replacing addition symbol with a space
@@ -95,9 +96,10 @@ var T = { // Tool
             T.I.INDICATOR = $('#' + T.C.ID_INDICATOR).val();
             T.I.COUNTRY = $('#' + T.C.ID_COUNTRY).val();
             T.I.YEAR = $('#' + T.C.ID_YEAR).val();
-//console.log(T.I.INDICATOR);
+//console.log("T.I.INDICATOR: " + T.I.INDICATOR);
+//console.log("T.I.COUNTRY: " + T.I.COUNTRY);
 //console.log(T.I.COUNTRY);
-//console.log(T.I.YEAR);
+//console.log("T.I.YEAR: " + T.I.YEAR);
         },
 
         setSearchValues : function (urlParams) {
@@ -105,7 +107,8 @@ var T = { // Tool
 //console.log(urlParams);
             $('#' + T.C.ID_INDICATOR).val(urlParams.indicator);
             if (urlParams.country != undefined && urlParams.country != '') {
-                $('#' + T.C.ID_COUNTRY).val(urlParams.country);
+//console.log(urlParams.country);
+                $('#' + T.C.ID_COUNTRY).val(urlParams.country.split(','));
             } else if (urlParams.year != undefined && urlParams.year != '') {
                 $('#' + T.C.ID_YEAR).val(urlParams.year);
             }
@@ -119,7 +122,7 @@ var T = { // Tool
                 if (T.I.COUNTRY != '') {
                     var urlParams = $.param({
                         'indicator' : T.I.INDICATOR,
-                        'country' : T.I.COUNTRY,
+                        'country' : T.I.COUNTRY.join(",")
                     });
                 } else if (T.I.YEAR != '') {
                     var urlParams = $.param({
@@ -128,8 +131,8 @@ var T = { // Tool
                     });
                 }
 
-//console.log(urlParams);
-                window.location = T.C.BASE_URI + '?' + urlParams;
+//console.log(T.C.BASE_URI + '?' + decodeURIComponent(urlParams));
+                window.location = T.C.BASE_URI + '?' + decodeURIComponent(urlParams);
 //            } else {
 
 //            }
@@ -141,34 +144,25 @@ var T = { // Tool
 //console.log("showObservations");
             T.U.getSearchValues();
 
-            if (T.I.COUNTRY != '') {
-                var params = T.I.COUNTRY;
+            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                var dimensions = T.I.COUNTRY;
                 google.load('visualization', '1', {packages: ['corechart']});
-            } else if (T.I.YEAR != '') {
-                var params = T.I.YEAR;
+            } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                var dimensions = T.I.YEAR;
                 google.load('visualization', '1', {packages: ['geochart']});
             }
-
-            google.setOnLoadCallback(T.U.renderChart.indicators(T.I.INDICATOR, params));
+//console.log(dimensions);
+            google.setOnLoadCallback(T.U.renderChart.indicators(T.I.INDICATOR, dimensions));
         },
 
 
         renderChart : {
             indicators : function (indicatorNotation, dimensions) {
-//console.log("renderChart.indicators");
-
-//                if (countries.length != 0) {
-//                    var uri;
-//                    $.each(countries, function(i, country) {
-//                        var paramsCountries = 
-//                    });
-//                }
-
                 var uriIndicator = T.C.API_BASE_INFO + "indicator=" + indicatorNotation;
 
-                if (T.I.COUNTRY != '') {
+                if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
                     var uriObservations = T.C.API_BASE_OBSERVATIONS + "indicator=" + indicatorNotation + "&country=" + dimensions;
-                } else if (T.I.YEAR != '') {
+                } else if (T.I.YEAR != null && T.I.YEAR != '') {
                     var uriObservations = T.C.API_BASE_OBSERVATIONS + "indicator=" + indicatorNotation + "&year=" + dimensions;
                 }
 //console.log(uriIndicator);
@@ -196,8 +190,7 @@ var T = { // Tool
                     $('#' + 'results').removeClass('processing');
                 });
 
-
-                var countryPrefLabel;
+                var countryPrefLabel = '';
 
                 $('#' + 'results').addClass('processing');
                 $.getJSON(uriObservations, function (data, textStatus) {
@@ -208,48 +201,75 @@ var T = { // Tool
                     if (data.data[0] != undefined && data.data[0].length != 0) {
                         dataTable = new google.visualization.DataTable();
 
-                        if (T.I.COUNTRY != '') {
-                            var dimensionColumnName = "Countries";
-                        } else if (T.I.YEAR != '') {
-                            var dimensionColumnName = "Years";
+                        var increment = 1;
+                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                            dataTable.addColumn('string', "Years");
+
+                            $.each(T.I.COUNTRY, function() {
+                                dataTable.addColumn('number', /*indicatorPrefLabel + " in " +*/ $('#country [value=' + this + ']').text());
+                            });
+
+                            increment = T.I.COUNTRY.length;
+                        } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                            dataTable.addColumn('string', "Countries");
+                            dataTable.addColumn('number', indicatorPrefLabel);
                         }
 
-                        dataTable.addColumn('string', dimensionColumnName);
-                        dataTable.addColumn('number', indicatorPrefLabel);
-
-                        $.each(data.data, function (i, observation) {
-                            if (T.I.COUNTRY != '') {
-                                countryPrefLabel = observation.countryPrefLabel.value;
-                                var dimension = observation.refPeriod.value;
-                            } else if (T.I.YEAR != '') {
-                                var dimension = observation.countryPrefLabel.value;
+                        for (var i=0; i < data.data.length; i+=increment) {
+                            var dimension = [];
+                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                                dimension.push(data.data[i].refPeriod.value);
+                              } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                                dimension.push(data.data[i].countryPrefLabel.value);
                             }
 
-                            var measure = parseInt(observation.obsValue.value);
+                            var missingMeasure = false;
+                            var measures = [];
+                            var observationRow = [];
+                            for (var j=0; j < increment; j++) {
+                                m = parseFloat(data.data[i+j].obsValue.value) || 0;
 
-                            if (measure > 0) {
-                                dataTable.addRow([dimension, measure]);
+                                if (m == 0 && T.I.YEAR != null && T.I.YEAR != '') {
+                                    missingMeasure = true;
+                                    break;
+                                }
+                                measures.push(parseFloat(data.data[i+j].obsValue.value));
                             }
-                        });
+
+                            observationRow = dimension.concat(measures);
+//console.log(observationRow);
+
+                            if (!missingMeasure) {
+                                dataTable.addRow(observationRow);
+                            }
+                        }
 
                         var options = {
                             title: indicatorDefinition,
                             width: 960,
                             height: 420,
                             hAxis: {
-                                title: '',
+                                title: ''
                             },
                             legend: {
-                                position: 'top'
+                                position: 'right'
                             },
-                            datalessRegionColor : 'FFFFFF'
+                            datalessRegionColor: 'FFFFFF'
+//                            interpolateNulls: true
                         };
 
-                        if (T.I.COUNTRY != '') {
+                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                            var countryPrefLabels = [];
+                            $.each(T.I.COUNTRY, function() {
+                                countryPrefLabels.push($('#country [value=' + this + ']').text());
+                            });
+                            countryPrefLabels = countryPrefLabels.join(", ");
+                            options.title = options.title + " [" + countryPrefLabels + "]";
+
                             options.hAxis.title = 'Years';
-                            options.title = options.title + " [" + countryPrefLabel + "]";
+
                             var chart = new google.visualization.LineChart(document.getElementById('results'));
-                        } else if (T.I.YEAR != '') {
+                        } else if (T.I.YEAR != null && T.I.YEAR != '') {
                             options.hAxis.title = 'Countries';
                             var chart = new google.visualization.GeoChart(document.getElementById('results'));
                         }

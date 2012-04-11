@@ -15,6 +15,9 @@
                             <li id="nav_help">
                                 <a rel="section" href="http://worldbank.270a.info/about" title="About this site">About</a>
                             </li>
+                            <li id="nav_tools">
+                                <a rel="section" href="http://worldbank.270a.info/view" title="Tools">Tools</a>
+                            </li>
                         </ul>
                     </dd>
                 </dl>
@@ -36,16 +39,16 @@ echo '<option value="'.$key.'">'.$value.'</option>'."\n";
                                 <p class="form_guide"></p>
                             </li>
                              <li id="form_country">
-                                <label for="country">Country</label>
-                                <select id="country" name="country">
-<option value="">Country</option>
+                                <label for="country">Countries</label>
+                                <select id="country" name="country" multiple="multiple">
+<option value="">-</option>
 <?php
 foreach ($this->config['data']['countries'] as $key => $value) {
 echo '<option value="'.$key.'">'.$value.'</option>'."\n";
 }
 ?>
 </select>
-                                <p class="form_guide"></p>
+                                <p class="form_guide">Select one or more countries</p>
                             </li>
                             <li id="form_year">
                                 <label for="year">Year</label>
