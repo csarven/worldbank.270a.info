@@ -268,14 +268,21 @@ var T = { // Tool
 
                             options.hAxis.title = 'Years';
 
+                            if (!missingMeasure) {
+                                options.interpolateNulls = true;
+                            }
+
                             var chart = new google.visualization.LineChart(document.getElementById('results'));
                         } else if (T.I.YEAR != null && T.I.YEAR != '') {
                             options.hAxis.title = 'Countries';
                             var chart = new google.visualization.GeoChart(document.getElementById('results'));
                         }
 
-                        chart.draw(dataTable, options);
                         $('#' + 'results').removeClass('processing');
+                        chart.draw(dataTable, options);
+                        if (!missingMeasure) {
+                            $('#results').append('<p class="warning">This chart contains missing points, hence, in order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points.</p>');
+                        }
                     }
                     else {
                        $('#results').html('<p class="warning notfound">No observations are found for indicator <em>' + indicatorNotation + '</em></p>');
