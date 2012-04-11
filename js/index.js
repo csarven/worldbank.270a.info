@@ -187,12 +187,12 @@ var T = { // Tool
                             }
                         });
                     }
-                    $('#' + 'results').removeClass('processing');
+//                    $('#' + 'results').removeClass('processing');
                 });
 
                 var countryPrefLabel = '';
 
-                $('#' + 'results').addClass('processing');
+//                $('#' + 'results').addClass('processing');
                 $.getJSON(uriObservations, function (data, textStatus) {
 //console.log(data);
 
