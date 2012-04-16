@@ -450,28 +450,23 @@
         <http://purl.org/linked-data/sdmx/2009/subject#2.6> ,
         <http://purl.org/linked-data/sdmx/2009/subject#2.7> ;
     void:dataDump <http://worldbank.270a.info/data/world-bank-finances.tar.gz> ;
-    void:triples 8731436 ;
+    void:triples 7248754 ;
     void:rootResource <http://worldbank.270a.info/dataset/world-bank-finances> ;
     void:classPartition [
         void:class qb:Observation ;
-        void:entities 240355
+        void:entities 248316
     ], [
         void:class <http://worldbank.270a.info/classification/lending-type/IBD> ;
-        void:entities 15888
+        void:entities 15896
     ] ;
     void:classes 2 ;
-    void:entities 248299 ;
-    void:properties 142 ;
+    void:entities 256264 ;
+    void:properties 141 ;
     void:propertyPartition [
         void:distinctObjects 8 ;
         void:distinctSubjects 26187 ;
         void:property <http://worldbank.270a.info/property/sector-theme> ;
         void:triples 26187
-    ], [
-        void:distinctObjects 145 ;
-        void:distinctSubjects 170 ;
-        void:property <http://worldbank.270a.info/property/subscriptions-and-contributions-committed-us-millions> ;
-        void:triples 170
     ], [
         void:distinctObjects 50 ;
         void:distinctSubjects 78 ;
@@ -493,20 +488,20 @@
         void:property <http://worldbank.270a.info/property/donor> ;
         void:triples 17519
     ], [
-        void:distinctObjects 660 ;
-        void:distinctSubjects 98749 ;
+        void:distinctObjects 714 ;
+        void:distinctSubjects 106418 ;
         void:property <http://worldbank.270a.info/property/guarantor> ;
-        void:triples 105434
+        void:triples 113621
     ], [
-        void:distinctObjects 10536 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 10625 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/board-approval-date> ;
-        void:triples 185847
+        void:triples 193809
     ], [
         void:distinctObjects 2 ;
-        void:distinctSubjects 36 ;
-        void:property <http://worldbank.270a.info/property/commercial-credit-exposure-by-counterparty-rating-organization> ;
-        void:triples 36
+        void:distinctSubjects 48 ;
+        void:property <http://worldbank.270a.info/property/organization> ;
+        void:triples 48
     ], [
         void:distinctObjects 29 ;
         void:distinctSubjects 530 ;
@@ -518,25 +513,25 @@
         void:property <http://worldbank.270a.info/property/period-end-date> ;
         void:triples 36
     ], [
-        void:distinctObjects 1625 ;
-        void:distinctSubjects 185847 ;
-        void:property <http://worldbank.270a.info/property/repaid-3rd-party> ;
-        void:triples 185847
-    ], [
         void:distinctObjects 11 ;
         void:distinctSubjects 530 ;
         void:property <http://worldbank.270a.info/property/vpu-type> ;
         void:triples 530
     ], [
-        void:distinctObjects 12 ;
-        void:distinctSubjects 12 ;
-        void:property <http://worldbank.270a.info/property/gross-disbursements-development-policy-lending-us-millions> ;
-        void:triples 12
+        void:distinctObjects 1627 ;
+        void:distinctSubjects 193809 ;
+        void:property <http://worldbank.270a.info/property/repaid-3rd-party> ;
+        void:triples 193809
     ], [
-        void:distinctObjects 5174 ;
-        void:distinctSubjects 176686 ;
+        void:distinctObjects 246663 ;
+        void:distinctSubjects 248316 ;
+        void:property <http://purl.org/dc/terms/source> ;
+        void:triples 248316
+    ], [
+        void:distinctObjects 5265 ;
+        void:distinctSubjects 184615 ;
         void:property <http://worldbank.270a.info/property/first-repayment-date> ;
-        void:triples 176686
+        void:triples 184615
     ], [
         void:distinctObjects 12 ;
         void:distinctSubjects 12 ;
@@ -568,25 +563,25 @@
         void:property <http://worldbank.270a.info/property/program-code> ;
         void:triples 9358
     ], [
-        void:distinctObjects 80 ;
+        void:distinctObjects 84 ;
         void:distinctSubjects 14798 ;
         void:property <http://worldbank.270a.info/property/approval-quarter> ;
         void:triples 14798
-    ], [
-        void:distinctObjects 154 ;
-        void:distinctSubjects 3092 ;
-        void:property <http://worldbank.270a.info/property/beneficiary> ;
-        void:triples 3092
     ], [
         void:distinctObjects 6 ;
         void:distinctSubjects 6 ;
         void:property <http://worldbank.270a.info/property/credits-outstanding-us-millions> ;
         void:triples 6
     ], [
-        void:distinctObjects 18487 ;
-        void:distinctSubjects 184419 ;
+        void:distinctObjects 154 ;
+        void:distinctSubjects 3092 ;
+        void:property <http://worldbank.270a.info/property/beneficiary> ;
+        void:triples 3092
+    ], [
+        void:distinctObjects 18584 ;
+        void:distinctSubjects 192357 ;
         void:property <http://worldbank.270a.info/property/effective-date-most-recent> ;
-        void:triples 184419
+        void:triples 192357
     ], [
         void:distinctObjects 14 ;
         void:distinctSubjects 14 ;
@@ -598,10 +593,10 @@
         void:property <http://worldbank.270a.info/property/financial-intermediary-funds-commitments-financial-product> ;
         void:triples 8051
     ], [
-        void:distinctObjects 22156 ;
-        void:distinctSubjects 181551 ;
+        void:distinctObjects 22202 ;
+        void:distinctSubjects 189189 ;
         void:property <http://worldbank.270a.info/property/project> ;
-        void:triples 181551
+        void:triples 189189
     ], [
         void:distinctObjects 3619 ;
         void:distinctSubjects 10160 ;
@@ -623,20 +618,20 @@
         void:property <http://worldbank.270a.info/property/total-amounts> ;
         void:triples 187
     ], [
-        void:distinctObjects 10021 ;
-        void:distinctSubjects 102418 ;
+        void:distinctObjects 10459 ;
+        void:distinctSubjects 110370 ;
         void:property <http://worldbank.270a.info/property/loans-held> ;
-        void:triples 102418
+        void:triples 110370
+    ], [
+        void:distinctObjects 3562 ;
+        void:distinctSubjects 193011 ;
+        void:property <http://worldbank.270a.info/property/borrower> ;
+        void:triples 193011
     ], [
         void:distinctObjects 28 ;
         void:distinctSubjects 84 ;
         void:property <http://worldbank.270a.info/property/ida-statement-of-income-line-item> ;
         void:triples 84
-    ], [
-        void:distinctObjects 3430 ;
-        void:distinctSubjects 185106 ;
-        void:property <http://worldbank.270a.info/property/borrower> ;
-        void:triples 185106
     ], [
         void:distinctObjects 12 ;
         void:distinctSubjects 12 ;
@@ -648,10 +643,10 @@
         void:property <http://worldbank.270a.info/property/bb-us-millions> ;
         void:triples 78
     ], [
-        void:distinctObjects 48 ;
-        void:distinctSubjects 102418 ;
+        void:distinctObjects 49 ;
+        void:distinctSubjects 110370 ;
         void:property <http://worldbank.270a.info/property/loan-type> ;
-        void:triples 102418
+        void:triples 110370
     ], [
         void:distinctObjects 48 ;
         void:distinctSubjects 59 ;
@@ -668,30 +663,30 @@
         void:property <http://worldbank.270a.info/property/shares> ;
         void:triples 187
     ], [
-        void:distinctObjects 19375 ;
-        void:distinctSubjects 83429 ;
+        void:distinctObjects 19378 ;
+        void:distinctSubjects 83439 ;
         void:property <http://worldbank.270a.info/property/repaid-to-ida> ;
-        void:triples 83429
+        void:triples 83439
     ], [
         void:distinctObjects 6 ;
         void:distinctSubjects 6 ;
         void:property <http://worldbank.270a.info/property/development-grant-expenses-us-millions> ;
         void:triples 6
     ], [
-        void:distinctObjects 5530 ;
-        void:distinctSubjects 176699 ;
+        void:distinctObjects 5643 ;
+        void:distinctSubjects 184629 ;
         void:property <http://worldbank.270a.info/property/last-repayment-date> ;
-        void:triples 176699
-    ], [
-        void:distinctObjects 12 ;
-        void:distinctSubjects 12 ;
-        void:property <http://worldbank.270a.info/property/commitments-total-us-millions> ;
-        void:triples 12
+        void:triples 184629
     ], [
         void:distinctObjects 14 ;
         void:distinctSubjects 14 ;
         void:property <http://worldbank.270a.info/property/fy05-amount-us-millions> ;
         void:triples 14
+    ], [
+        void:distinctObjects 12 ;
+        void:distinctSubjects 12 ;
+        void:property <http://worldbank.270a.info/property/commitments-total-us-millions> ;
+        void:triples 12
     ], [
         void:distinctObjects 56 ;
         void:distinctSubjects 59 ;
@@ -703,15 +698,15 @@
         void:property <http://worldbank.270a.info/property/undisbursed-grants-us-millions> ;
         void:triples 6
     ], [
-        void:distinctObjects 5248 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 5586 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/exchange-adjustment> ;
-        void:triples 185847
+        void:triples 193809
     ], [
-        void:distinctObjects 16524 ;
-        void:distinctSubjects 102418 ;
+        void:distinctObjects 16792 ;
+        void:distinctSubjects 110370 ;
         void:property <http://worldbank.270a.info/property/repaid-to-ibrd> ;
-        void:triples 102418
+        void:triples 110370
     ], [
         void:distinctObjects 14 ;
         void:distinctSubjects 14 ;
@@ -738,10 +733,10 @@
         void:property <http://worldbank.270a.info/property/amounts-subject-to-call> ;
         void:triples 187
     ], [
-        void:distinctObjects 726 ;
-        void:distinctSubjects 240324 ;
+        void:distinctObjects 41 ;
+        void:distinctSubjects 248316 ;
         void:property <http://worldbank.270a.info/property/currency> ;
-        void:triples 244630
+        void:triples 248316
     ], [
         void:distinctObjects 126 ;
         void:distinctSubjects 356 ;
@@ -763,80 +758,80 @@
         void:property <http://worldbank.270a.info/property/receipt-quarter> ;
         void:triples 3306
     ], [
-        void:distinctObjects 41595 ;
-        void:distinctSubjects 83429 ;
+        void:distinctObjects 312 ;
+        void:distinctSubjects 15792 ;
+        void:property <http://worldbank.270a.info/property/donor-agency> ;
+        void:triples 15792
+    ], [
+        void:distinctObjects 41651 ;
+        void:distinctSubjects 83439 ;
         void:property <http://worldbank.270a.info/property/due-to-ida> ;
-        void:triples 83429
+        void:triples 83439
     ], [
         void:distinctObjects 24 ;
         void:distinctSubjects 8083 ;
         void:property <http://worldbank.270a.info/property/transfer-quarter> ;
         void:triples 8083
     ], [
-        void:distinctObjects 15075 ;
+        void:distinctObjects 15825 ;
         void:distinctSubjects 24534 ;
         void:property <http://worldbank.270a.info/property/amount-in-usd> ;
         void:triples 24534
     ], [
-        void:distinctObjects 103 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 115 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/region> ;
-        void:triples 185847
-    ], [
-        void:distinctObjects 62 ;
-        void:distinctSubjects 186 ;
-        void:property <http://worldbank.270a.info/property/percentage-of-total-shares> ;
-        void:triples 186
+        void:triples 193809
     ], [
         void:distinctObjects 415 ;
         void:distinctSubjects 6747 ;
         void:property <http://worldbank.270a.info/property/recipient> ;
         void:triples 6747
     ], [
+        void:distinctObjects 62 ;
+        void:distinctSubjects 186 ;
+        void:property <http://worldbank.270a.info/property/percentage-of-total-shares> ;
+        void:triples 186
+    ], [
         void:distinctObjects 6 ;
         void:distinctSubjects 26857 ;
         void:property <http://worldbank.270a.info/property/status> ;
         void:triples 26857
     ], [
-        void:distinctObjects 4010 ;
-        void:distinctSubjects 185717 ;
+        void:distinctObjects 4084 ;
+        void:distinctSubjects 193671 ;
         void:property <http://worldbank.270a.info/property/closed-date-most-recent> ;
-        void:triples 185717
+        void:triples 193671
     ], [
-        void:distinctObjects 1337 ;
-        void:distinctSubjects 102418 ;
+        void:distinctObjects 1402 ;
+        void:distinctSubjects 110370 ;
         void:property <http://worldbank.270a.info/property/interest-rate> ;
-        void:triples 102418
+        void:triples 110370
     ], [
-        void:distinctObjects 171 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 204 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/end-of-period> ;
-        void:triples 185847
+        void:triples 193809
     ], [
-        void:distinctObjects 38286 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 38526 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/disbursed-amount> ;
-        void:triples 185847
+        void:triples 193809
     ], [
-        void:distinctObjects 83 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 90 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/loan-status> ;
-        void:triples 185847
+        void:triples 193809
     ], [
         void:distinctObjects 8 ;
         void:distinctSubjects 74 ;
         void:property <http://worldbank.270a.info/property/notes> ;
         void:triples 74
     ], [
-        void:distinctObjects 6 ;
-        void:distinctSubjects 30 ;
-        void:property <http://worldbank.270a.info/property/ida-statement-of-cash-flows-source> ;
-        void:triples 30
-    ], [
-        void:distinctObjects 46 ;
-        void:distinctSubjects 240354 ;
+        void:distinctObjects 48 ;
+        void:distinctSubjects 248316 ;
         void:property qb:dataSet ;
-        void:triples 240354
+        void:triples 248316
     ], [
         void:distinctObjects 13 ;
         void:distinctSubjects 14 ;
@@ -863,11 +858,6 @@
         void:property <http://worldbank.270a.info/property/fy13-indicative-plan-fy12> ;
         void:triples 59
     ], [
-        void:distinctObjects 2 ;
-        void:distinctSubjects 12 ;
-        void:property <http://worldbank.270a.info/property/ibrd-and-ida-operational-summary-organization> ;
-        void:triples 12
-    ], [
         void:distinctObjects 628 ;
         void:distinctSubjects 35545 ;
         void:property <http://worldbank.270a.info/property/fund-name> ;
@@ -878,10 +868,10 @@
         void:property <http://worldbank.270a.info/property/grant-agreement-date> ;
         void:triples 9357
     ], [
-        void:distinctObjects 1625 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 1627 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/sold-3rd-party> ;
-        void:triples 185847
+        void:triples 193809
     ], [
         void:distinctObjects 14 ;
         void:distinctSubjects 14 ;
@@ -898,14 +888,14 @@
         void:property <http://worldbank.270a.info/property/undisbursed-loans-us-millions> ;
         void:triples 6
     ], [
-        void:distinctObjects 7 ;
-        void:distinctSubjects 6747 ;
-        void:property <http://worldbank.270a.info/property/financial-intermediary-funds-funding-decisions-financial-product> ;
-        void:triples 6747
-    ], [
         void:distinctObjects 5 ;
         void:distinctSubjects 6747 ;
         void:property <http://worldbank.270a.info/property/use-code> ;
+        void:triples 6747
+    ], [
+        void:distinctObjects 7 ;
+        void:distinctSubjects 6747 ;
+        void:property <http://worldbank.270a.info/property/financial-intermediary-funds-funding-decisions-financial-product> ;
         void:triples 6747
     ], [
         void:distinctObjects 2900 ;
@@ -923,7 +913,7 @@
         void:property <http://worldbank.270a.info/property/receipt-type> ;
         void:triples 3306
     ], [
-        void:distinctObjects 59 ;
+        void:distinctObjects 97 ;
         void:distinctSubjects 432 ;
         void:property <http://worldbank.270a.info/property/vpu-code> ;
         void:triples 432
@@ -938,20 +928,25 @@
         void:property <http://worldbank.270a.info/property/paid-in-contributions-to-ibrd-ida-ifc-trust-funds-based-on-fy-of-receipt-trustee-fund-name> ;
         void:triples 10160
     ], [
-        void:distinctObjects 11617 ;
-        void:distinctSubjects 102418 ;
+        void:distinctObjects 12121 ;
+        void:distinctSubjects 110370 ;
         void:property <http://worldbank.270a.info/property/due-to-ibrd> ;
-        void:triples 102418
+        void:triples 110370
     ], [
         void:distinctObjects 2 ;
         void:distinctSubjects 452 ;
         void:property <http://worldbank.270a.info/property/admin-budget-type> ;
         void:triples 452
     ], [
-        void:distinctObjects 12863 ;
-        void:distinctSubjects 116749 ;
+        void:distinctObjects 5653 ;
+        void:distinctSubjects 7359 ;
+        void:property <http://worldbank.270a.info/property/total-contribution-usd> ;
+        void:triples 7359
+    ], [
+        void:distinctObjects 13145 ;
+        void:distinctSubjects 121181 ;
         void:property <http://worldbank.270a.info/property/last-disbursement-date> ;
-        void:triples 116749
+        void:triples 121181
     ], [
         void:distinctObjects 294 ;
         void:distinctSubjects 17519 ;
@@ -968,15 +963,10 @@
         void:property <http://worldbank.270a.info/property/ida-balance-sheet-line-item> ;
         void:triples 94
     ], [
-        void:distinctObjects 21368 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 21635 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/undisbursed-amount> ;
-        void:triples 185847
-    ], [
-        void:distinctObjects 9841 ;
-        void:distinctSubjects 17519 ;
-        void:property <http://worldbank.270a.info/property/contributions-paid-in-usd> ;
-        void:triples 17519
+        void:triples 193809
     ], [
         void:distinctObjects 6 ;
         void:distinctSubjects 6 ;
@@ -984,34 +974,24 @@
         void:triples 6
     ], [
         void:distinctObjects 32 ;
-        void:distinctSubjects 83429 ;
+        void:distinctSubjects 83439 ;
         void:property <http://worldbank.270a.info/property/service-charge-rate> ;
-        void:triples 83429
+        void:triples 83439
     ], [
-        void:distinctObjects 531 ;
+        void:distinctObjects 532 ;
         void:distinctSubjects 600 ;
         void:property <http://worldbank.270a.info/property/amount-us-millions> ;
         void:triples 600
     ], [
-        void:distinctObjects 6 ;
-        void:distinctSubjects 78 ;
-        void:property <http://worldbank.270a.info/property/ibrd-statement-of-cash-flows-source> ;
-        void:triples 78
-    ], [
-        void:distinctObjects 28984 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 29002 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/loan-number> ;
-        void:triples 185847
+        void:triples 193809
     ], [
-        void:distinctObjects 312 ;
-        void:distinctSubjects 15792 ;
-        void:property <http://worldbank.270a.info/property/donor-agency> ;
-        void:triples 15792
-    ], [
-        void:distinctObjects 12 ;
-        void:distinctSubjects 12 ;
-        void:property <http://worldbank.270a.info/property/net-disbursements-us-millions> ;
-        void:triples 12
+        void:distinctObjects 9841 ;
+        void:distinctSubjects 17519 ;
+        void:property <http://worldbank.270a.info/property/contributions-paid-in-usd> ;
+        void:triples 17519
     ], [
         void:distinctObjects 357 ;
         void:distinctSubjects 357 ;
@@ -1023,25 +1003,30 @@
         void:property <http://worldbank.270a.info/property/counterparty-rating> ;
         void:triples 36
     ], [
-        void:distinctObjects 15023 ;
-        void:distinctSubjects 185847 ;
-        void:property <http://worldbank.270a.info/property/original-principal-amount> ;
-        void:triples 185847
+        void:distinctObjects 12 ;
+        void:distinctSubjects 12 ;
+        void:property <http://worldbank.270a.info/property/net-disbursements-us-millions> ;
+        void:triples 12
     ], [
-        void:distinctObjects 15576 ;
-        void:distinctSubjects 183277 ;
+        void:distinctObjects 15203 ;
+        void:distinctSubjects 193809 ;
+        void:property <http://worldbank.270a.info/property/original-principal-amount> ;
+        void:triples 193809
+    ], [
+        void:distinctObjects 15660 ;
+        void:distinctSubjects 191161 ;
         void:property <http://worldbank.270a.info/property/agreement-signing-date> ;
-        void:triples 183277
+        void:triples 191161
     ], [
         void:distinctObjects 3942 ;
         void:distinctSubjects 9358 ;
         void:property <http://worldbank.270a.info/property/grant-fund-number> ;
         void:triples 9358
     ], [
-        void:distinctObjects 20 ;
-        void:distinctSubjects 256243 ;
+        void:distinctObjects 22 ;
+        void:distinctSubjects 264212 ;
         void:property rdf:type ;
-        void:triples 122606
+        void:triples 126131
     ], [
         void:distinctObjects 690 ;
         void:distinctSubjects 7359 ;
@@ -1053,32 +1038,32 @@
         void:property <http://worldbank.270a.info/property/recipient-executed-grants-commitments-and-disbursements-trustee-fund> ;
         void:triples 9358
     ], [
-        void:distinctObjects 43900 ;
-        void:distinctSubjects 83429 ;
+        void:distinctObjects 44031 ;
+        void:distinctSubjects 83439 ;
         void:property <http://worldbank.270a.info/property/credits-held> ;
-        void:triples 83429
+        void:triples 83439
     ], [
-        void:distinctObjects 16905 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 16936 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/cancelled-amount> ;
-        void:triples 185847
+        void:triples 193809
     ], [
-        void:distinctObjects 1507 ;
-        void:distinctSubjects 195205 ;
-        void:property <http://worldbank.270a.info/property/country> ;
-        void:triples 209664
-    ], [
-        void:distinctObjects 55600 ;
-        void:distinctSubjects 185847 ;
+        void:distinctObjects 56407 ;
+        void:distinctSubjects 193809 ;
         void:property <http://worldbank.270a.info/property/borrower-s-obligation> ;
-        void:triples 185847
+        void:triples 193809
     ], [
         void:distinctObjects 26 ;
         void:distinctSubjects 530 ;
         void:property <http://worldbank.270a.info/property/vpu-group-code> ;
         void:triples 530
     ], [
-        void:distinctObjects 66 ;
+        void:distinctObjects 1586 ;
+        void:distinctSubjects 203167 ;
+        void:property <http://worldbank.270a.info/property/country> ;
+        void:triples 218218
+    ], [
+        void:distinctObjects 97 ;
         void:distinctSubjects 432 ;
         void:property <http://worldbank.270a.info/property/vpu> ;
         void:triples 432
@@ -1113,17 +1098,12 @@
         void:property <http://worldbank.270a.info/property/ibrd-statement-of-cash-flows-line-item> ;
         void:triples 78
     ], [
-        void:distinctObjects 24 ;
-        void:distinctSubjects 185847 ;
-        void:property <http://worldbank.270a.info/property/due-3rd-party> ;
-        void:triples 185847
-    ], [
-        void:distinctObjects 139 ;
-        void:distinctSubjects 187 ;
-        void:property <http://worldbank.270a.info/property/amounts-paid-in> ;
-        void:triples 187
-    ], [
         void:distinctObjects 25 ;
+        void:distinctSubjects 193809 ;
+        void:property <http://worldbank.270a.info/property/due-3rd-party> ;
+        void:triples 193809
+    ], [
+        void:distinctObjects 26 ;
         void:distinctSubjects 10400 ;
         void:property <http://worldbank.270a.info/property/fiscal-year> ;
         void:triples 10400
@@ -1132,6 +1112,11 @@
         void:distinctSubjects 6 ;
         void:property <http://worldbank.270a.info/property/loans-outstanding-us-millions> ;
         void:triples 6
+    ], [
+        void:distinctObjects 139 ;
+        void:distinctSubjects 187 ;
+        void:property <http://worldbank.270a.info/property/amounts-paid-in> ;
+        void:triples 187
     ], [
         void:distinctObjects 6 ;
         void:distinctSubjects 6 ;
@@ -1168,10 +1153,20 @@
         void:property <http://worldbank.270a.info/property/membership> ;
         void:triples 170
     ], [
-        void:distinctObjects 5653 ;
-        void:distinctSubjects 7359 ;
-        void:property <http://worldbank.270a.info/property/total-contribution-usd> ;
-        void:triples 7359
+        void:distinctObjects 12 ;
+        void:distinctSubjects 108 ;
+        void:property <http://worldbank.270a.info/property/source> ;
+        void:triples 108
+    ], [
+        void:distinctObjects 12 ;
+        void:distinctSubjects 12 ;
+        void:property <http://worldbank.270a.info/property/gross-disbursements-development-policy-lending-us-millions> ;
+        void:triples 12
+    ], [
+        void:distinctObjects 145 ;
+        void:distinctSubjects 170 ;
+        void:property <http://worldbank.270a.info/property/subscriptions-and-contributions-committed-us-millions> ;
+        void:triples 170
     ] ;
     void:vocabulary
         <http://purl.org/dc/terms/> ,
