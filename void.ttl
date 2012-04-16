@@ -27,7 +27,7 @@
     dcterms:source [ foaf:homepage <http://worldbank.org/> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-03-15"^^xsd:date ;
-    dcterms:modified "2012-04-02"^^xsd:date ;
+    dcterms:modified "2012-04-15"^^xsd:date ;
     void:subset
         :VoID ,
         :meta ,
@@ -35,7 +35,7 @@
         :world-bank-finances ,
         :world-bank-projects-and-operations ,
         :world-bank-climates ;
-    void:triples 448181880 ;
+    void:triples 446699193 ;
     dcterms:subject
         <http://dbpedia.org/resource/World_Bank> ,
         <http://dbpedia.org/resource/International_financial_institution> ,
@@ -56,7 +56,7 @@
 :VoID
     a sd:Graph, void:Dataset ;
     dcterms:title "SD+VoID triples"@en ;
-    void:triples 1427 ;
+    void:triples 1422 ;
     void:dataDump <http://worldbank.270a.info/void.ttl> ;
     .
 
@@ -1451,13 +1451,13 @@
         a sd:Dataset;
         dcterms:title "World Bank Linked Data"@en ;
         dcterms:description "World Bank Linked Data"@en ;
-        void:triples 448181880 ;
+        void:triples 446699193 ;
 
         sd:defaultGraph [
             a sd:Graph, void:Dataset ;
             dcterms:title "World Bank Linked Data SPARQL Endpoint Description"@en ;
             dcterms:description "Contains a copy of this SD+VoID file!"@en ;
-            void:triples 448181880 ;
+            void:triples 446699193 ;
         ] ;
         sd:namedGraph [
             sd:name wbld-graph:void ;
