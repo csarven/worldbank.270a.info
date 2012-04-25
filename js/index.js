@@ -146,10 +146,10 @@ var T = { // Tool
 
             if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
                 var dimensions = T.I.COUNTRY;
-                google.load('visualization', '1', {packages: ['corechart']});
+//                google.load('visualization', '1', {packages: ['corechart']});
             } else if (T.I.YEAR != null && T.I.YEAR != '') {
                 var dimensions = T.I.YEAR;
-                google.load('visualization', '1', {packages: ['geochart']});
+//                google.load('visualization', '1', {packages: ['geochart']});
             }
 //console.log(dimensions);
             google.setOnLoadCallback(T.U.renderChart.indicators(T.I.INDICATOR, dimensions));
@@ -202,49 +202,68 @@ var T = { // Tool
                         dataTable = new google.visualization.DataTable();
 
                         var increment = 1;
-                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                            dataTable.addColumn('string', "Years");
 
-                            $.each(T.I.COUNTRY, function() {
-                                dataTable.addColumn('number', /*indicatorPrefLabel + " in " +*/ $('#country [value=' + this + ']').text());
-                            });
+                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                            dataTable.addColumn('string', "Countries");
+                            dataTable.addColumn('number', "Years");
+                            dataTable.addColumn('string', "Indicators");
+                            dataTable.addColumn('number', "Values");
 
                             increment = T.I.COUNTRY.length;
                         } else if (T.I.YEAR != null && T.I.YEAR != '') {
                             dataTable.addColumn('string', "Countries");
+                            dataTable.addColumn('string', "Indicators");
                             dataTable.addColumn('number', indicatorPrefLabel);
                         }
 
-                        for (var i=0; i < data.data.length; i+=increment) {
-                            var dimension = [];
+
+                        var countryKeys = [];
+
+                        for (var i=0; i < data.data.length; i++) {
+                            var values = [];
+
+//console.log(dimension);
+
                             if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                                dimension.push(data.data[i].refPeriod.value);
-                              } else if (T.I.YEAR != null && T.I.YEAR != '') {
-                                dimension.push(data.data[i].countryPrefLabel.value);
+                                var countryLabel = data.data[i].countryPrefLabel.value;
+
+                                values.push(countryLabel);
+
+                                countryKeys.push('{"key":{"dim0":"' + countryLabel + '"}}');
+
+                                values.push(parseFloat(data.data[i].refPeriod.value));
+                            } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                                values.push(data.data[i].countryPrefLabel.value);
                             }
+
+                            values.push(data.data[i].indicatorNotation.value);
 
                             var missingMeasure = false;
-                            var measures = [];
-                            var observationRow = [];
-                            for (var j=0; j < increment; j++) {
-                                m = parseFloat(data.data[i+j].obsValue.value) || 0;
+//                            var measures = [];
+//                            var observationRow = [];
+//                            for (var j=0; j < increment; j++) {
+                                m = data.data[i].obsValue.value;
 
-                                if (m == 0 && T.I.YEAR != null && T.I.YEAR != '') {
+                                if (m == '') {
                                     missingMeasure = true;
-                                    break;
+                                    continue;
                                 }
-                                measures.push(parseFloat(data.data[i+j].obsValue.value));
-                            }
+                                values.push(parseFloat(m));
+//                            }
 
-                            observationRow = dimension.concat(measures);
-//console.log(observationRow);
+
+//console.log(values);
 
                             if (!missingMeasure) {
-                                dataTable.addRow(observationRow);
+                                dataTable.addRow(values);
+//console.log(observationRow);
                             }
                         }
 
+                        countryKeys.join(',');
+
                         var options = {
+                            state: '{"playDuration":15000,"xZoomedIn":false,"xZoomedDataMax":1167609600000,"sizeOption":"_UNISIZE","yLambda":1,"xAxisOption":"_TIME","duration":{"multiplier":1,"timeUnit":"Y"},"time":"2007","yZoomedDataMin":0,"yAxisOption":"3","dimensions":{"iconDimensions":["dim0"]},"xZoomedDataMin":-283996800000,"colorOption":"_UNIQUE_COLOR","orderedByY":false,"uniColorForNonSelected":false,"yZoomedDataMax":6000000,"iconType":"LINE","yZoomedIn":false,"orderedByX":false,"xLambda":1,"showTrails":false,"nonSelectedAlpha":0.4,"iconKeySettings":[' + countryKeys +']}',
                             title: indicatorDefinition,
                             width: 960,
                             height: 420,
@@ -257,6 +276,7 @@ var T = { // Tool
                             datalessRegionColor: 'FFFFFF'
 //                            interpolateNulls: true
                         };
+
 
                         if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
                             var countryPrefLabels = [];
@@ -272,23 +292,37 @@ var T = { // Tool
                                 options.interpolateNulls = true;
                             }
 
-                            var chart = new google.visualization.LineChart(document.getElementById('results'));
+                            var chart = new google.visualization.MotionChart(document.getElementById('results'));
                         } else if (T.I.YEAR != null && T.I.YEAR != '') {
                             options.hAxis.title = 'Countries';
                             var chart = new google.visualization.GeoChart(document.getElementById('results'));
                         }
 
-                        $('#' + 'results').removeClass('processing');
-                        chart.draw(dataTable, options);
-                        if (!missingMeasure) {
-                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                                wbCountries = T.I.COUNTRY.join("-");
+                        $('#results').removeClass('processing');
 
-                                $('#results').append('<p>See also The World Bank\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a></p>');
-                            }
+                        $('h1').after('<div id="about"/>');
 
-                            $('#results').append('<p class="warning">This chart is missing points. In order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points. This option is currently being tested.</p>');
+                        $('#about').append('<dl class="see-also"><dt><a href="indicatorURI">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
+
+                        var seeAlsoWorldBankGraph = '';
+                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                            wbCountries = T.I.COUNTRY.join("-");
+
+                            seeAlsoWorldBankGraph = 'See also <a href="http://worldbank.org/">The World Bank</a>\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a>';
                         }
+                        $('#about').append('<p class="see-also">' + seeAlsoWorldBankGraph + '</p>');
+
+                        chart.draw(dataTable, options);
+
+//                        if (!missingMeasure) {
+//                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+//                                wbCountries = T.I.COUNTRY.join("-");
+
+//                                $('#results').append('<p>See also The World Bank\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a></p>');
+//                            }
+
+//                            $('#results').append('<p class="warning">This chart is missing points. In order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points. This option is currently being tested.</p>');
+//                        }
                     }
                     else {
                        $('#results').html('<p class="warning notfound">No observations are found for indicator <em>' + indicatorNotation + '</em></p>');

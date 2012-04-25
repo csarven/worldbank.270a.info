@@ -8,7 +8,7 @@
         <script type="text/javascript">
 <?php
             if (isset($this->config['requestQuery']['country']) && $this->config['requestQuery']['country'] != '') {
-                echo "google.load('visualization', '1', {packages: ['corechart']})";
+                echo "google.load('visualization', '1', {packages: ['motionchart']})";
             }
             else {
                 echo "google.load('visualization', '1', {packages: ['geochart']})";

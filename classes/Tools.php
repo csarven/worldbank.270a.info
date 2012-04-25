@@ -268,6 +268,7 @@ GRAPH <http://worldbank.270a.info/graph/meta> {
     $indicatorURI
         skos:inScheme classification:indicator ;
         skos:prefLabel ?indicatorPrefLabel ;
+        skos:notation ?indicatorNotation ;
     .
 
     OPTIONAL {
@@ -370,8 +371,10 @@ EOD;
             case 'observations':
 //                if (count($location) == 2) {
                     $query = <<<EOD
-                        SELECT ?countryPrefLabel ?refPeriod ?obsValue
+                        SELECT ?indicatorNotation ?countryPrefLabel ?refPeriod ?obsValue
                         WHERE {
+                            $indicatorGraph
+
                             GRAPH <http://worldbank.270a.info/graph/world-development-indicators> {
                                 ?s property:indicator $indicatorURI .
                                 $refPeriodTriplePatterns
