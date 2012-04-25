@@ -302,7 +302,7 @@ var T = { // Tool
 
                         $('h1').after('<div id="about"/>');
 
-                        $('#about').append('<dl class="see-also"><dt><a href="indicatorURI">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
+                        $('#about').append('<dl class="see-also"><dt><a href="' + indicatorURI + '">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
 
                         var seeAlsoWorldBankGraph = '';
                         if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
