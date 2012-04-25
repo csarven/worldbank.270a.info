@@ -304,15 +304,16 @@ var T = { // Tool
 
                         $('#about').append('<dl class="see-also"><dt><a href="' + indicatorURI + '">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
 
+                        chart.draw(dataTable, options);
+
                         var seeAlsoWorldBankGraph = '';
                         if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
                             wbCountries = T.I.COUNTRY.join("-");
 
                             seeAlsoWorldBankGraph = 'See also <a href="http://worldbank.org/">The World Bank</a>\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a>';
                         }
-                        $('#about').append('<p class="see-also">' + seeAlsoWorldBankGraph + '</p>');
 
-                        chart.draw(dataTable, options);
+                        $('#results').after('<p class="see-also">' + seeAlsoWorldBankGraph + '</p>');
 
 //                        if (!missingMeasure) {
 //                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
