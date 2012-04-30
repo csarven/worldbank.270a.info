@@ -27,7 +27,7 @@
     dcterms:source [ foaf:homepage <http://worldbank.org/> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-03-15"^^xsd:date ;
-    dcterms:modified "2012-04-15"^^xsd:date ;
+    dcterms:modified "2012-04-30"^^xsd:date ;
     void:subset
         :VoID ,
         :meta ,
@@ -35,7 +35,7 @@
         :world-bank-finances ,
         :world-bank-projects-and-operations ,
         :world-bank-climates ;
-    void:triples 446699193 ;
+    void:triples 157390936 ;
     dcterms:subject
         <http://dbpedia.org/resource/World_Bank> ,
         <http://dbpedia.org/resource/International_financial_institution> ,
@@ -56,7 +56,7 @@
 :VoID
     a sd:Graph, void:Dataset ;
     dcterms:title "SD+VoID triples"@en ;
-    void:triples 1422 ;
+    void:triples 1424 ;
     void:dataDump <http://worldbank.270a.info/void.ttl> ;
     .
 
@@ -64,11 +64,11 @@
 :meta
     a sd:Graph, void:Dataset ;
     dcterms:title "Metadata and complimentary data used for all the data in the :WorldBank dataset"@en ;
-    void:triples 66193 ;
+    void:triples 78518 ;
     dcterms:source [ foaf:homepage <http://data.worldbank.org/data-catalog> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-03-15"^^xsd:date ;
-    dcterms:modified "2012-04-02"^^xsd:date ;
+    dcterms:modified "2012-04-30"^^xsd:date ;
     void:dataDump <http://worldbank.270a.info/data/meta.tar.gz> ;
     void:exampleResource
         <http://worldbank.270a.info/classification/country/CA> ,
@@ -401,7 +401,7 @@
     dcterms:source [ foaf:homepage <http://data.worldbank.org/data-catalog/world-development-indicators> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-03-15"^^xsd:date ;
-    dcterms:modified "2012-03-19"^^xsd:date ;
+    dcterms:modified "2012-04-30"^^xsd:date ;
     dcterms:subject
         <http://purl.org/linked-data/sdmx/2009/subject#1.2> ,
         <http://purl.org/linked-data/sdmx/2009/subject#1.3> ,
@@ -420,7 +420,7 @@
         <http://purl.org/linked-data/sdmx/2009/subject#3.3.2> ,
         <http://purl.org/linked-data/sdmx/2009/subject#3.3.3> ;
     void:dataDump <http://worldbank.270a.info/data/world-development-indicators.en.tar.gz> ;
-    void:triples 360527811 ;
+    void:triples 71207227 ;
     void:rootResource <http://worldbank.270a.info/dataset/world-development-indicators> ;
     void:vocabulary
         <http://www.w3.org/1999/02/22-rdf-syntax-ns> ,
@@ -438,12 +438,7 @@
     dcterms:source [ foaf:homepage <https://finances.worldbank.org/> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-03-15"^^xsd:date ;
-    dcterms:modified "2012-04-02"^^xsd:date ;
-    void:vocabulary
-        <http://purl.org/linked-data/sdmx> ,
-        <http://purl.org/linked-data/sdmx/2009/dimension> ,
-        <http://reference.data.gov.uk/id/year/> ,
-        <http://www.w3.org/2004/02/skos/core> ;
+    dcterms:modified "2012-04-30"^^xsd:date ;
     dcterms:subject
         <http://purl.org/linked-data/sdmx/2009/subject#2.4.6> ,
         <http://purl.org/linked-data/sdmx/2009/subject#2.5> ,
@@ -1026,7 +1021,7 @@
         void:distinctObjects 22 ;
         void:distinctSubjects 264212 ;
         void:property rdf:type ;
-        void:triples 126131
+        void:triples 126093
     ], [
         void:distinctObjects 690 ;
         void:distinctSubjects 7359 ;
@@ -1173,9 +1168,10 @@
         <http://worldbank.270a.info/property/> ,
         <http://www.w3.org/1999/02/22-rdf-syntax-ns> ,
         <http://purl.org/linked-data/cube> ,
-        <http://reference.data.gov.uk/id/year/> ;
+        <http://reference.data.gov.uk/id/year/> ,
+        <http://purl.org/linked-data/sdmx> ,
+        <http://purl.org/linked-data/sdmx/2009/dimension> ;
     .
-
 
 :world-bank-projects-and-operations
     a sd:Graph, void:Dataset ;
@@ -1451,13 +1447,13 @@
         a sd:Dataset;
         dcterms:title "World Bank Linked Data"@en ;
         dcterms:description "World Bank Linked Data"@en ;
-        void:triples 446699193 ;
+        void:triples 157390936 ;
 
         sd:defaultGraph [
             a sd:Graph, void:Dataset ;
             dcterms:title "World Bank Linked Data SPARQL Endpoint Description"@en ;
             dcterms:description "Contains a copy of this SD+VoID file!"@en ;
-            void:triples 446699193 ;
+            void:triples 157390936 ;
         ] ;
         sd:namedGraph [
             sd:name wbld-graph:void ;
