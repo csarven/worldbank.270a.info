@@ -188,6 +188,11 @@ var T = { // Tool
                         });
                     }
 //                    $('#' + 'results').removeClass('processing');
+
+                    $('h1').after('<div id="about"/>');
+
+                    $('#about').append('<dl><dt id="indicator-preflabel"><a href="' + indicatorURI + '">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
+
                 });
 
                 var countryPrefLabel = '';
@@ -299,10 +304,6 @@ var T = { // Tool
                         }
 
                         $('#results').removeClass('processing');
-
-                        $('h1').after('<div id="about"/>');
-
-                        $('#about').append('<dl class="see-also"><dt><a href="' + indicatorURI + '">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
 
                         chart.draw(dataTable, options);
 
