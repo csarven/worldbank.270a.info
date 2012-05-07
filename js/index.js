@@ -158,6 +158,7 @@ var T = { // Tool
 
         renderChart : {
             indicators : function (indicatorNotation, dimensions) {
+//console.log(indicatorNotation);
                 var uriIndicator = T.C.API_BASE_INFO + "indicator=" + indicatorNotation;
 
                 if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
@@ -170,170 +171,200 @@ var T = { // Tool
 
                 var indicatorURI, indicatorPrefLabel, indicatorDefinition;
                 $('#' + 'results').addClass('processing');
-                $.getJSON(uriIndicator, function (data, textStatus) {
+
+                $.ajax({
+                    url: uriIndicator,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+//console.log(XMLHttpRequest);
+//console.log(textStatus);
+//console.log(errorThrown);
+
+                        var urlParams = T.U.getURLParams();
+                        $('#results').removeClass('processing');
+                        $('#results').html('<div class="error">Sorry indicator <em>' + urlParams.indicator + '</em> does not exist.</p></div>');
+                    },
+                    success: function(data, textStatus) {
 //console.log(data);
-                    if (data.data[0] != undefined && data.data[0].length != 0) {
-                        $.each(data.data, function (i, indicator) {
-                            if (indicator.indicatorURI != undefined) {
-                                indicatorURI = indicator.indicatorURI.value;
-                            }
-                            if (indicator.indicatorPrefLabel != undefined) {
-                                indicatorPrefLabel = indicator.indicatorPrefLabel.value;
-                            }
-                            if (indicator.indicatorDefinition != undefined) {
-                                indicatorDefinition = indicator.indicatorDefinition.value;
-                            } else {
-                                indicatorDefinition = indicator.indicatorPrefLabel.value;
-                            }
-                        });
-                    }
-//                    $('#' + 'results').removeClass('processing');
+                        if (data.data != null && data.data[0] != undefined && data.data[0].length != 0) {
+                            $.each(data.data, function (i, indicator) {
+                                if (indicator.indicatorURI != undefined) {
+                                    indicatorURI = indicator.indicatorURI.value;
+                                }
+                                if (indicator.indicatorPrefLabel != undefined) {
+                                    indicatorPrefLabel = indicator.indicatorPrefLabel.value;
+                                }
+                                if (indicator.indicatorDefinition != undefined) {
+                                    indicatorDefinition = indicator.indicatorDefinition.value;
+                                } else {
+                                    indicatorDefinition = indicator.indicatorPrefLabel.value;
+                                }
+                            });
+                        }
+    //                    $('#' + 'results').removeClass('processing');
 
-                    $('h1').after('<div id="about"/>');
+                        $('h1').after('<div id="about"/>');
 
-                    $('#about').append('<dl><dt id="indicator-preflabel"><a href="' + indicatorURI + '">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
+                        $('#about').append('<dl><dt id="indicator-preflabel"><a href="' + indicatorURI + '">' + indicatorPrefLabel + '</a></dt><dd id="indicator-definition">' + indicatorDefinition + '</dd></dl>');
 
-                });
+                        var countryPrefLabel = '';
 
-                var countryPrefLabel = '';
+//var start = new Date;
+//setInterval(function() {
+//    $('#results').text((new Date - start) / 1000 + " seconds");
+//}, 1000);
+
 
 //                $('#' + 'results').addClass('processing');
-                $.getJSON(uriObservations, function (data, textStatus) {
+                        $.ajax({
+                            url: uriObservations,
+                            dataType: 'json',
+                            timeout: 10000,
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+//console.log(XMLHttpRequest);
+//console.log(textStatus);
+//console.log(errorThrown);
+                                $('#results').removeClass('processing');
+                                $('#results').html('<div class="error"><p>Sorry, something went wrong while trying:</p><p><code>' + location.href + '</code></p><p>Can you please try again later?</p></div>');
+                            },
+                            success: function(data, textStatus) {
 //console.log(data);
+//console.log(textStatus);
+                                var observations;
 
-                    var observations;
+                                if (data.data != null && data.data[0] != undefined && data.data[0].length != 0) {
+                                    dataTable = new google.visualization.DataTable();
 
-                    if (data.data[0] != undefined && data.data[0].length != 0) {
-                        dataTable = new google.visualization.DataTable();
+                                    var increment = 1;
 
-                        var increment = 1;
+                                    if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                                        dataTable.addColumn('string', "Countries");
+                                        dataTable.addColumn('number', "Years");
+                                        dataTable.addColumn('string', "Indicators");
+                                        dataTable.addColumn('number', "Values");
 
-                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                            dataTable.addColumn('string', "Countries");
-                            dataTable.addColumn('number', "Years");
-                            dataTable.addColumn('string', "Indicators");
-                            dataTable.addColumn('number', "Values");
-
-                            increment = T.I.COUNTRY.length;
-                        } else if (T.I.YEAR != null && T.I.YEAR != '') {
-                            dataTable.addColumn('string', "Countries");
-                            dataTable.addColumn('string', "Indicators");
-                            dataTable.addColumn('number', indicatorPrefLabel);
-                        }
+                                        increment = T.I.COUNTRY.length;
+                                    } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                                        dataTable.addColumn('string', "Countries");
+                                        dataTable.addColumn('string', "Indicators");
+                                        dataTable.addColumn('number', indicatorPrefLabel);
+                                    }
 
 
-                        var countryKeys = [];
+                                    var countryKeys = [];
 
-                        for (var i=0; i < data.data.length; i++) {
-                            var values = [];
+                                    for (var i=0; i < data.data.length; i++) {
+                                        var values = [];
 
-//console.log(dimension);
+            //console.log(dimension);
 
-                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                                var countryLabel = data.data[i].countryPrefLabel.value;
+                                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                                            var countryLabel = data.data[i].countryPrefLabel.value;
 
-                                values.push(countryLabel);
+                                            values.push(countryLabel);
 
-                                countryKeys.push('{"key":{"dim0":"' + countryLabel + '"}}');
+                                            countryKeys.push('{"key":{"dim0":"' + countryLabel + '"}}');
 
-                                values.push(parseFloat(data.data[i].refPeriod.value));
-                            } else if (T.I.YEAR != null && T.I.YEAR != '') {
-                                values.push(data.data[i].countryPrefLabel.value);
-                            }
+                                            values.push(parseFloat(data.data[i].refPeriod.value));
+                                        } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                                            values.push(data.data[i].countryPrefLabel.value);
+                                        }
 
-                            values.push(data.data[i].indicatorNotation.value);
+                                        values.push(data.data[i].indicatorNotation.value);
 
-                            var missingMeasure = false;
-//                            var measures = [];
-//                            var observationRow = [];
-//                            for (var j=0; j < increment; j++) {
-                                m = data.data[i].obsValue.value;
+                                        var missingMeasure = false;
+            //                            var measures = [];
+            //                            var observationRow = [];
+            //                            for (var j=0; j < increment; j++) {
+                                            m = data.data[i].obsValue.value;
 
-                                if (m == '') {
-                                    missingMeasure = true;
-                                    continue;
+                                            if (m == '') {
+                                                missingMeasure = true;
+                                                continue;
+                                            }
+                                            values.push(parseFloat(m));
+            //                            }
+
+
+            //console.log(values);
+
+                                        if (!missingMeasure) {
+                                            dataTable.addRow(values);
+            //console.log(observationRow);
+                                        }
+                                    }
+
+                                    countryKeys.join(',');
+
+                                    var options = {
+                                        state: '{"playDuration":15000,"xZoomedIn":false,"xZoomedDataMax":1167609600000,"sizeOption":"_UNISIZE","yLambda":1,"xAxisOption":"_TIME","duration":{"multiplier":1,"timeUnit":"Y"},"time":"2007","yZoomedDataMin":0,"yAxisOption":"3","dimensions":{"iconDimensions":["dim0"]},"xZoomedDataMin":-283996800000,"colorOption":"_UNIQUE_COLOR","orderedByY":false,"uniColorForNonSelected":false,"yZoomedDataMax":6000000,"iconType":"LINE","yZoomedIn":false,"orderedByX":false,"xLambda":1,"showTrails":false,"nonSelectedAlpha":0.4,"iconKeySettings":[' + countryKeys +']}',
+                                        title: indicatorDefinition,
+                                        width: 960,
+                                        height: 420,
+                                        hAxis: {
+                                            title: ''
+                                        },
+                                        legend: {
+                                            position: 'right'
+                                        },
+                                        datalessRegionColor: 'FFFFFF'
+            //                            interpolateNulls: true
+                                    };
+
+
+                                    if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                                        var countryPrefLabels = [];
+                                        $.each(T.I.COUNTRY, function() {
+                                            countryPrefLabels.push($('#country [value=' + this + ']').text());
+                                        });
+                                        countryPrefLabels = countryPrefLabels.join(", ");
+                                        options.title = options.title + " [" + countryPrefLabels + "]";
+
+                                        options.hAxis.title = 'Years';
+
+                                        if (!missingMeasure) {
+                                            options.interpolateNulls = true;
+                                        }
+
+                                        var chart = new google.visualization.MotionChart(document.getElementById('results'));
+                                    } else if (T.I.YEAR != null && T.I.YEAR != '') {
+                                        options.hAxis.title = 'Countries';
+                                        var chart = new google.visualization.GeoChart(document.getElementById('results'));
+                                    }
+
+                                    $('#results').removeClass('processing');
+
+                                    chart.draw(dataTable, options);
+
+                                    var seeAlsoWorldBankGraph = '';
+                                    if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+                                        wbCountries = T.I.COUNTRY.join("-");
+
+                                        seeAlsoWorldBankGraph = 'See also <a href="http://worldbank.org/">The World Bank</a>\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a>';
+                                    }
+
+                                    $('#results').after('<p class="see-also">' + seeAlsoWorldBankGraph + '</p>');
+
+            //                        if (!missingMeasure) {
+            //                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
+            //                                wbCountries = T.I.COUNTRY.join("-");
+
+            //                                $('#results').append('<p>See also The World Bank\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a></p>');
+            //                            }
+
+            //                            $('#results').append('<p class="warning">This chart is missing points. In order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points. This option is currently being tested.</p>');
+            //                        }
                                 }
-                                values.push(parseFloat(m));
-//                            }
-
-
-//console.log(values);
-
-                            if (!missingMeasure) {
-                                dataTable.addRow(values);
-//console.log(observationRow);
+                                else {
+                                   $('#results').removeClass('processing');
+                                   $('#results').html('<p class="warning notfound">No observations are found for indicator <em>' + indicatorPrefLabel + '</em></p>');
+                                }
                             }
-                        }
-
-                        countryKeys.join(',');
-
-                        var options = {
-                            state: '{"playDuration":15000,"xZoomedIn":false,"xZoomedDataMax":1167609600000,"sizeOption":"_UNISIZE","yLambda":1,"xAxisOption":"_TIME","duration":{"multiplier":1,"timeUnit":"Y"},"time":"2007","yZoomedDataMin":0,"yAxisOption":"3","dimensions":{"iconDimensions":["dim0"]},"xZoomedDataMin":-283996800000,"colorOption":"_UNIQUE_COLOR","orderedByY":false,"uniColorForNonSelected":false,"yZoomedDataMax":6000000,"iconType":"LINE","yZoomedIn":false,"orderedByX":false,"xLambda":1,"showTrails":false,"nonSelectedAlpha":0.4,"iconKeySettings":[' + countryKeys +']}',
-                            title: indicatorDefinition,
-                            width: 960,
-                            height: 420,
-                            hAxis: {
-                                title: ''
-                            },
-                            legend: {
-                                position: 'right'
-                            },
-                            datalessRegionColor: 'FFFFFF'
-//                            interpolateNulls: true
-                        };
-
-
-                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                            var countryPrefLabels = [];
-                            $.each(T.I.COUNTRY, function() {
-                                countryPrefLabels.push($('#country [value=' + this + ']').text());
-                            });
-                            countryPrefLabels = countryPrefLabels.join(", ");
-                            options.title = options.title + " [" + countryPrefLabels + "]";
-
-                            options.hAxis.title = 'Years';
-
-                            if (!missingMeasure) {
-                                options.interpolateNulls = true;
-                            }
-
-                            var chart = new google.visualization.MotionChart(document.getElementById('results'));
-                        } else if (T.I.YEAR != null && T.I.YEAR != '') {
-                            options.hAxis.title = 'Countries';
-                            var chart = new google.visualization.GeoChart(document.getElementById('results'));
-                        }
-
-                        $('#results').removeClass('processing');
-
-                        chart.draw(dataTable, options);
-
-                        var seeAlsoWorldBankGraph = '';
-                        if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-                            wbCountries = T.I.COUNTRY.join("-");
-
-                            seeAlsoWorldBankGraph = 'See also <a href="http://worldbank.org/">The World Bank</a>\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a>';
-                        }
-
-                        $('#results').after('<p class="see-also">' + seeAlsoWorldBankGraph + '</p>');
-
-//                        if (!missingMeasure) {
-//                            if (T.I.COUNTRY != null && T.I.COUNTRY != '') {
-//                                wbCountries = T.I.COUNTRY.join("-");
-
-//                                $('#results').append('<p>See also The World Bank\'s graph for this observation: <a href="http://data.worldbank.org/indicator/' + indicatorNotation + '/countries/' + wbCountries + '?display=graph">' + indicatorPrefLabel + '</a></p>');
-//                            }
-
-//                            $('#results').append('<p class="warning">This chart is missing points. In order to show a continuous line, an option is used to guess the value of any missing data based on neighboring points. This option is currently being tested.</p>');
-//                        }
-                    }
-                    else {
-                       $('#results').html('<p class="warning notfound">No observations are found for indicator <em>' + indicatorNotation + '</em></p>');
+                        });
                     }
                 });
             }
         }
     }
-
 };
 
 $(document).ready(function () {

@@ -21,6 +21,9 @@ class Tools
         $this->getHTTPRequest();
 //print_r($this->config);
 //exit;
+
+
+
         switch($this->config['requestPath'][0]) {
             case 'view':
                 require_once 'templates/tool.world-development-indicators.html';
@@ -356,16 +359,21 @@ EOD;
 
         switch($this->config['apiRequest']['path']) {
             case 'info':
-                $query = <<<EOD
-                    SELECT ?indicatorURI ?indicatorPrefLabel ?indicatorDefinition
-                    WHERE {
-                        $indicatorGraph
-                    }
+                if (!empty($indicator)) {
+                    $query = <<<EOD
+                        SELECT ?indicatorURI ?indicatorPrefLabel ?indicatorDefinition
+                        WHERE {
+                            $indicatorGraph
+                        }
 EOD;
 
-                $uri = $this->buildQueryURI($query);
+                    $uri = $this->buildQueryURI($query);
 
-                return $this->curlRequest($uri);
+                    return $this->curlRequest($uri);
+                }
+                else {
+                    $this->returnError('missing');
+                }
             break;
 
             case 'observations':
@@ -388,7 +396,8 @@ EOD;
 
 EOD;
 
-//
+//                    $this->setConfig(array('sparqlQueries' => array($query)));
+//print_r($this->config['data']);
                     $uri = $this->buildQueryURI($query);
 
                     return $this->curlRequest($uri);
@@ -448,16 +457,16 @@ EOD;
     function returnError($errorType)
     {
         header('HTTP/1.1 400 Bad Request');
-        header('Content-type: text/plain; charset=utf-8');
+        header('Content-type: application/json; charset=utf-8');
 
         $s = '';
 
         switch($errorType) {
             case 'missing': default:
-                $s .= 'Missing..';
+                $s .= '{"error": "missing"}';
                 break;
             case 'malformed':
-                $s .= 'Malformed..';
+                $s .= '{"error": "malformed"}';
                 break;
         }
 
