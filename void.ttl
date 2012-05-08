@@ -35,7 +35,7 @@
         :world-bank-finances ,
         :world-bank-projects-and-operations ,
         :world-bank-climates ;
-    void:triples 160227961 ;
+    void:triples 160228028 ;
     dcterms:subject
         <http://dbpedia.org/resource/World_Bank> ,
         <http://dbpedia.org/resource/International_financial_institution> ,
@@ -56,7 +56,7 @@
 :VoID
     a sd:Graph, void:Dataset ;
     dcterms:title "SD+VoID triples"@en ;
-    void:triples 1463 ;
+    void:triples 1530 ;
     void:dataDump <http://worldbank.270a.info/void.ttl> ;
     .
 
@@ -1453,11 +1453,79 @@
     void:exampleResource
         <http://worldbank.270a.info/dataset/world-bank-climates/month-average/2020-2039/06/CA/tas/ukmo-hadgem1/a2> ,
         <http://worldbank.270a.info/dataset/world-bank-climates/year-average-ensemble/2020-2039/CA/tas/b1/90> ;
-
+    void:classPartition [
+        void:class qb:Observation ;
+        void:entities 8905737
+    ] ;
+    void:classes 1 ;
+    void:entities 8905737 ;
+    void:properties 12 ;
+    void:propertyPartition [
+        void:distinctObjects 257 ;
+        void:distinctSubjects 8905737 ;
+        void:property qb:dataSet ;
+        void:triples 8905737
+    ], [
+        void:distinctObjects 2422 ;
+        void:distinctSubjects 8136360 ;
+        void:property <http://worldbank.270a.info/property/recurring-interval> ;
+        void:triples 8136360
+    ], [
+        void:distinctObjects 1917 ;
+        void:distinctSubjects 4978283 ;
+        void:property <http://worldbank.270a.info/property/global-circulation-model> ;
+        void:triples 4978283
+    ], [
+        void:distinctObjects 445 ;
+        void:distinctSubjects 7527465 ;
+        void:property <http://worldbank.270a.info/property/scenario> ;
+        void:triples 7527465
+    ], [
+        void:distinctObjects 230 ;
+        void:distinctSubjects 8905737 ;
+        void:property rdf:type ;
+        void:triples 4339234
+    ], [
+        void:distinctObjects 1417 ;
+        void:distinctSubjects 8905737 ;
+        void:property <http://purl.org/linked-data/sdmx/2009/dimension#refPeriod> ;
+        void:triples 8905737
+    ], [
+        void:distinctObjects 8104 ;
+        void:distinctSubjects 8905737 ;
+        void:property <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ;
+        void:triples 8905737
+    ], [
+        void:distinctObjects 9286 ;
+        void:distinctSubjects 9322 ;
+        void:property <http://worldbank.270a.info/property/decade-average> ;
+        void:triples 9322
+    ], [
+        void:distinctObjects 743144 ;
+        void:distinctSubjects 760055 ;
+        void:property <http://worldbank.270a.info/property/year-average> ;
+        void:triples 760055
+    ], [
+        void:distinctObjects 303 ;
+        void:distinctSubjects 3809038 ;
+        void:property <http://worldbank.270a.info/property/percentile> ;
+        void:triples 3809038
+    ], [
+        void:distinctObjects 7648445 ;
+        void:distinctSubjects 8136360 ;
+        void:property <http://worldbank.270a.info/property/month-average> ;
+        void:triples 8136360
+    ], [
+        void:distinctObjects 1239 ;
+        void:distinctSubjects 8905737 ;
+        void:property <http://worldbank.270a.info/property/variable> ;
+        void:triples 8905737
+    ] ;
     void:vocabulary
         <http://purl.org/linked-data/cube> ,
         <http://purl.org/linked-data/sdmx/2009/dimension> ,
-        <http://worldbank.270a.info/property/> ;
+        <http://worldbank.270a.info/property/> ,
+        <http://www.w3.org/1999/02/22-rdf-syntax-ns> ;
     .
 
 
@@ -1496,13 +1564,13 @@
         a sd:Dataset;
         dcterms:title "World Bank Linked Data"@en ;
         dcterms:description "World Bank Linked Data"@en ;
-        void:triples 160227961 ;
+        void:triples 160228028 ;
 
         sd:defaultGraph [
             a sd:Graph, void:Dataset ;
             dcterms:title "World Bank Linked Data SPARQL Endpoint Description"@en ;
             dcterms:description "Contains a copy of this SD+VoID file!"@en ;
-            void:triples 160227961 ;
+            void:triples 160228028 ;
         ] ;
         sd:namedGraph [
             sd:name wbld-graph:void ;
