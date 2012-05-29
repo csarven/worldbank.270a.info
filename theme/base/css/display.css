@@ -31,11 +31,13 @@ h1 {
 font-size:1.8em;
 margin-bottom:1em;
 }
-h2 { font-size:1.3em; }
-h3 { font-size:1.2em; }
+h2 { font-size:1.6em; }
+h3 { font-size:1.3em; }
 h4 { font-size:1.1em; }
 h5 { font-size:1em; }
 h6 { font-size:0.9em; }
+
+code { font-size:1.2em; }
 
 legend {
 font-weight:bold;
@@ -73,7 +75,7 @@ position:relative;
 top:2px;
 left:auto;
 border:0;
-}
+}3
 
 .error,
 .success,
