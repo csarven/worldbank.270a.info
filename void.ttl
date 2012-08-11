@@ -23,7 +23,7 @@
     a void:Dataset ;
     foaf:homepage <http://worldbank.270a.info/> ;
     dcterms:title "World Bank Linked Data"@en ;
-    dcterms:description "World Bank's World Development Indicators, Finances, Projects and Operations data"@en ;
+    dcterms:description "World Bank's World Development Indicators, Finances, Projects and Operations, and Climate Change data"@en ;
     dcterms:source [ foaf:homepage <http://worldbank.org/> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-02-29"^^xsd:date ;
