@@ -40,16 +40,6 @@
 
         <meta name="description" content="World Bank data published using the Linked Data design principles. It contains World Development Indicators, World Bank Finances, World Bank Projects and Operations, and World Bank Climate Change data."/>
         <meta name="author" content="http://csarven.ca/#i"/>
-
-<?php
-    $formats = $this->desc->get_resource_triple_values($this->desc->get_uri(), 'http://purl.org/dc/terms/hasFormat');
-    foreach ($formats as $format_uri) {
-        $media_type = $this->desc->get_first_literal($format_uri, 'http://purl.org/dc/elements/1.1/format');  
-        $label = $this->desc->get_first_literal($format_uri, RDFS_LABEL, $media_type);  
-        echo '        <link rel="alternate" type="' . htmlspecialchars($media_type) . '" href="' . htmlspecialchars($format_uri) . '" title="' . htmlspecialchars($label) . ' version of this document"/>' . "\n";
-    }
-?>
-
     </head>
 
     <body id="<?php echo $entitySetId; ?>">
