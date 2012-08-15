@@ -265,13 +265,15 @@ border-style:solid;
 }
 
 
-#content p {
+#content p,
+#content ul,
+#content ol,
+#content table {
 margin-bottom:1em;
 }
 
 #content ul {
 list-style-position:inside;
-margin-bottom:1em;
 }
 
 
