@@ -133,11 +133,24 @@ address .fn {
 font-weight:bold;
 }
 address img + .fn {
-display:none;
+/*display:none;*/
 }
 address a {
 text-decoration:none;
 }
+
+address img,
+address span {
+float:left;
+}
+
+address img {
+margin-right:18px;
+}
+address span {
+margin-top:11px;
+}
+
 
 #header {
 width:100%;
