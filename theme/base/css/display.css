@@ -75,7 +75,7 @@ position:relative;
 top:2px;
 left:auto;
 border:0;
-}3
+}
 
 .error,
 .success,
@@ -125,6 +125,7 @@ address {
 float:left;
 margin-bottom:18px;
 margin-left:18px;
+font-style:normal;
 }
 address.vcard img.logo {
 margin-right:0;
