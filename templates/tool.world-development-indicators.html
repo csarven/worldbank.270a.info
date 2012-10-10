@@ -22,10 +22,10 @@
 
     if (isset($this->config['requestQuery']['country']) || isset($this->config['requestQuery']['year'])) {
         $title = "View for '" . $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']] . "' " .$titleDimensions . " &#8212; World Bank Linked Data";
-        $description = 'Tool to display World Development Indicators: ' . $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']];
+        $description = 'Tool to display World Bank Indicators: ' . $this->config['data']['worldDevelopmentIndicators'][$this->config['requestQuery']['indicator']];
     } else {
         $title = 'Tools &#8212; World Bank Linked Data';
-        $description = 'This tool can display charts based on the observations in the World Development Indicators dataset.';
+        $description = 'This tool can display charts based on the observations in the World Bank Indicators dataset.';
     }
 ?>
         <title><?php echo $title; ?></title>
@@ -41,16 +41,29 @@
 <?php
     if (count($this->config['requestQuery']) < 1) {
 ?>
-                    <p>This tool can display charts based on the observations in the <a href="http://worldbank.270a.info/dataset/world-development-indicators">World Development Indicators</a> dataset.</p>
+                    <p>This tool can display charts based on the observations in the <a href="http://worldbank.270a.info/dataset/world-development-indicators">World Bank Indicators</a> dataset.</p>
 
                     <p>How-to use this tool: select an indicator, then select one or more countries, or an observation year. Line chart is used to view observation values in countries, over a time period for an indicator. Geo chart is used to view observation values for a time period for all the countries in the world.</p>
 
                     <p>Charts are currently created using the <a href="https://google-developers.appspot.com/chart/">Google Chart Tools</a>. That might change in the future given how I take this tool forward, as I have to consider performance, and complexity of chart creation given observations from multiple datasets. At this time, I consider this tool as an experiement.</p>
-
-
 <?php
     }
 ?>
+
+
+<?php
+/*
+print_r($this->config['data']['sparqlQueries']);
+    if (isset($this->config['data']['sparqlQueries']) && count($this->config['data']['sparqlQueries']) > 0) {
+        echo '<dl><dt>The following SPARQL queries were used to compile the chart data:</dt>'."\n";
+        foreach($this->config['data']['sparqlQueries'] as $query) {
+            echo '<dt><pre>' . $query . '</pre></dt>'."\n";
+        }
+        echo '</dl>';
+    }
+*/
+?>
+
                     <div id="content_inner">
                         <div id="results"></div>
                     </div>
