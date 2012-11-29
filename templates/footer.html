@@ -20,13 +20,12 @@
                         </ul>
                     </dd>
                 </dl>
-*/
-?>
+
                 <dl id="resource_data_alternate">
                     <dt>In alternate data formats</dt>
                     <dd>
                         <ul class="nav">
-<?php
+
 //XXX: Modularize this section
 $formats = $this->desc->get_resource_triple_values($this->desc->get_uri(), 'http://purl.org/dc/terms/hasFormat');
 
@@ -36,9 +35,11 @@ foreach ($formats as $format_uri) {
 
     echo "\n".'                            <li><a href="' . htmlspecialchars($format_uri) . '" rel="alternate" title="' . htmlspecialchars($label) . ' version of this document" type="' . htmlspecialchars($media_type) . '">' . htmlspecialchars($label) . '</a></li>';
 }
-?>
+
                         </ul>
                     </dd>
                 </dl>
+*/
+?>
             </div>
 
