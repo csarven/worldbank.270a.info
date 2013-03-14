@@ -8,33 +8,33 @@
 @prefix qb: <http://purl.org/linked-data/cube> .
 @prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
 @prefix : <http://worldbank.270a.info/void.ttl#> .
-@prefix wbld-dataset: <http://worldbank.270a.info/dataset/> .
-@prefix wbld-graph: <http://worldbank.270a.info/graph/> .
+@prefix worldbank-dataset: <http://worldbank.270a.info/dataset/> .
+@prefix worldbank-graph: <http://worldbank.270a.info/graph/> .
 
 
 <http://worldbank.270a.info/void.ttl>
     a void:DatasetDescription ;
     dcterms:title "A VoiD Description of the worldbank.270a.info Dataset"@en ;
     dcterms:creator <http://csarven.ca/#i> ;
-    foaf:primaryTopic :world-bank .
+    foaf:primaryTopic worldbank-dataset:worldbank .
 
 
-:world-bank
+worldbank-dataset:worldbank
     a void:Dataset ;
     foaf:homepage <http://worldbank.270a.info/> ;
     dcterms:title "World Bank Linked Data"@en ;
-    dcterms:description "World Bank's World Development Indicators, Finances, Projects and Operations, and Climate Change data"@en ;
+    dcterms:description "World Bank's Indicators, Finances, Projects and Operations, and Climate Change data"@en ;
     dcterms:source [ foaf:homepage <http://worldbank.org/> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-02-29"^^xsd:date ;
     dcterms:modified "2012-08-28"^^xsd:date ;
     void:subset
-        :VoID ,
-        :meta ,
-        :world-development-indicators ,
-        :world-bank-finances ,
-        :world-bank-projects-and-operations ,
-        :world-bank-climates ;
+        worldbank-dataset:void ,
+        worldbank-dataset:meta ,
+        worldbank-dataset:world-development-indicators ,
+        worldbank-dataset:worldbank-finances ,
+        worldbank-dataset:worldbank-projects-and-operations ,
+        worldbank-dataset:worldbank-climates ;
     void:triples 167098216 ;
     dcterms:subject
         <http://dbpedia.org/resource/World_Bank> ,
@@ -53,17 +53,17 @@
     .
 
 
-:VoID
+worldbank-dataset:void
     a sd:Graph, void:Dataset ;
     dcterms:title "SD+VoID triples"@en ;
-    void:triples 1546 ;
+    void:triples 1548 ;
     void:dataDump <http://worldbank.270a.info/void.ttl> ;
     .
 
 
-:meta
+worldbank-dataset:meta
     a sd:Graph, void:Dataset ;
-    dcterms:title "Metadata and complimentary data used for all the data in the :WorldBank dataset"@en ;
+    dcterms:title "Metadata and complimentary data used for all the data in the worldbank-dataset:worldbank dataset"@en ;
     dcterms:source [ foaf:homepage <http://data.worldbank.org/data-catalog> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-02-29"^^xsd:date ;
@@ -403,11 +403,11 @@
     .
 
 
-:world-development-indicators
+worldbank-dataset:world-development-indicators
     a sd:Graph, void:Dataset ;
-    dcterms:title "World Development Indicators"@en ;
-    dcterms:description "World Development Indicators data from The World Bank. It contains developmental observations."@en ;
-    dcterms:source [ foaf:homepage <http://data.worldbank.org/data-catalog/world-development-indicators> ] ;
+    dcterms:title "World Bank Indicators"@en ;
+    dcterms:description "World Bank Indicators data from The World Bank. It contains developmental observations."@en ;
+    dcterms:source [ foaf:homepage <http://data.worldbank.org/indicator> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-02-29"^^xsd:date ;
     dcterms:modified "2012-08-10"^^xsd:date ;
@@ -484,7 +484,7 @@
     .
 
 
-:world-bank-finances
+worldbank-dataset:worldbank-finances
     a sd:Graph, void:Dataset ;
     dcterms:title "World Bank Finances"@en ;
     dcterms:description "World Bank Finances data from The World Bank. It contains financial observations."@en ;
@@ -1224,7 +1224,7 @@
         <http://purl.org/linked-data/sdmx/2009/dimension> ;
     .
 
-:world-bank-projects-and-operations
+worldbank-dataset:worldbank-projects-and-operations
     a sd:Graph, void:Dataset ;
     dcterms:title "World Development Projects and Operations"@en ;
     dcterms:description "World Bank Projects and Operations data from The World Bank."@en ;
@@ -1449,7 +1449,7 @@
     .
 
 
-:world-bank-climates
+worldbank-dataset:worldbank-climates
     a sd:Graph, void:Dataset ;
     dcterms:title "World Bank Climate Change dataset"@en ;
     void:triples 77885568 ;
@@ -1538,37 +1538,39 @@
     .
 
 
-:meta_dbpedia
+:linkset-worldbank-dbpedia
     a void:Linkset ;
     void:linkPredicate owl:sameAs ;
-    void:subjectsTarget :meta ;
-    void:objectsTarget :dbpedia ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget <http://dbpedia.org/void/Dataset> ;
     void:triples 380 ;
     .
 
-:meta_eurostat
+:linkset-worldbank-eurostat
     a void:Linkset ;
     void:linkPredicate owl:sameAs ;
-    void:subjectsTarget :meta ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
     void:objectsTarget :eurostat ;
     void:triples 216 ;
     .
 
-:meta_geonames
+:linkset-worldbank-geonames
     a void:Linkset ;
     void:linkPredicate owl:sameAs ;
-    void:subjectsTarget :meta ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
     void:objectsTarget :geonames ;
     void:triples 216 ;
     .
 
-:dbpedia
+<http://dbpedia.org/void/Dataset>
     rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://dbpedia.org/sparql> ;
     foaf:homepage <http://dbpedia.org/> ;
     .
 
 :eurostat
     rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://eurostat.linked-statistics.org/sparql> ;
     foaf:homepage <http://eurostat.linked-statistics.org/> ;
     .
 
@@ -1595,28 +1597,28 @@
             void:triples 167098216 ;
         ] ;
         sd:namedGraph [
-            sd:name wbld-graph:void ;
-            sd:graph :VoID ;
+            sd:name worldbank-graph:void ;
+            sd:graph worldbank-dataset:void ;
         ] ;
         sd:namedGraph [
-            sd:name wbld-graph:meta ;
-            sd:graph :meta ;
+            sd:name worldbank-graph:meta ;
+            sd:graph worldbank-dataset:meta ;
         ] ;
         sd:namedGraph [
-            sd:name wbld-graph:world-development-indicators ;
-            sd:graph :world-development-indicators ;
+            sd:name worldbank-graph:world-development-indicators ;
+            sd:graph worldbank-dataset:world-development-indicators ;
         ] ;
         sd:namedGraph [
-            sd:name wbld-graph:world-bank-finances ;
-            sd:graph :world-bank-finances ;
+            sd:name worldbank-graph:worldbank-finances ;
+            sd:graph worldbank-dataset:worldbank-finances ;
         ] ;
         sd:namedGraph [
-            sd:name wbld-graph:world-bank-projects-and-operations ;
-            sd:graph :world-bank-projects-and-operations ;
+            sd:name worldbank-graph:worldbank-projects-and-operations ;
+            sd:graph worldbank-dataset:worldbank-projects-and-operations ;
         ] ;
         sd:namedGraph [
-            sd:name wbld-graph:world-bank-climates ;
-            sd:graph :world-bank-climates ;
+            sd:name worldbank-graph:worldbank-climates ;
+            sd:graph worldbank-dataset:worldbank-climates ;
         ] ;
     ] ;
     .
