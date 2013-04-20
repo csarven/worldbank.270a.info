@@ -52,7 +52,7 @@ $config['prefixes'] = array(
     'g-climates'           => 'http://worldbank.270a.info/graph/world-bank-climates',
     'g-finances'           => 'http://worldbank.270a.info/graph/world-bank-finances',
     'g-projects'           => 'http://worldbank.270a.info/graph/world-bank-projects-and-operations',
-    'g-indicators'         => 'http://worldbank.270a.info/graph/world-development-indicators'
+    'g-indicators'         => 'http://worldbank.270a.info/graph/world-bank-indicators'
 );
 
 /**
@@ -228,8 +228,8 @@ WHERE {
 }
 ";
 $config['entity']['dataset']['path']     = '/dataset';
-$config['entity']['dataset']['query']    = 'dataset';
-$config['entity']['dataset']['template'] = 'page.classification.html';
+$config['entity']['dataset']['query']    = 'default';
+$config['entity']['dataset']['template'] = 'page.default.html';
 
 
 ?>

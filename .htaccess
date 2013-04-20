@@ -21,5 +21,11 @@ RewriteRule info.* tool.world-development-indicators.php [L]
 RewriteRule about.html templates/about.html [L]
 RewriteRule ^.html templates/home.html [L]
 RewriteRule classification/indicator.html templates/classification.indicator.html [L]
+RewriteRule classification/project/P115592.html templates/classification.project.P115592.html [L]
+#RewriteRule classification/loan-number.html templates/classification.loan-number.html [L]
+
+
+
+RedirectMatch 301 ^/dataset/world-development-indicators(.*)$ http://worldbank.270a.info/dataset/world-bank-indicators$1
 
 RewriteRule ^.*$  index.php [L]

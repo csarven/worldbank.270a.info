@@ -26,7 +26,7 @@ class Tools
 
         switch($this->config['requestPath'][0]) {
             case 'view':
-                require_once 'templates/tool.world-development-indicators.html';
+                require_once 'templates/tool.world-bank-indicators.html';
                 break;
 
             case 'observations': case 'info':
@@ -36,7 +36,7 @@ class Tools
             default: //home
                 echo "home";
                 exit;
-//                require_once 'templates/tool.world-development-indicators.html';
+//                require_once 'templates/tool.world-bank-indicators.html';
                 break;
         }
 

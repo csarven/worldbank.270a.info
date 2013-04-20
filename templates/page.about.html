@@ -65,7 +65,7 @@
                     <div id="content_inner" property="dcterms:description" class="hentry">
                         <div class="entry-content">
                             <h2 id="what-is-this">What is this?</h2>
-                            <p>The data that is collected from <a href="http://worldbank.org/">The World Bank</a> is composed of <a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Bank Indicators</a>, <a href="https://finances.worldbank.org/">World Bank Finances</a>, <a href="http://www.worldbank.org/projects">World Bank Projects and Operations</a>, and <a href="http://climatechange.worldbank.org/">World Bank Climate Change</a> data. It was collected by making requests to World Bank API endpoints using the XML format preference.</p>
+                            <p>The data that is collected from <a href="http://worldbank.org/">The World Bank</a> is composed of <a href="http://data.worldbank.org/data-catalog/world-bank-indicators">World Bank Indicators</a>, <a href="https://finances.worldbank.org/">World Bank Finances</a>, <a href="http://www.worldbank.org/projects">World Bank Projects and Operations</a>, and <a href="http://climatechange.worldbank.org/">World Bank Climate Change</a> data. It was collected by making requests to World Bank API endpoints using the XML format preference.</p>
 
 
                             <p>The data can be used to derive statistical information that&#8217;s consumable by humans in the form of charts (see also the <a href="http://worldbank.270a.info/view">Tools</a> section), or compared to statistics from other organizations.</p>
@@ -191,11 +191,11 @@
                                 <dt>Properties</dt>
                                 <dd><code>http://worldbank.270a.info/property/{id}</code>, similar to above, too many to list here.</dd>
                                 <dt>Data Cube datasets</dt>
-                                <dd><code>http://worldbank.270a.info/dataset/{id}</code>, where id is one of; <a href="/dataset/world-development-indicators">world-development-indicators</a>, <a href="/dataset/world-bank-finances">world-bank-finances</a>, <a href="/dataset/world-bank-climates">world-bank-climates</a>.</dd>
+                                <dd><code>http://worldbank.270a.info/dataset/{id}</code>, where id is one of; <a href="/dataset/world-bank-indicators">world-bank-indicators</a>, <a href="/dataset/world-bank-finances">world-bank-finances</a>, <a href="/dataset/world-bank-climates">world-bank-climates</a>.</dd>
                                 <dt>Named graphs in RDF store</dt>
-                                <dd><code>http://worldbank.270a.info/graph/{id}</code>, where id is one of; meta, world-development-indicators, world-bank-finances, world-bank-climates, world-bank-projects-and-operations.</dd>
+                                <dd><code>http://worldbank.270a.info/graph/{id}</code>, where id is one of; meta, world-bank-indicators, world-bank-finances, world-bank-climates, world-bank-projects-and-operations.</dd>
                                 <dt>World Bank Indicators</dt>
-                                <dd><code>http://worldbank.270a.info/dataset/world-development-indicators/{id}/{country}/{year}</code>, where id is one of; <a href="/classification/indicator">indicator code</a>, country in one of <a href="/classification/country">country code</a>, and year in YYYY.</dd>
+                                <dd><code>http://worldbank.270a.info/dataset/world-bank-indicators/{id}/{country}/{year}</code>, where id is one of; <a href="/classification/indicator">indicator code</a>, country in one of <a href="/classification/country">country code</a>, and year in YYYY.</dd>
                                 <dt>World Bank Finances</dt>
                                 <dd><code>http://worldbank.270a.info/dataset/world-bank-finances/{id}/{rowid}</code>, where id is one of; <a href="/dataset/world-bank-finances">financial dataset code</a>, rowid as a positive integer.</dd>
                                 <dt>World Bank Climate Change</dt>
@@ -259,7 +259,7 @@
                                 <tr><td><a href="http://worldbank.270a.info/dataset/world-bank-finances/hcqu-nmwb">World Bank Expenditures By Program</a></td><td><a href="https://finances.worldbank.org/api/views/hcqu-nmwb/rows.xml">https://finances.worldbank.org/api/views/hcqu-nmwb/rows.xml</a></td></tr>
                                 <tr><td><a href="http://worldbank.270a.info/dataset/world-bank-finances/gprm-cvxz">World Bank Program Budget</a></td><td><a href="https://finances.worldbank.org/api/views/gprm-cvxz/rows.xml">https://finances.worldbank.org/api/views/gprm-cvxz/rows.xml</a></td></tr>
                                 <tr><td><a href="http://worldbank.270a.info/dataset/world-bank-climates">World Bank Climate Change</a></td><td><a href="http://climatedataapi.worldbank.org/climateweb/rest/">http://climatedataapi.worldbank.org/climateweb/rest/</a></td></tr>
-                                <tr><td><a href="http://worldbank.270a.info/dataset/world-development-indicators">World Bank Indicators</a></td><td><a href="http://api.worldbank.org/indicators?format=xml">http://api.worldbank.org/indicators?format=xml</a></td></tr>
+                                <tr><td><a href="http://worldbank.270a.info/dataset/world-bank-indicators">World Bank Indicators</a></td><td><a href="http://api.worldbank.org/indicators?format=xml">http://api.worldbank.org/indicators?format=xml</a></td></tr>
                             </tbody>
                         </table>
 
@@ -280,13 +280,13 @@
                         <h3 id="chart-visualization">Chart visualizations</h3>
                         <p>The <a href="http://worldbank.270a.info/view">Tools</a> section on the site uses <a href="https://google-developers.appspot.com/chart/">Google Charts Tools</a> to create the visualizations.</p>
 
-                        <h4 id="visualization_world-development-indicators">Visualizing World Bank Indicators</h4>
+                        <h4 id="visualization_world-bank-indicators">Visualizing World Bank Indicators</h4>
                         <p>Depending on the user selections, and the corresponding API call, two possible charts are generated:</p>
 
-                        <h5 id="visualization_world-development-indicators_motion-chart">Motion chart</h5>
+                        <h5 id="visualization_world-bank-indicators_motion-chart">Motion chart</h5>
                         <p>It consists of three different views; a bubble chart, bar chart, and line chart. This chart is intended for observation values in countries, over a time period for an indicator. Unique colours are assigned to each country to easily visually separate them from one another. The reference period runs on the x-axis, whereas the measured values run on the y-axis.</p>
 
-                        <h5 id="visualization_world-development-indicators_geo-chart">Geo chart</h5>
+                        <h5 id="visualization_world-bank-indicators_geo-chart">Geo chart</h5>
                         <p>It consists of a world map view where countries are separated by their official borders. This chart is used to view observation values for a time period for all the countries in the world. The legend consists in the form of a colour spectrum from lowest to highest measured values. The corresponding colours are assigned to each country on the map.</p>
                     </div>
                 </div>

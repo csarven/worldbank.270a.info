@@ -3,7 +3,7 @@
 ?>
 <!DOCTYPE HTML>
 <html>
-<?php require_once 'head.world-development-indicators.html'; ?>
+<?php require_once 'head.world-bank-indicators.html'; ?>
 <?php
     $titleDimensions = '';
 
@@ -34,14 +34,14 @@
 
     <body id="observation">
         <div id="wrap">
-<?php require_once 'header.world-development-indicators.html'; ?>
+<?php require_once 'header.world-bank-indicators.html'; ?>
             <div id="core">
                 <div id="content">
                     <h1>Observations in World Bank</h1>
 <?php
     if (count($this->config['requestQuery']) < 1) {
 ?>
-                    <p>This tool can display charts based on the observations in the <a href="http://worldbank.270a.info/dataset/world-development-indicators">World Bank Indicators</a> dataset.</p>
+                    <p>This tool can display charts based on the observations in the <a href="http://worldbank.270a.info/dataset/world-bank-indicators">World Bank Indicators</a> dataset.</p>
 
                     <p>How-to use this tool: select an indicator, then select one or more countries, or an observation year. Line chart is used to view observation values in countries, over a time period for an indicator. Geo chart is used to view observation values for a time period for all the countries in the world.</p>
 
@@ -69,7 +69,7 @@ print_r($this->config['data']['sparqlQueries']);
                     </div>
                 </div>
             </div>
-<?php require_once 'footer.world-development-indicators.html'; ?>
+<?php require_once 'footer.world-bank-indicators.html'; ?>
         </div>
 
 <?php require_once 'foot.html'; ?>
