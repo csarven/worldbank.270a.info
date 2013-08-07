@@ -6,11 +6,15 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix qb: <http://purl.org/linked-data/cube> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
 @prefix : <http://worldbank.270a.info/void.ttl#> .
 @prefix worldbank-dataset: <http://worldbank.270a.info/dataset/> .
 @prefix worldbank-graph: <http://worldbank.270a.info/graph/> .
-
+@prefix ecb-dataset: <http://ecb.270a.info/dataset/> .
+@prefix imf-dataset: <http://imf.270a.info/dataset/> .
+@prefix fao-dataset: <http://fao.270a.info/dataset/> .
+@prefix bfs-dataset: <http://bfs.270a.info/dataset/> .
 
 <http://worldbank.270a.info/void.ttl>
     a void:DatasetDescription ;
@@ -1561,6 +1565,63 @@ worldbank-dataset:world-bank-climates
     void:objectsTarget :geonames ;
     void:triples 216 ;
     .
+
+:linkset-worldbank-bfs
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget bfs-dataset:bfs ;
+    void:triples 185 ;
+    .
+
+:linkset-worldbank-ecb
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget ecb-dataset:ecb ;
+    void:triples 188 ;
+    .
+
+:linkset-worldbank-imf
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget imf-dataset:imf ;
+    void:triples 26 ;
+    .
+
+:linkset-worldbank-fao
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget fao-dataset:fao ;
+    void:triples 178 ;
+    .
+
+bfs-dataset:bfs
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://bfs.270a.info/sparql> ;
+    foaf:homepage <http://bfs.270a.info/> ;
+    .
+
+ecb-dataset:ecb
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://ecb.270a.info/sparql> ;
+    foaf:homepage <http://ecb.270a.info/> ;
+    .
+
+imf-dataset:imf
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://imf.270a.info/sparql> ;
+    foaf:homepage <http://imf.270a.info/> ;
+    .
+
+fao-dataset:fao
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://fao.270a.info/sparql> ;
+    foaf:homepage <http://fao.270a.info/> ;
+    .
+
 
 <http://dbpedia.org/void/Dataset>
     rdf:type void:Dataset ;
