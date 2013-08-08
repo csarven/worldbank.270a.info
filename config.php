@@ -12,47 +12,9 @@ $config['site']['logo']   = 'logo_worldbank-linkeddata.png';       /* 'logo_latc
 $config['prefixes'] = array(
     'rdf'               => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
     'rdfs'              => 'http://www.w3.org/2000/01/rdf-schema#',
-    'xsd'               => 'http://www.w3.org/2001/XMLSchema#',
-    'owl'               => 'http://www.w3.org/2002/07/owl#',
     'dcterms'           => 'http://purl.org/dc/terms/',
     'foaf'              => 'http://xmlns.com/foaf/0.1/',
-    'skos'              => 'http://www.w3.org/2004/02/skos/core#',
-    'wgs'               => 'http://www.w3.org/2003/01/geo/wgs84_pos#',
-    'dcat'              => 'http://www.w3.org/ns/dcat#',
-    'dbo'               => 'http://dbpedia.org/ontology/',
-    'dbp'               => 'http://dbpedia.org/property/',
-    'dbr'               => 'http://dbpedia.org/resource/',
-    'sdmx'              => 'http://purl.org/linked-data/sdmx#',
-    'sdmx-attribute'    => 'http://purl.org/linked-data/sdmx/2009/attribute#',
-    'sdmx-code'         => 'http://purl.org/linked-data/sdmx/2009/code#',
-    'sdmx-concept'      => 'http://purl.org/linked-data/sdmx/2009/concept#',
-    'sdmx-dimension'    => 'http://purl.org/linked-data/sdmx/2009/dimension#',
-    'sdmx-measure'      => 'http://purl.org/linked-data/sdmx/2009/measure#',
-    'sdmx-metadata'     => 'http://purl.org/linked-data/sdmx/2009/metadata#',
-    'sdmx-subject'      => 'http://purl.org/linked-data/sdmx/2009/subject#',
-    'qb'                => 'http://purl.org/linked-data/cube#',
-    'year'              => 'http://reference.data.gov.uk/id/year/',
-    'void'              => 'http://rdfs.org/ns/void#',
-
-    'wbld'              => 'http://worldbank.270a.info/',
-    'property'          => 'http://worldbank.270a.info/property/',
-    'classification'    => 'http://worldbank.270a.info/classification/',
-    'indicator'         => 'http://worldbank.270a.info/classification/indicator/',
-    'country'           => 'http://worldbank.270a.info/classification/country/',
-    'income-level'      => 'http://worldbank.270a.info/classification/income-level/',
-    'lending-type'      => 'http://worldbank.270a.info/classification/lending-type/',
-    'region'            => 'http://worldbank.270a.info/classification/region/',
-    'source'            => 'http://worldbank.270a.info/classification/source/',
-    'topic'             => 'http://worldbank.270a.info/classification/topic/',
-    'currency'          => 'http://worldbank.270a.info/classification/currency/',
-    'project'           => 'http://worldbank.270a.info/classification/project/',
-
-    'g-void'               => 'http://worldbank.270a.info/graph/void',
-    'g-meta'               => 'http://worldbank.270a.info/graph/meta',
-    'g-climates'           => 'http://worldbank.270a.info/graph/world-bank-climates',
-    'g-finances'           => 'http://worldbank.270a.info/graph/world-bank-finances',
-    'g-projects'           => 'http://worldbank.270a.info/graph/world-bank-projects-and-operations',
-    'g-indicators'         => 'http://worldbank.270a.info/graph/world-bank-indicators'
+    'skos'              => 'http://www.w3.org/2004/02/skos/core#'
 );
 
 /**
@@ -99,22 +61,14 @@ WHERE {
     GRAPH <http://worldbank.270a.info/graph/world-bank-projects-and-operations> {
         <URI> ?p1 ?o1 .
         OPTIONAL {
-            {
-                ?p1 skos:prefLabel ?propertyLabel .
-            }
+            { ?p1 skos:prefLabel ?propertyLabel . }
             UNION
-            {
-                ?p1 rdfs:label ?propertyLabel .
-            }
+            { ?p1 rdfs:label ?propertyLabel . }
         }
         OPTIONAL {
-            {
-                ?o1 skos:prefLabel ?conceptLabel .
-            }
+            { ?o1 skos:prefLabel ?conceptLabel . }
             UNION
-            {
-                ?o1 rdfs:label ?conceptLabel .
-            }
+            { ?o1 rdfs:label ?conceptLabel . }
         }
     }
 }
@@ -136,35 +90,23 @@ CONSTRUCT {
     ?o1 skos:notation ?conceptNotation .
 }
 WHERE {
-    GRAPH <http://worldbank.270a.info/graph/meta> {
+#    GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
         OPTIONAL {
-            {
-                ?p1 skos:prefLabel ?propertyLabel .
-            }
+            { ?p1 skos:prefLabel ?propertyLabel . }
             UNION
-            {
-                ?p1 rdfs:label ?propertyLabel .
-            }
+            { ?p1 rdfs:label ?propertyLabel . }
         }
         OPTIONAL {
-            {
-                ?o1 skos:prefLabel ?conceptLabel .
-            }
+            { ?o1 skos:prefLabel ?conceptLabel . }
             UNION
-            {
-                ?o1 rdfs:label ?resourceLabel .
-            }
+            { ?o1 rdfs:label ?resourceLabel . }
             UNION
-            {
-                ?o1 dcterms:title ?resourceTitle .
-            }
+            { ?o1 dcterms:title ?resourceTitle . }
             UNION
-            {
-                ?o1 skos:notation ?conceptNotation .
-            }
+            { ?o1 skos:notation ?conceptNotation . }
         }
-    }
+#    }
 }
 
 ";
@@ -207,22 +149,14 @@ WHERE {
     GRAPH <http://worldbank.270a.info/graph/meta> {
         <URI> ?p1 ?o1 .
         OPTIONAL {
-            {
-                ?p1 skos:prefLabel ?propertyLabel .
-            }
+            { ?p1 skos:prefLabel ?propertyLabel . }
             UNION
-            {
-                ?p1 rdfs:label ?resourceLabel .
-            }
+            { ?p1 rdfs:label ?resourceLabel . }
         }
         OPTIONAL {
-            {
-                ?o1 skos:prefLabel ?conceptLabel .
-            }
+            { ?o1 skos:prefLabel ?conceptLabel . }
             UNION
-            {
-                ?o1 dcterms:title ?title .
-            }
+            { ?o1 dcterms:title ?title . }
         }
     }
 }
