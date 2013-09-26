@@ -11,6 +11,7 @@
 @prefix : <http://worldbank.270a.info/void.ttl#> .
 @prefix worldbank-dataset: <http://worldbank.270a.info/dataset/> .
 @prefix worldbank-graph: <http://worldbank.270a.info/graph/> .
+@prefix transparency-dataset: <http://transparency.270a.info/dataset/> .
 @prefix ecb-dataset: <http://ecb.270a.info/dataset/> .
 @prefix imf-dataset: <http://imf.270a.info/dataset/> .
 @prefix fao-dataset: <http://fao.270a.info/dataset/> .
@@ -31,7 +32,7 @@ worldbank-dataset:worldbank
     dcterms:source [ foaf:homepage <http://worldbank.org/> ] ;
     dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
     dcterms:created "2012-02-29"^^xsd:date ;
-    dcterms:modified "2013-04-18"^^xsd:date ;
+    dcterms:modified "2013-09-23"^^xsd:date ;
     void:subset
         worldbank-dataset:void ,
         worldbank-dataset:meta ,
@@ -1542,6 +1543,14 @@ worldbank-dataset:world-bank-climates
     .
 
 
+:linkset-worldbank-transparency
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget transparency-dataset:transparency ;
+    void:triples 182 ;
+    .
+
 :linkset-worldbank-dbpedia
     a void:Linkset ;
     void:linkPredicate owl:sameAs ;
@@ -1596,6 +1605,12 @@ worldbank-dataset:world-bank-climates
     void:subjectsTarget worldbank-dataset:worldbank ;
     void:objectsTarget fao-dataset:fao ;
     void:triples 178 ;
+    .
+
+transparency-dataset:transparency
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://transparency.270a.info/sparql> ;
+    foaf:homepage <http://transparency.270a.info/> ;
     .
 
 bfs-dataset:bfs
