@@ -9,13 +9,17 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sd: <http://www.w3.org/ns/sparql-service-description#> .
 @prefix : <http://worldbank.270a.info/void.ttl#> .
-@prefix worldbank-dataset: <http://worldbank.270a.info/dataset/> .
 @prefix worldbank-graph: <http://worldbank.270a.info/graph/> .
-@prefix transparency-dataset: <http://transparency.270a.info/dataset/> .
+@prefix oecd-dataset: <http://oecd.270a.info/dataset/> .
+@prefix bfs-dataset: <http://bfs.270a.info/dataset/> .
+@prefix fao-dataset: <http://fao.270a.info/dataset/> .
 @prefix ecb-dataset: <http://ecb.270a.info/dataset/> .
 @prefix imf-dataset: <http://imf.270a.info/dataset/> .
-@prefix fao-dataset: <http://fao.270a.info/dataset/> .
-@prefix bfs-dataset: <http://bfs.270a.info/dataset/> .
+@prefix uis-dataset: <http://uis.270a.info/dataset/> .
+@prefix frb-dataset: <http://frb.270a.info/dataset/> .
+@prefix worldbank-dataset: <http://worldbank.270a.info/dataset/> .
+@prefix transparency-dataset: <http://transparency.270a.info/dataset/> .
+
 
 <http://worldbank.270a.info/void.ttl>
     a void:DatasetDescription ;
@@ -1563,7 +1567,7 @@ worldbank-dataset:world-bank-climates
     a void:Linkset ;
     void:linkPredicate owl:sameAs ;
     void:subjectsTarget worldbank-dataset:worldbank ;
-    void:objectsTarget :eurostat ;
+    void:objectsTarget <http://eurostat.linked-statistics.org/void.ttl#eurostat> ;
     void:triples 216 ;
     .
 
@@ -1571,7 +1575,7 @@ worldbank-dataset:world-bank-climates
     a void:Linkset ;
     void:linkPredicate owl:sameAs ;
     void:subjectsTarget worldbank-dataset:worldbank ;
-    void:objectsTarget :geonames ;
+    void:objectsTarget <http://sws.geonames.org/> ;
     void:triples 216 ;
     .
 
@@ -1606,6 +1610,41 @@ worldbank-dataset:world-bank-climates
     void:objectsTarget fao-dataset:fao ;
     void:triples 178 ;
     .
+:linkset-worldbank-iati
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget <http://purl.org/collections/iati/void.ttl#IATI> ;
+    void:triples 212 ;
+    .
+:linkset-worldbank-hr
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget <http://hxl.humanitarianresponse.info/> ;
+    void:triples 183 ;
+    .
+:linkset-worldbank-nasa
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget <http://data.nasa.gov/> ;
+    void:triples 170 ;
+    .
+:linkset-worldbank-uis
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget uis-dataset:uis ;
+    void:triples 964 ;
+    .
+:linkset-worldbank-frb
+    a void:Linkset ;
+    void:linkPredicate skos:exactMatch ;
+    void:subjectsTarget worldbank-dataset:worldbank ;
+    void:objectsTarget frb-dataset:frb ;
+    void:triples 280 ;
+    .
 
 transparency-dataset:transparency
     rdf:type void:Dataset ;
@@ -1637,23 +1676,63 @@ fao-dataset:fao
     foaf:homepage <http://fao.270a.info/> ;
     .
 
+uis-dataset:uis
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://uis.270a.info/sparql> ;
+    foaf:homepage <http://uis.270a.info/> ;
+    .
+
+frb-dataset:frb
+    rdf:type void:Dataset ;
+    void:sparqlEndpoint <http://frb.270a.info/sparql> ;
+    foaf:homepage <http://frb.270a.info/> ;
+    .
 
 <http://dbpedia.org/void/Dataset>
     rdf:type void:Dataset ;
     void:sparqlEndpoint <http://dbpedia.org/sparql> ;
+    #TODO: What's the count?
     foaf:homepage <http://dbpedia.org/> ;
     .
 
-:eurostat
+<http://eurostat.linked-statistics.org/void.ttl#eurostat>
     rdf:type void:Dataset ;
+    dcterms:title "Eurostat"@en ;
     void:sparqlEndpoint <http://eurostat.linked-statistics.org/sparql> ;
+    #TODO: What's the count?
     foaf:homepage <http://eurostat.linked-statistics.org/> ;
     .
-
-:geonames
+#TODO: What's the real VoID URL?
+<http://sws.geonames.org/>
     rdf:type void:Dataset ;
-    foaf:homepage <http://geonames.org/> ;
+    dcterms:title "Geonames"@en ;
+    #TODO: What's the count?
+    foaf:homepage <http://sws.geonames.org/> ;
     .
+#TODO: What's the real VoID URL?
+<http://data.nasa.gov/>
+    rdf:type void:Dataset ;
+    dcterms:title "NASA"@en ;
+    #TODO: What's the count?
+    foaf:homepage <http://data.nasa.gov/> ;
+    .
+#TODO: What's the real VoID URL?
+<http://purl.org/collections/iati/void.ttl#IATI>
+    rdf:type void:Dataset ;
+    dcterms:title "International Aid Transparency Initiative"@en ;
+    void:sparqlEndpoint <http://semanticweb.cs.vu.nl/iati/user/query> ;
+    #TODO: What's the count?
+    foaf:homepage <http://semanticweb.cs.vu.nl/iati/home> ;
+    .
+#TODO: What's the real VoID URL?
+<http://hxl.humanitarianresponse.info/>
+    rdf:type void:Dataset ;
+    dcterms:title "Humanitarian Response"@en ;
+    void:sparqlEndpoint <http://hxl.humanitarianresponse.info/sparql> ;
+    #TODO: What's the count?
+    foaf:homepage <http://hxl.humanitarianresponse.info/> ;
+    .
+
 
 :service
     a sd:Service ;
