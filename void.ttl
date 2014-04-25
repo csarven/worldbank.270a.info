@@ -20,6 +20,13 @@
 @prefix worldbank-dataset: <http://worldbank.270a.info/dataset/> .
 @prefix transparency-dataset: <http://transparency.270a.info/dataset/> .
 
+<http://csarven.ca/#i>
+    rdfs:label "Sarven Capadisli"@en ;
+    .
+
+<http://creativecommons.org/publicdomain/zero/1.0/>
+    rdfs:label "CC0 1.0 Universal"@en ;
+    .
 
 <http://worldbank.270a.info/void.ttl>
     a void:DatasetDescription ;
@@ -34,7 +41,7 @@ worldbank-dataset:worldbank
     dcterms:title "World Bank Linked Data"@en ;
     dcterms:description "World Bank's Indicators, Finances, Projects and Operations, and Climate Change data"@en ;
     dcterms:source [ foaf:homepage <http://worldbank.org/> ] ;
-    dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
+    dcterms:publisher <http://csarven.ca/#i> ;
     dcterms:created "2012-02-29"^^xsd:date ;
     dcterms:modified "2013-11-04"^^xsd:date ;
     void:subset
@@ -74,7 +81,7 @@ worldbank-dataset:meta
     a sd:Graph, void:Dataset ;
     dcterms:title "Metadata and complimentary data used for all the data in the worldbank-dataset:worldbank dataset"@en ;
     dcterms:source [ foaf:homepage <http://data.worldbank.org/data-catalog> ] ;
-    dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
+    dcterms:publisher <http://csarven.ca/#i> ;
     dcterms:created "2012-02-29"^^xsd:date ;
     dcterms:modified "2013-04-18"^^xsd:date ;
     void:dataDump <http://worldbank.270a.info/data/meta.tar.gz> ;
@@ -417,7 +424,7 @@ worldbank-dataset:world-bank-indicators
     dcterms:title "World Bank Indicators"@en ;
     dcterms:description "World Bank Indicators data from The World Bank. It contains developmental observations."@en ;
     dcterms:source [ foaf:homepage <http://data.worldbank.org/indicator> ] ;
-    dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
+    dcterms:publisher <http://csarven.ca/#i> ;
     dcterms:created "2012-02-29"^^xsd:date ;
     dcterms:modified "2013-11-04"^^xsd:date ;
     dcterms:subject
@@ -498,7 +505,7 @@ worldbank-dataset:world-bank-finances
     dcterms:title "World Bank Finances"@en ;
     dcterms:description "World Bank Finances data from The World Bank. It contains financial observations."@en ;
     dcterms:source [ foaf:homepage <https://finances.worldbank.org/> ] ;
-    dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
+    dcterms:publisher <http://csarven.ca/#i> ;
     dcterms:created "2012-09-29"^^xsd:date ;
     dcterms:modified "2012-08-10"^^xsd:date ;
     dcterms:subject
@@ -1238,7 +1245,7 @@ worldbank-dataset:world-bank-projects-and-operations
     dcterms:title "World Development Projects and Operations"@en ;
     dcterms:description "World Bank Projects and Operations data from The World Bank."@en ;
     dcterms:source [ foaf:homepage <http://www.worldbank.org/projects> ] ;
-    dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
+    dcterms:publisher <http://csarven.ca/#i> ;
     dcterms:created "2012-02-29"^^xsd:date ;
     dcterms:modified "2012-08-10"^^xsd:date ;
     dcterms:subject
@@ -1463,7 +1470,7 @@ worldbank-dataset:world-bank-climates
     dcterms:title "World Bank Climate Change dataset"@en ;
     void:triples 77885568 ;
     dcterms:source [ foaf:homepage <http://climatechange.worldbank.org/> ] ;
-    dcterms:publisher [ foaf:homepage <http://csarven.ca/> ] ;
+    dcterms:publisher <http://csarven.ca/#i> ;
     dcterms:created "2012-03-25"^^xsd:date ;
     dcterms:modified "2012-04-02"^^xsd:date ;
     void:dataDump <http://worldbank.270a.info/data/world-bank-climates.tar.gz> ;
