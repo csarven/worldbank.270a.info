@@ -1,9 +1,4 @@
-#Header set Access-Control-Allow-Origin "*"
-
-<Files ~ "^\.html">
-    Order deny,allow
-    Allow from all
-</Files>
+Header set Access-Control-Allow-Origin "*"
 
 RewriteEngine on
 RewriteRule ^$  index.php [L]

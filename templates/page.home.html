@@ -22,21 +22,9 @@
   xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
     <head>
         <title><?php echo $c['site']['name'];?></title>
-<?php
-    $fileVersion = 'version=0.0.2';
 
-    $favicon_theme = SITE_DIR.'theme/'.$c['site']['theme'].'/images/icons/favicon.ico';
-
-    if (file_exists($favicon_theme)) {
-        $favicon = $c['site']['base'].'/theme/'.$c['site']['theme'].'/images/icons/favicon.ico';
-    }
-    else {
-        $favicon = $c['site']['base'].'/favicon.ico';
-    }
-?>
-
-        <link rel="shortcut icon" href="<?php echo $favicon; ?>"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo $c['site']['base'].'/theme/'.$c['site']['theme'].'/css/display.css?'.$fileVersion; ?>" media="all"/>
+        <link rel="shortcut icon" href="http://270a.info/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="http://270a.info/theme/default/css/display.css" media="all"/>
 
         <meta name="description" content="World Bank data published using the Linked Data design principles. It contains World Development Indicators, World Bank Finances, World Bank Projects and Operations, and World Bank Climate Change data."/>
         <meta name="author" content="http://csarven.ca/#i"/>
