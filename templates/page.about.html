@@ -101,11 +101,11 @@
                                     <tr><th>World Bank Climate Change</th><td>Complete</td><td>78 million</td></tr>
                                     <tr><th>World Bank Finances</th><td>Complete</td><td>8 million</td></tr>
                                     <tr><th>World Bank Projects and Operations</th><td>Incomplete</td><td>1 million</td></tr>
-                                    <tr><th>World Bank Indicators</th><td>Complete</td><td>80 million</td></tr>
+                                    <tr><th>World Bank Indicators</th><td>Complete</td><td>87 million</td></tr>
                                 </tbody>
                             </table>
 
-                            <p>The World Bank Metadata consists of 180k triples.</p>
+                            <p>The World Bank Metadata consists of 280k triples. There are also triples added which link from the datasets to their observations.</p>
 
                             <h2 id="data-decisions">Decisions on source data</h2>
                             <p>Herein is a list of some of the limitations and inconsistencies in the original data which introduced an extra problem layer. In order to arrive at a proper and useful Linked Data representation, some these problems were solved either with a script, or manually curated, and others were brought up to the World Bank team&#8217;s attention for investigation.</p>
@@ -141,7 +141,7 @@
                             <p>The data is primarily composed of observations (e.g., indicators, financial loans, climate for a countries) using the RDF Data Cube vocabulary. There are also code lists for classifications like countries, currencies, projects, loan numbers, global circulation models and so on.</p>
 
                             <h3 id="data-interlinking">Data interlinking</h3>
-                            <p>The dataset is interlinked (~380 links) with <a href="http://dbpedia.org/">DBpedia</a> for countries and currencies, and (~432 links) with <a href="http://eurostat.linked-statistics.org/">Eurostat</a> and <a href="http://sws.geonames.org/">Geonames</a> for countries using <a href="http://aksw.org/Projects/limes">LInk discovery framework for MEtric Spaces</a> (LIMES). With respect to some of the concepts for code lists, they were manually matched with corresponding <code>skos:exactMatch</code> or </code>skos:closeMatch</code> links to DBpedia.</p>
+                            <p>Interlinks are done by with the <a href="http://aksw.org/Projects/limes">LInk discovery framework for MEtric Spaces</a> (LIMES). With respect to some of the concepts for code lists, they were manually matched with corresponding <code>skos:exactMatch</code> or </code>skos:closeMatch</code> links to DBpedia. There are interlinks to: <a href="http://transparency.270a.info/">Transparency International</a>, <a href="http://bfs.270a.info/">BFS</a>, <a href="http://imf.270a.info/">IMF</a>, <a href="http://ecb.270a.info/">ECB</a>, <a href="http://fao.270a.info/">FAO</a> , <a href="http://uis.270a.info/">UIS</a>, and <a href="http://frb.270a.info/">FRB</a> Linked Dataspaces, as well as <a href="http://dbpedia.org/">DBpedia</a>, <a href="http://data.nasa.gov/">NASA</a>, <a href="Eurostat">http://eurostat.linked-statistics.org/</a>, <a href="http://sws.geonames.org/">Geonames</a>, <a href="http://purl.org/collections/iati/void.ttl#IATI">IATA</a>, and <a href="http://hxl.humanitarianresponse.info/">Humanitarian Response</a>. See also: <a href="http://270a.info/">270a.info</a>.</p>
 
                             <p>Additional interlinking was done by adding links to resources with corresponding homepages on the World Bank site, as well as links to referenced documents.</p>
 
@@ -295,7 +295,7 @@
                     <dt>Page notice</dt>
                     <dd>
                         <ul>
-                            <li class="notice_updated">Last updated on 2012-08-10.</li>
+                            <li class="notice_updated">Last updated on 2014-06-25.</li>
                         </ul>
                     </dd>
                 </dl>
